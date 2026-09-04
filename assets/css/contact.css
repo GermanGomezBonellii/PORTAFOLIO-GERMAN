@@ -1,0 +1,100 @@
+/* ==========================================================================
+   CONTACTO — sección "Contacto" de la home (index.html)
+   ========================================================================== */
+
+.contact {
+  padding-block: var(--section-space);
+  border-top: 1px solid var(--color-line);
+}
+
+.contact__inner {
+  grid-column: 1 / span 8;
+}
+
+.contact__title {
+  font-size: var(--fs-h1); /* misma jerarquía que "Trabajo seleccionado" / Perfil, menor que el hero */
+  margin-bottom: 16px;
+}
+
+.contact__lead {
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 46ch;
+}
+
+/* -- Filas de contacto -------------------------------------------------
+   Cada fila es un unico <a> (area clickeable completa, no solo la flecha).
+   Label a la izquierda, dato a la derecha en desktop; se apilan en mobile
+   (ver media query mas abajo).
+   ------------------------------------------------------------------------ */
+.contact__rows {
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+.contact__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: clamp(22px, 3vw, 32px);
+  border-top: 1px solid var(--color-line);
+}
+
+.contact__row:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.contact__row-label {
+  flex: 0 0 auto;
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.contact__row-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body); /* dato secundario (mail/telefono/linkedin), no es un titulo: se mantiene en sans */
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: right;
+  overflow-wrap: anywhere; /* evita overflow del email en pantallas angostas */
+  transition: color 0.2s var(--ease);
+}
+
+.contact__row-arrow {
+  display: inline-block;
+  font-size: 0.8em;
+  transition: transform 0.2s var(--ease);
+}
+
+/* Interaccion sutil: el dato pasa a celeste y la flecha se desplaza apenas */
+.contact__row:hover .contact__row-value,
+.contact__row:focus-visible .contact__row-value {
+  color: var(--color-accent);
+}
+
+.contact__row:hover .contact__row-arrow,
+.contact__row:focus-visible .contact__row-arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 768px) {
+  .contact__inner {
+    grid-column: 1 / -1;
+  }
+
+  .contact__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .contact__row-value {
+    text-align: left;
+  }
+}

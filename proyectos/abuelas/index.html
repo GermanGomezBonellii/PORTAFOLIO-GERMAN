@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abuelas de Plaza de Mayo — Germán Gómez Bonelli</title>
+<meta name="description" content="Derechos humanos y comunicación institucional — creación y desarrollo del canal de TikTok.">
+
+<!-- Favicon / isotipo del portfolio -->
+<link rel="icon" type="image/png" href="../../img/logo.png">
+<link rel="apple-touch-icon" href="../../img/logo.png">
+
+<!-- Merriweather (titulos y headings principales, var(--font-display)).
+     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/proyecto.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../../index.html" class="site-header__name">Germán Gómez Bonelli</a>
+
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Navegación principal">
+      <a href="../../index.html#trabajo">Trabajo</a>
+      <a href="../../index.html#perfil">Perfil</a>
+      <a href="../../index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==========================================================================
+       HERO DEL CASO — reutiliza el mismo componente .case-hero de Andrés
+       Rieznik, con la distribución invertida (.case-hero--reverse: imagen a
+       la izquierda, texto a la derecha) para que no sea una composición
+       idéntica. Mismo sistema, misma jerarquía, variación de layout.
+       ========================================================================== -->
+  <section class="case-hero case-hero--reverse container">
+    <a href="../../index.html#trabajo" class="back-link case-hero__back">← Volver a mis trabajos</a>
+
+    <div class="grid case-hero__grid">
+      <div class="case-hero__content">
+        <span class="eyebrow case-hero__eyebrow">03 / Derechos humanos y comunicación institucional</span>
+        <h1 class="case-hero__title">Abuelas de Plaza de Mayo</h1>
+        <p class="case-hero__lead">Creación y desarrollo de una nueva presencia institucional en TikTok a partir de producción original y trabajo con material de archivo.</p>
+        <p class="case-hero__roles">Prensa y difusión · Estrategia de contenidos · Producción · Grabación · Edición · Archivo · Gestión de TikTok</p>
+
+        <div class="case-hero__stat">
+          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 29K</span>
+          <span class="case-hero__stat-caption">Comunidad alcanzada durante aproximadamente un año desde el lanzamiento del canal de TikTok.</span>
+        </div>
+      </div>
+
+      <div class="case-hero__media-col">
+        <!-- IMAGEN PRINCIPAL DEL CASO (4:5)
+             Ruta prevista: img/proyectos/abuelas/portada.webp
+             Mismo criterio que en Andrés Rieznik: background-image (no
+             <img>), así que si el archivo todavía no existe el fondo cae
+             al color neutro --color-surface, sin ícono roto. En cuanto se
+             agregue el archivo en esa ruta exacta, aparece solo -- sin
+             tocar este HTML ni este CSS. -->
+        <div class="media media--tall case-hero__media case-hero__media--abuelas" data-label="Imagen principal 4:5 — placeholder"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL PROYECTO -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">El proyecto</span>
+      <div class="case-section__body">
+        <p>Trabajé con Abuelas de Plaza de Mayo dentro del área de Prensa y Difusión, participando en el desarrollo de contenidos para sus plataformas digitales.</p>
+        <p>Durante ese período inicié y administré su canal de TikTok desde cero. El trabajo implicó pensar cómo trasladar la identidad, la historia y el trabajo de una institución con décadas de trayectoria a los lenguajes y formatos propios de una plataforma nueva, sin perder el contexto ni la responsabilidad que requieren sus contenidos.</p>
+        <p>La cuenta pasó desde su lanzamiento a reunir una comunidad de aproximadamente 29.000 seguidores durante cerca de un año de trabajo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MI ROL -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Mi rol</span>
+      <div class="case-section__body">
+        <ul class="case-role__list">
+          <li>Prensa y difusión</li>
+          <li>Estrategia y desarrollo de contenidos</li>
+          <li>Creación y administración de TikTok</li>
+          <li>Producción audiovisual</li>
+          <li>Grabación</li>
+          <li>Edición</li>
+          <li>Trabajo con material de archivo</li>
+          <li>Adaptación de contenidos para plataformas digitales</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCCIÓN Y ARCHIVO
+       Sección con mayor peso visual a propósito: es una de las
+       características centrales del proyecto (combina producción
+       original y trabajo con archivo). Full-width, como "Trabajo
+       seleccionado" en el caso de Andrés (.case-work). -->
+  <section class="case-section case-work fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Producción y archivo</span>
+      <div class="case-section__body">
+        <div class="case-duo">
+          <article class="case-duo__block">
+            <span class="case-duo__index">01</span>
+            <h3 class="case-duo__title">Producción original</h3>
+            <p class="case-duo__text">Grabación y edición de contenidos producidos específicamente para las plataformas digitales de la institución.</p>
+            <!-- Espacio preparado para futuros videos verticales 9:16 -->
+            <div class="media media--9-16 case-duo__media" data-label="Video vertical 9:16 — placeholder"></div>
+          </article>
+
+          <article class="case-duo__block">
+            <span class="case-duo__index">02</span>
+            <h3 class="case-duo__title">Material de archivo</h3>
+            <p class="case-duo__text">Selección, edición y adaptación de material histórico de imagen y video para construir nuevas piezas destinadas a plataformas digitales.</p>
+            <!-- Espacio preparado para: fotografías, documentos, videos
+                 históricos y comparaciones entre archivo y pieza
+                 terminada. Dos placeholders neutros por ahora. -->
+            <div class="case-duo__archive-grid">
+              <div class="media media--square" data-label="Archivo — placeholder"></div>
+              <div class="media media--square" data-label="Pieza terminada — placeholder"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UN CANAL NUEVO -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Un canal nuevo</span>
+      <div class="case-section__body">
+        <p>Uno de los principales desafíos fue iniciar la presencia de Abuelas de Plaza de Mayo en TikTok desde cero. Esto implicó experimentar con formatos, ritmos y formas narrativas propias de la plataforma, buscando ampliar la circulación de sus contenidos sin separar las piezas de su contexto histórico e institucional.</p>
+
+        <div class="case-stat">
+          <span class="case-stat-value">0 <span class="case-stat-arrow">→</span> 29K</span>
+          <span class="case-stat-caption">TikTok durante aproximadamente el primer año del canal.</span>
+        </div>
+
+        <!-- Espacio preparado para: screenshot del perfil, tres piezas
+             verticales, datos futuros y links externos al perfil de
+             TikTok. Placeholders neutros por ahora. -->
+        <div class="case-channel-media">
+          <div class="media media--9-16" data-label="Screenshot del perfil — placeholder"></div>
+          <div class="media media--9-16" data-label="Pieza vertical — placeholder"></div>
+          <div class="media media--9-16" data-label="Pieza vertical — placeholder"></div>
+          <div class="media media--9-16" data-label="Pieza vertical — placeholder"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DERECHOS HUMANOS, CIENCIA E IDENTIDAD -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Derechos humanos, ciencia e identidad</span>
+      <div class="case-section__body">
+        <p>El trabajo de Abuelas de Plaza de Mayo también muestra hasta qué punto los derechos humanos, la ciencia y las políticas públicas pueden estar profundamente relacionados.</p>
+        <p>La búsqueda de nietos y nietas apropiados durante la última dictadura impulsó la necesidad de desarrollar herramientas que permitieran establecer vínculos biológicos incluso en ausencia de los padres. En ese contexto surgió el llamado índice de abuelidad, asociado al desarrollo de métodos genéticos capaces de determinar relaciones de parentesco entre abuelos y nietos.</p>
+        <p>Este cruce entre derechos humanos, investigación científica e identidad es también una de las razones por las que considero importante la comunicación pública del conocimiento: la evidencia científica no solo permite comprender el mundo, sino que puede convertirse en una herramienta concreta para intervenir sobre problemas sociales y garantizar derechos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABAJO SELECCIONADO
+       Composición con más presencia de formatos verticales, porque la
+       plataforma principal del proyecto fue TikTok: 3 piezas 9:16 y
+       después un bloque [horizontal + 9:16]. Reutiliza .case-media-grid
+       tal cual ya estaba preparado (wide = span 8, tall = span 4), sin
+       CSS nuevo. -->
+  <section class="case-section case-work fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Trabajo seleccionado</span>
+      <div class="case-section__body">
+        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas entre producción original y archivo — pendiente de curaduría final.</p>
+
+        <!-- PLACEHOLDER: grilla preparada para 4-6 piezas. Cada una está
+             pensada para admitir, más adelante: categoría (por ejemplo
+             "Producción original", "Archivo", "Testimonio", "Historia"),
+             título, una descripción corta de la participación (por
+             ejemplo "Producción · Grabación · Edición") y un link
+             externo. Estructura sugerida con .case-media-grid__caption
+             (ya definida en proyecto.css):
+               <div class="case-media-grid__caption">
+                 <span class="eyebrow">Archivo</span>
+                 <p>Selección · Edición</p>
+               </div>
+             Por ahora se deja solamente el placeholder neutro de media. -->
+        <div class="case-media-grid">
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--wide">
+            <div class="media media--16-9" data-label="Imagen / archivo horizontal — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Pieza terminada 9:16 — placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEL ARCHIVO A LA PLATAFORMA
+       Sección experimental mínima, todavía sin definir cómo presentarla
+       -- estructura conceptual simple (3 pasos), sin invertir de más
+       hasta la próxima iteración. -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Del archivo a la plataforma</span>
+      <div class="case-section__body">
+        <p class="case-section__placeholder">Sección experimental — todavía por definir cómo presentarla.</p>
+
+        <div class="case-flow">
+          <span class="case-flow__step">Material original</span>
+          <span class="case-flow__arrow">→</span>
+          <span class="case-flow__step">Selección / edición</span>
+          <span class="case-flow__arrow">→</span>
+          <span class="case-flow__step">Pieza publicada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Resultados</span>
+      <div class="case-section__body">
+        <div class="results-grid">
+          <div class="result-item">
+            <span class="result-item__value">0 → 29K</span>
+            <span class="result-item__caption">TikTok durante aproximadamente un año desde el lanzamiento del canal.</span>
+          </div>
+          <div class="result-item result-item--text">
+            <span class="result-item__label">Canal</span>
+            <span class="result-item__caption">Creación y desarrollo desde cero.</span>
+          </div>
+          <div class="result-item result-item--text">
+            <span class="result-item__label">Contenido</span>
+            <span class="result-item__caption">Producción original y adaptación de archivo para plataformas digitales.</span>
+          </div>
+          <!-- PLACEHOLDER: agregar métricas adicionales cuando estén definidas -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DEL CASO
+       "Siguiente proyecto" se deja sin link: Abuelas es el último proyecto
+       desarrollado del listado (Camila Perochena todavía es un stub sin
+       contenido), así que no hay una ruta confirmada a la que apuntar
+       todavía -- mismo criterio que en el caso de Andrés. -->
+  <nav class="case-final container" aria-label="Navegación entre casos">
+    <a href="../../index.html#trabajo" class="back-link">← Todos los trabajos</a>
+    <span class="case-final__next">Siguiente proyecto →</span>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__name">Germán Gómez Bonelli</span>
+    <a href="/#trabajo" class="back-link">← Volver a proyectos</a>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

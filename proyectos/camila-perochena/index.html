@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camila Perochena — Germán Gómez Bonelli</title>
+<meta name="description" content="Historia y comunicación política — edición y adaptación de contenidos para plataformas digitales.">
+
+<!-- Favicon / isotipo del portfolio -->
+<link rel="icon" type="image/png" href="../../img/logo.png">
+<link rel="apple-touch-icon" href="../../img/logo.png">
+
+<!-- Merriweather (titulos y headings principales, var(--font-display)).
+     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/proyecto.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../../index.html" class="site-header__name">Germán Gómez Bonelli</a>
+
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Navegación principal">
+      <a href="../../index.html#trabajo">Trabajo</a>
+      <a href="../../index.html#perfil">Perfil</a>
+      <a href="../../index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==========================================================================
+       HERO DEL CASO — reutiliza .case-hero (misma composición de base que
+       Andrés Rieznik: contenido a la izquierda, imagen a la derecha), pero
+       con una imagen principal 16:9 en vez de 4:5 -- el material de origen
+       de este caso es audiovisual horizontal (streaming/TV), no vertical.
+       ========================================================================== -->
+  <section class="case-hero container">
+    <a href="../../index.html#trabajo" class="back-link case-hero__back">← Volver a mis trabajos</a>
+
+    <div class="grid case-hero__grid">
+      <div class="case-hero__content">
+        <span class="eyebrow case-hero__eyebrow">02 / Historia y comunicación política</span>
+        <h1 class="case-hero__title">Camila Perochena</h1>
+        <p class="case-hero__lead">Edición y adaptación de contenidos históricos y políticos para plataformas digitales, a partir de participaciones en streaming y televisión.</p>
+        <p class="case-hero__roles">Edición audiovisual · Selección de contenidos · Desarrollo de formatos · Adaptación multiplataforma</p>
+
+        <div class="case-hero__stat">
+          <span class="case-hero__stat-value">14K <span class="case-hero__stat-arrow">→</span> 100K</span>
+          <span class="case-hero__stat-caption">Evolución de la comunidad durante aproximadamente un año y medio de colaboración.</span>
+        </div>
+      </div>
+
+      <div class="case-hero__media-col">
+        <!-- IMAGEN PRINCIPAL DEL CASO (16:9)
+             Ruta prevista: img/proyectos/camila-perochena/portada.webp
+             Mismo criterio que en Andrés Rieznik y Abuelas de Plaza de
+             Mayo: background-image (no <img>), así que si el archivo
+             todavía no existe el fondo cae al color neutro
+             --color-surface, sin ícono roto. En cuanto se agregue el
+             archivo en esa ruta exacta, aparece solo -- sin tocar este
+             HTML ni este CSS. -->
+        <div class="media media--16-9 case-hero__media case-hero__media--camila" data-label="Imagen principal 16:9 — placeholder"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL PROYECTO -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">El proyecto</span>
+      <div class="case-section__body">
+        <p>Camila Perochena es historiadora y divulgadora, especializada en historia argentina y mundial. Participa regularmente en espacios de análisis y divulgación como Soñé que volaba, en OLGA, y Odisea Argentina, de Carlos Pagni.</p>
+        <p>Mi trabajo con ella se concentra principalmente en la edición y adaptación de esas intervenciones para plataformas digitales. A partir de materiales originalmente pensados para formatos largos, trabajo en la selección, construcción y edición de fragmentos capaces de funcionar como piezas autónomas sin perder el contexto histórico o argumental.</p>
+        <p>Durante aproximadamente un año y medio de colaboración, su comunidad pasó de alrededor de 14.000 a 100.000 seguidores, manteniendo un crecimiento orgánico sostenido.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MI ROL -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Mi rol</span>
+      <div class="case-section__body">
+        <ul class="case-role__list">
+          <li>Selección de fragmentos</li>
+          <li>Edición audiovisual</li>
+          <li>Construcción narrativa</li>
+          <li>Adaptación de contenidos largos a formatos breves</li>
+          <li>Desarrollo de piezas para redes</li>
+          <li>Tratamiento de contenidos históricos y políticos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEL FORMATO LARGO A LA PIEZA DIGITAL
+       Sección central del caso: un proceso conceptual de 3 pasos, vertical
+       y sin tecnicismos -- líneas finas entre pasos, sin cards, siguiendo
+       el mismo lenguaje visual que .case-role__list / .case-areas__item.
+       Flecha celeste como único acento, igual criterio que en el resto
+       del sitio. -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Del formato largo a la pieza digital</span>
+      <div class="case-section__body">
+        <p>El material de origen suele provenir de intervenciones extensas en streaming o televisión. Parte del trabajo consiste en identificar dentro de esas conversaciones una idea, explicación o intercambio que pueda sostenerse como una pieza independiente.</p>
+        <p>La edición no implica solamente reducir duración: también requiere reconstruir ritmo, contexto y progresión narrativa para que el contenido funcione dentro de las lógicas de consumo de las plataformas digitales sin simplificar excesivamente el argumento original.</p>
+
+        <div class="case-process">
+          <span class="case-process__step">Intervención original / streaming</span>
+          <span class="case-process__arrow">↓</span>
+          <span class="case-process__step">Selección del fragmento</span>
+          <span class="case-process__arrow">↓</span>
+          <span class="case-process__step">Pieza editada para redes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALGUNAS PIEZAS
+       Sección con presencia visual fuerte a propósito: tres resultados
+       concretos, full-width dentro del container (.case-work) para que
+       los números tengan aire. Un solo acento celeste, en el número de
+       mayor alcance. -->
+  <section class="case-section case-work fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Algunas piezas</span>
+      <div class="case-section__body">
+        <div class="case-highlight-grid">
+          <div class="case-highlight">
+            <span class="case-highlight__value case-highlight__value--accent">3,3M</span>
+            <span class="case-highlight__caption">visualizaciones</span>
+          </div>
+          <div class="case-highlight">
+            <span class="case-highlight__value">1,2M</span>
+            <span class="case-highlight__caption">visualizaciones</span>
+          </div>
+          <div class="case-highlight">
+            <span class="case-highlight__value">600K</span>
+            <span class="case-highlight__caption">visualizaciones</span>
+          </div>
+        </div>
+        <p class="case-highlight-note">Visualizaciones alcanzadas por piezas editadas durante el período de colaboración.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABAJO SELECCIONADO
+       Formato mayormente vertical (9:16), acorde a la plataforma
+       principal de este caso. Reutiliza .case-media-grid con un nuevo
+       modificador --half (span 6) para la segunda fila de dos piezas,
+       ademas de --tall (span 4) ya existente. -->
+  <section class="case-section case-work fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Trabajo seleccionado</span>
+      <div class="case-section__body">
+        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas editadas a partir de intervenciones en streaming y televisión — pendiente de curaduría final.</p>
+
+        <!-- PLACEHOLDER: grilla preparada para 4-6 piezas. Cada una está
+             pensada para admitir, más adelante: título, programa de
+             origen, vistas, una descripción corta de la participación y
+             un link externo. Estructura sugerida con
+             .case-media-grid__caption (ya definida en proyecto.css):
+               <div class="case-media-grid__caption">
+                 <span class="eyebrow">Soñé que volaba / OLGA</span>
+                 <p>3,3M visualizaciones — Selección de fragmento · Edición · Adaptación para redes</p>
+               </div>
+             Por ahora se deja solamente el placeholder neutro de media,
+             sin atribuir todavía ninguna métrica a una pieza concreta. -->
+        <div class="case-media-grid">
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--half">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--half">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDOS DE ORIGEN
+       Reutiliza .case-channels__list (mismo layout a 2 columnas que
+       "Desarrollo de canales" en Abuelas de Plaza de Mayo), sin el bloque
+       de media -- acá todavía no van logos ni imágenes. -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Contenidos de origen</span>
+      <div class="case-section__body">
+        <div class="case-channels__list">
+          <article class="case-channels__item">
+            <h3 class="case-channels__name">Soñé que volaba<br>OLGA</h3>
+            <p class="case-channels__text">Intervenciones sobre historia, política y actualidad posteriormente adaptadas para redes.</p>
+          </article>
+          <article class="case-channels__item">
+            <h3 class="case-channels__name">Odisea Argentina<br>Carlos Pagni</h3>
+            <p class="case-channels__text">Participaciones de análisis histórico y político utilizadas como material de origen para nuevas piezas digitales.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRECIMIENTO ORGÁNICO -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Crecimiento orgánico</span>
+      <div class="case-section__body">
+        <p>Evolución de la comunidad durante aproximadamente un año y medio de colaboración, acompañada por un flujo sostenido de contenidos derivados de sus intervenciones en medios y streaming.</p>
+
+        <div class="case-stat">
+          <span class="case-stat-value">14K <span class="case-stat-arrow">→</span> 100K</span>
+          <span class="case-stat-caption">Evolución de la comunidad durante el período de trabajo conjunto.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS
+       4 datos en vez de 3: .results-grid--quad los distribuye 2x2 en vez
+       de forzar el 3+1 que daría el modificador span-4 original. Sin
+       sumar cifras ni crear métricas agregadas. -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Resultados</span>
+      <div class="case-section__body">
+        <div class="results-grid results-grid--quad">
+          <div class="result-item">
+            <span class="result-item__value">14K → 100K</span>
+            <span class="result-item__caption">Comunidad durante aproximadamente un año y medio de colaboración.</span>
+          </div>
+          <div class="result-item">
+            <span class="result-item__value">3,3M</span>
+            <span class="result-item__caption">Visualizaciones en una pieza editada.</span>
+          </div>
+          <div class="result-item">
+            <span class="result-item__value">1,2M</span>
+            <span class="result-item__caption">Visualizaciones en otra pieza editada.</span>
+          </div>
+          <div class="result-item">
+            <span class="result-item__value">600K</span>
+            <span class="result-item__caption">Visualizaciones en otra pieza editada.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DEL CASO
+       "Siguiente proyecto" sí queda conectado acá: a diferencia de
+       Andrés y Abuelas (donde no había una ruta confirmada al momento de
+       construir esas páginas), Camila es el proyecto 02 y Abuelas de
+       Plaza de Mayo (03) ya existe y está desarrollada -- ruta real y
+       confirmada, sin inventar nada. -->
+  <nav class="case-final container" aria-label="Navegación entre casos">
+    <a href="../../index.html#trabajo" class="back-link">← Todos los trabajos</a>
+    <a href="../abuelas/index.html" class="arrow-link">Siguiente proyecto <span class="arrow-link__arrow">→</span></a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__name">Germán Gómez Bonelli</span>
+    <a href="../../index.html#trabajo" class="back-link">← Volver a proyectos</a>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

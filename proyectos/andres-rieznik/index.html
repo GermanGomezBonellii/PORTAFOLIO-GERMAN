@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrés Rieznik — Germán Gómez Bonelli</title>
+<meta name="description" content="Comunicación científica — estrategia, producción y desarrollo de formatos.">
+
+<!-- Favicon / isotipo del portfolio -->
+<link rel="icon" type="image/png" href="../../img/logo.png">
+<link rel="apple-touch-icon" href="../../img/logo.png">
+
+<!-- Merriweather (titulos y headings principales, var(--font-display)).
+     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/proyecto.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../../index.html" class="site-header__name">Germán Gómez Bonelli</a>
+
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Navegación principal">
+      <a href="../../index.html#trabajo">Trabajo</a>
+      <a href="../../index.html#perfil">Perfil</a>
+      <a href="../../index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==========================================================================
+       HERO DEL CASO — primera iteración real (reemplaza el patrón
+       .case-header + .case-hero-media que todavía usan Camila/Abuelas).
+       Columna izquierda: categoría, título, bajada, roles y el dato
+       principal (19K → 480K+). Columna derecha: imagen 4:5 del proyecto.
+       ========================================================================== -->
+  <section class="case-hero container">
+    <a href="../../index.html#trabajo" class="back-link case-hero__back">← Volver a mis trabajos</a>
+
+    <div class="grid case-hero__grid">
+      <div class="case-hero__content">
+        <span class="eyebrow case-hero__eyebrow">01 / Comunicación científica</span>
+        <h1 class="case-hero__title">Andrés Rieznik</h1>
+        <p class="case-hero__lead">Estrategia, producción y desarrollo de formatos para una presencia digital sostenida.</p>
+        <p class="case-hero__roles">Estrategia · Producción · Edición · Desarrollo de formatos · Canales</p>
+
+        <div class="case-hero__stat">
+          <span class="case-hero__stat-value">19K <span class="case-hero__stat-arrow">→</span> 480K+</span>
+          <span class="case-hero__stat-caption">Evolución de la comunidad de Instagram durante el período de colaboración.</span>
+        </div>
+      </div>
+
+      <div class="case-hero__media-col">
+        <!-- IMAGEN PRINCIPAL DEL CASO (4:5)
+             Ruta prevista: img/proyectos/andres-rieznik/portada.webp
+             Se usa background-image (no <img>), mismo criterio que .hero,
+             .profile__photo y .media--andres en el resto del sitio: si el
+             archivo todavía no existe, el fondo cae al color neutro
+             --color-surface, sin ícono roto y sin texto de "subir imagen".
+             En cuanto se agregue el archivo en esa ruta exacta, aparece
+             solo -- recortado 4:5 con cover, centrado -- sin tocar este
+             HTML ni este CSS. -->
+        <div class="media media--tall case-hero__media" data-label="Imagen principal 4:5 — placeholder"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL PROYECTO -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">El proyecto</span>
+      <div class="case-section__body">
+        <p>Trabajo junto a Andrés Rieznik, físico y neurocientífico especializado en aprendizaje, en el desarrollo de su comunicación digital.</p>
+        <p>La colaboración comenzó cuando su cuenta de Instagram tenía alrededor de 19.000 seguidores y continúa actualmente, con una comunidad de más de 480.000. Durante este proceso trabajamos en la construcción de una estrategia de contenidos que combina divulgación científica, producción audiovisual y desarrollo de formatos específicos para distintas plataformas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MI ROL -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Mi rol</span>
+      <div class="case-section__body">
+        <ul class="case-role__list">
+          <li>Estrategia de comunicación</li>
+          <li>Desarrollo de formatos</li>
+          <li>Producción</li>
+          <li>Grabación</li>
+          <li>Edición audiovisual</li>
+          <li>Gestión de TikTok y YouTube</li>
+          <li>Publicación de contenidos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁREAS DE TRABAJO
+       Estructura provisional: lista numerada de bloques, no cards. Pensada
+       para poder agregar, eliminar o reordenar ítems fácilmente después
+       (ver .case-areas__item en assets/css/proyecto.css). -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Áreas de trabajo</span>
+      <div class="case-section__body">
+        <div class="case-areas__list">
+          <article class="case-areas__item">
+            <span class="case-areas__index">01</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Contenido para redes</h3>
+              <p class="case-areas__text">Adaptación de columnas, entrevistas, streamings y otras participaciones a formatos digitales, junto con el desarrollo de contenidos concebidos específicamente para redes.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">02</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Canales propios</h3>
+              <p class="case-areas__text">Creación y administración de TikTok y YouTube, desarrollando formatos y lógicas específicas para cada plataforma.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">03</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Producción original</h3>
+              <p class="case-areas__text">Desarrollo y coproducción de una serie de videos originales para YouTube, desde la definición de formatos hasta la grabación, edición y publicación.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">04</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Alfabetización</h3>
+              <p class="case-areas__text">Participación en el desarrollo comunicacional de una campaña sobre alfabetización y aprendizaje.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABAJO SELECCIONADO
+       Composición editorial 1 horizontal grande + 2 verticales + 1
+       horizontal (reutiliza .case-media-grid, ya preparada para esta
+       proporción). Sección full-width dentro del container para dar más
+       aire a la media -- variación de ritmo respecto a las secciones de
+       texto de arriba y abajo. -->
+  <section class="case-section case-work fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Trabajo seleccionado</span>
+      <div class="case-section__body">
+        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas que combinan formatos verticales y horizontales — pendiente de curaduría final.</p>
+
+        <!-- PLACEHOLDER: grilla preparada para combinar video 16:9 y 9:16.
+             Cada pieza está pensada para admitir, más adelante: título,
+             categoría, plataforma, una descripción corta de la
+             participación y un link externo (Instagram / TikTok /
+             YouTube o un embed de YouTube). Estructura sugerida para
+             cuando haya contenido real, usando .case-media-grid__caption
+             (ya definida en proyecto.css):
+               <div class="case-media-grid__caption">
+                 <span class="eyebrow">Serie original / YouTube</span>
+                 <p>Desarrollo de formato · Producción · Grabación · Edición</p>
+               </div>
+             Por ahora se deja solamente el placeholder neutro de media. -->
+        <div class="case-media-grid">
+          <div class="case-media-grid__item--wide">
+            <div class="media media--16-9" data-label="Video 16:9 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--tall">
+            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
+          </div>
+          <div class="case-media-grid__item--wide">
+            <div class="media media--16-9" data-label="Video 16:9 — placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALFABETIZACIÓN
+       Sección deliberadamente mínima por ahora: puede crecer (más texto,
+       más media, resultados propios) sin necesitar rediseño, porque sigue
+       el mismo patrón .case-section que el resto del caso. -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Alfabetización</span>
+      <div class="case-section__body">
+        <p>Uno de los proyectos desarrollados durante la colaboración estuvo centrado en comunicación y divulgación sobre alfabetización y aprendizaje.</p>
+
+        <!-- Espacio preparado para, más adelante: texto ampliado, imágenes,
+             videos, piezas de campaña y eventualmente datos o resultados.
+             Placeholder neutro de referencia (16:9); el formato definitivo
+             se ajustará cuando haya material real. -->
+        <div class="media media--16-9 case-literacy__media" data-label="Pieza de campaña — placeholder"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESARROLLO DE CANALES -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Desarrollo de canales</span>
+      <div class="case-section__body">
+        <div class="case-channels__list">
+          <article class="case-channels__item">
+            <h3 class="case-channels__name">TikTok</h3>
+            <p class="case-channels__text">Canal creado y administrado desde su lanzamiento.</p>
+            <!-- Espacio preparado para screenshot/thumbnail, métricas
+                 futuras y link externo al perfil de TikTok. -->
+            <div class="media media--16-9 case-channels__media" data-label="Screenshot / thumbnail — placeholder"></div>
+          </article>
+          <article class="case-channels__item">
+            <h3 class="case-channels__name">YouTube</h3>
+            <p class="case-channels__text">Canal creado y administrado desde su lanzamiento, incluyendo el desarrollo de producciones originales.</p>
+            <!-- Espacio preparado para screenshot/thumbnail, métricas
+                 futuras y link externo al canal de YouTube. -->
+            <div class="media media--16-9 case-channels__media" data-label="Screenshot / thumbnail — placeholder"></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Resultados</span>
+      <div class="case-section__body">
+        <div class="results-grid">
+          <div class="result-item">
+            <span class="result-item__value">19K → 480K+</span>
+            <span class="result-item__caption">Instagram durante el período de colaboración.</span>
+          </div>
+          <div class="result-item result-item--text">
+            <span class="result-item__label">TikTok</span>
+            <span class="result-item__caption">Canal desarrollado desde su lanzamiento.</span>
+          </div>
+          <div class="result-item result-item--text">
+            <span class="result-item__label">YouTube</span>
+            <span class="result-item__caption">Canal desarrollado desde su lanzamiento.</span>
+          </div>
+          <!-- PLACEHOLDER: agregar métricas adicionales cuando estén definidas -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DEL CASO -->
+  <nav class="case-final container" aria-label="Navegación entre casos">
+    <a href="/#trabajo" class="back-link">← Todos los trabajos</a>
+    <span class="case-final__next">Siguiente proyecto →</span>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__name">Germán Gómez Bonelli</span>
+    <a href="/#trabajo" class="back-link">← Volver a proyectos</a>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

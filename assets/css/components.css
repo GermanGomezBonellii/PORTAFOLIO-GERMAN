@@ -1,0 +1,272 @@
+/* ==========================================================================
+   COMPONENTES REUTILIZABLES — header, footer, media placeholders, botones
+   ========================================================================== */
+
+/* -- Header --------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 22px;
+  min-height: var(--header-height); /* alto deterministico: lo usa el hero para calcular su min-height */
+}
+
+.site-header__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.site-header__nav a {
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
+}
+
+.site-header__nav a:hover {
+  border-bottom-color: var(--color-text);
+}
+
+/* -- Menú mobile ------------------------------------------------------- */
+.site-header__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 22px;
+}
+
+.site-header__toggle span {
+  display: block;
+  height: 1px;
+  background: var(--color-text);
+  width: 100%;
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.nav-open .site-header__toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-open .site-header__toggle span:nth-child(2) {
+  opacity: 0;
+}
+.nav-open .site-header__toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .site-header__toggle {
+    display: flex;
+  }
+
+  .site-header__nav {
+    position: fixed;
+    inset: 0;
+    top: 65px;
+    background: var(--color-bg);
+    flex-direction: column;
+    gap: 0;
+    padding: 8px var(--margin) 40px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+
+  .nav-open .site-header__nav {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .site-header__nav a {
+    font-size: 1.4rem;
+    font-family: var(--font-body); /* navegacion: se mantiene neutra aunque sea grande */
+    padding-block: 14px;
+    border-bottom: 1px solid var(--color-line);
+    width: 100%;
+  }
+}
+
+/* -- Footer ----------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--color-line);
+  padding-block: clamp(32px, 6vw, 56px);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.site-footer__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.site-footer__meta {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+/* -- Placeholder de sección (perfil / contacto en esta etapa) --------- */
+.stub-section {
+  padding-block: var(--section-space);
+  border-top: 1px solid var(--color-line);
+}
+
+.stub-section__eyebrow {
+  margin-bottom: 18px;
+}
+
+.stub-section__title {
+  font-size: var(--fs-h2);
+  margin-bottom: 14px;
+}
+
+.stub-section__note {
+  color: var(--color-muted);
+  max-width: 46ch;
+}
+
+/* -- Media placeholders -------------------------------------------------
+   Componentes preparados para video 16:9, video vertical 9:16, imagen y
+   thumbnail. Por ahora renderizan un bloque neutro con etiqueta.
+   ------------------------------------------------------------------------ */
+.media {
+  position: relative;
+  width: 100%;
+  background: var(--color-surface);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.media::after {
+  content: attr(data-label);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-2);
+  padding: 14px;
+}
+
+.media--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.media--9-16 {
+  aspect-ratio: 9 / 16;
+}
+
+.media--square {
+  aspect-ratio: 1 / 1;
+}
+
+.media--tall {
+  aspect-ratio: 4 / 5;
+}
+
+.media--thumbnail {
+  aspect-ratio: 4 / 3;
+}
+
+/* -- Link con flecha (Ver caso →) --------------------------------------- */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.01em;
+}
+
+.arrow-link__arrow {
+  display: inline-block;
+  transition: transform 0.2s var(--ease);
+}
+
+a:hover .arrow-link__arrow {
+  transform: translateX(4px);
+}
+
+/* -- Breadcrumb / volver -------------------------------------------------- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  transition: color 0.2s var(--ease);
+}
+
+.back-link:hover {
+  color: var(--color-text);
+}
+
+/* -- Aparición suave (fade-in al cargar) --------------------------------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -- Aparición al hacer scroll (hero: bajada y texto secundario) --------
+   Clase reutilizable .reveal-on-scroll + .is-visible. Se activa según el
+   progreso de scroll dentro de .hero-scroll (ver assets/js/main.js) --
+   el hero es sticky, así que estos elementos permanecen siempre en
+   viewport mientras dura ese recorrido, y un IntersectionObserver por sí
+   solo ya no alcanza para escalonarlos. .reveal-on-scroll--delay agrega
+   un pequeño stagger adicional en la propia transición del segundo
+   elemento.
+   ------------------------------------------------------------------------ */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-on-scroll--delay {
+  transition-delay: 180ms; /* stagger: aparece un poco despues que .hero__lead */
+}
+
+/* Accesibilidad: sin animación para quien prefiere movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-on-scroll--delay {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

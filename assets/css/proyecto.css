@@ -1,0 +1,660 @@
+/* ==========================================================================
+   PROYECTO — sistema visual base para las páginas individuales de caso
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CASE HERO — cabecera enriquecida (categoría + título + bajada + roles +
+   dato principal + imagen 4:5). Usada por primera vez en Andrés Rieznik
+   (primera iteración del caso real). Composición asimétrica en espejo de
+   .profile__grid: contenido 6 columnas / columna de aire / imagen 5
+   columnas.
+
+   Los tres casos desarrollados hasta ahora usan .case-hero: Andrés
+   Rieznik con la composición por defecto, Abuelas de Plaza de Mayo con la
+   variante --reverse (ver más abajo) y Camila Perochena también con la
+   composición por defecto pero con imagen 16:9 en vez de 4:5 (ver
+   .case-hero__media--camila). El patrón anterior, más simple
+   (.case-header + .case-hero-media), ya no lo usa ninguna página en
+   desarrollo -- se deja intacto más abajo por si un futuro proyecto
+   arranca primero como stub, como pasó con los tres anteriores.
+   -------------------------------------------------------------------------- */
+.case-hero {
+  padding-block: clamp(32px, 6vw, 56px) var(--section-space);
+}
+
+.case-hero__back {
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.case-hero__grid {
+  align-items: start; /* cada columna conserva su alto intrínseco */
+}
+
+.case-hero__content {
+  grid-column: 1 / span 6;
+}
+
+.case-hero__eyebrow {
+  margin-bottom: 18px;
+}
+
+.case-hero__title {
+  font-size: var(--fs-h1);
+  margin-bottom: clamp(24px, 3.5vw, 36px);
+}
+
+.case-hero__lead {
+  font-family: var(--font-body); /* bajada: texto, no titulo */
+  font-size: var(--fs-lead);
+  max-width: 42ch;
+  margin-bottom: 20px;
+}
+
+.case-hero__roles {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+/* -- Dato principal (19K -> 480K+), integrado dentro del hero, no como
+   sección aparte. Tamaño moderado a propósito: tiene presencia visual
+   pero no debe competir con el título del caso. -------------------------- */
+.case-hero__stat {
+  padding-top: clamp(24px, 4vw, 40px);
+  border-top: 1px solid var(--color-line);
+  max-width: 42ch;
+}
+
+.case-hero__stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.case-hero__stat-arrow {
+  color: var(--color-accent); /* único detalle celeste del hero, muy puntual */
+}
+
+.case-hero__stat-caption {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  max-width: 34ch;
+}
+
+.case-hero__media-col {
+  grid-column: 8 / span 5;
+}
+
+/* Imagen principal del caso (4:5). Background-image, no <img>: mismo
+   criterio que .hero / .profile__photo / .media--andres -- si el archivo
+   todavía no existe, el fondo cae al color neutro --color-surface (ya
+   heredado de .media), sin ícono roto. Para reemplazarla, alcanza con
+   colocar el archivo en la ruta exacta de abajo; no hace falta tocar HTML
+   ni CSS. */
+.case-hero__media {
+  background-image: url('../../img/proyectos/andres-rieznik/portada.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1024px) {
+  .case-hero__content,
+  .case-hero__media-col {
+    grid-column: 1 / span 12;
+  }
+  .case-hero__media-col {
+    margin-top: clamp(32px, 6vw, 48px);
+  }
+}
+
+/* -- Variante --reverse de .case-hero: imagen a la izquierda, contenido a
+   la derecha (espejo de la distribución por defecto). Usada por primera
+   vez en Abuelas de Plaza de Mayo para que el hero no sea una copia
+   exacta del de Andrés Rieznik, reutilizando el mismo componente. Solo
+   aplica en desktop -- en mobile ambas variantes colapsan igual (el orden
+   del DOM ya pone el texto primero). -------------------------------------- */
+.case-hero--reverse .case-hero__content {
+  grid-column: 8 / span 5;
+}
+
+.case-hero--reverse .case-hero__media-col {
+  grid-column: 1 / span 6;
+}
+
+@media (max-width: 1024px) {
+  .case-hero--reverse .case-hero__content,
+  .case-hero--reverse .case-hero__media-col {
+    grid-column: 1 / span 12;
+  }
+}
+
+/* Imagen principal de Abuelas de Plaza de Mayo -- misma técnica que
+   .case-hero__media (background-image, sin <img>, cae a --color-surface
+   si el archivo todavía no existe), pero con su propia ruta para no
+   pisar la de Andrés. */
+.case-hero__media--abuelas {
+  background-image: url('../../img/proyectos/abuelas/portada.webp');
+}
+
+/* Imagen principal de Camila Perochena -- misma técnica, ruta propia.
+   A diferencia de Andrés/Abuelas, el HTML usa .media--16-9 en vez de
+   .media--tall para este caso (material de origen horizontal), así que
+   esta regla solo necesita aportar la imagen. */
+.case-hero__media--camila {
+  background-image: url('../../img/proyectos/camila-perochena/portada.webp');
+}
+
+/* -- Dato destacado dentro de una sección de texto (no en el hero). Mismo
+   lenguaje visual que .case-hero__stat, pero reutilizable en cualquier
+   .case-section__body -- pensado para futuros casos, no solo Abuelas. --- */
+.case-stat {
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-top: clamp(24px, 4vw, 40px);
+  border-top: 1px solid var(--color-line);
+  max-width: 42ch;
+}
+
+.case-stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.case-stat-arrow {
+  color: var(--color-accent); /* mismo detalle celeste puntual que .case-hero__stat-arrow */
+}
+
+.case-stat-caption {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  max-width: 34ch;
+}
+
+/* -- Proceso conceptual vertical (Camila Perochena: "Del formato largo a
+   la pieza digital"). 3 pasos separados por líneas finas y una flecha
+   celeste -- mismo lenguaje visual que .case-role__list, sin cards ni
+   iconos. Pensado para poder reusarse en futuros casos con narrativas
+   similares (de-A-a-B en varios pasos). ------------------------------------ */
+.case-process {
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(28px, 4vw, 44px);
+  max-width: 480px;
+}
+
+.case-process__step {
+  padding-block: clamp(18px, 3vw, 26px);
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+
+.case-process__step:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.case-process__arrow {
+  align-self: center;
+  color: var(--color-accent); /* mismo detalle celeste puntual del resto del sitio */
+  font-size: var(--fs-h3);
+  line-height: 1;
+  padding-block: 6px;
+}
+
+/* -- Números destacados dentro de una sección (Camila Perochena:
+   "Algunas piezas"). Más grandes que .result-item__value a propósito --
+   esta sección busca tener protagonismo visual, a diferencia de
+   Resultados, que es un resumen final. Un solo acento celeste puntual
+   vía --accent, igual criterio que el resto del sitio (nunca los tres a
+   la vez). ------------------------------------------------------------------ */
+.case-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  margin-bottom: clamp(24px, 4vw, 32px);
+}
+
+.case-highlight__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  margin-bottom: 8px;
+}
+
+.case-highlight__value--accent {
+  color: var(--color-accent);
+}
+
+.case-highlight__caption {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+.case-highlight-note {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+@media (max-width: 768px) {
+  .case-highlight-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 5vw, 32px);
+  }
+}
+
+/* -- Mi rol: lista simple separada por líneas finas, sin íconos --------- */
+.case-role__list li {
+  padding-block: 16px;
+  border-top: 1px solid var(--color-line);
+  font-size: var(--fs-lead);
+}
+
+.case-role__list li:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* -- Áreas de trabajo: lista numerada, no cards -- pensada para poder
+   agregar/quitar/reordenar bloques sin tocar el layout general. --------- */
+.case-areas__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-areas__item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--gutter);
+  padding-block: clamp(28px, 4vw, 44px);
+  border-top: 1px solid var(--color-line);
+}
+
+.case-areas__item:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.case-areas__index {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted-2);
+}
+
+.case-areas__title {
+  font-size: var(--fs-h3);
+  margin-bottom: 10px;
+}
+
+.case-areas__text {
+  max-width: 58ch;
+}
+
+@media (max-width: 768px) {
+  .case-areas__item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* -- Trabajo seleccionado: variante full-width de .case-section, para que
+   la grilla de media respire más que las secciones de texto de arriba y
+   abajo (variación de ritmo editorial). ----------------------------------- */
+.case-work .case-section__label {
+  grid-column: 1 / -1;
+  margin-bottom: clamp(24px, 4vw, 40px);
+}
+
+.case-work .case-section__body {
+  grid-column: 1 / span 12;
+}
+
+/* -- Producción y archivo (Abuelas de Plaza de Mayo): dos bloques grandes
+   lado a lado en desktop, sin cards -- separados por una línea fina
+   arriba de cada uno, mismo criterio que .case-areas__item. Pensada para
+   tener bastante presencia visual, ya que es una característica central
+   de este caso. ------------------------------------------------------------ */
+.case-duo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+}
+
+.case-duo__block {
+  padding-top: clamp(24px, 4vw, 32px);
+  border-top: 1px solid var(--color-line);
+}
+
+.case-duo__index {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted-2);
+  margin-bottom: 12px;
+}
+
+.case-duo__title {
+  font-size: var(--fs-h3);
+  margin-bottom: 10px;
+}
+
+.case-duo__text {
+  max-width: 46ch;
+  margin-bottom: clamp(24px, 4vw, 32px);
+}
+
+.case-duo__archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(var(--gutter) / 2);
+}
+
+@media (max-width: 768px) {
+  .case-duo {
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 6vw, 48px);
+  }
+}
+
+/* -- Un canal nuevo (Abuelas de Plaza de Mayo): screenshot del perfil +
+   piezas verticales, todas 9:16 en una sola fila en desktop. --------------- */
+.case-channel-media {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gutter);
+  margin-top: clamp(32px, 5vw, 48px);
+}
+
+@media (max-width: 1024px) {
+  .case-channel-media {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .case-channel-media {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
+/* -- Del archivo a la plataforma: flujo conceptual mínimo (3 pasos), sin
+   media -- sección deliberadamente liviana, todavía experimental. -------- */
+.case-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: clamp(24px, 4vw, 36px);
+}
+
+.case-flow__step {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+
+.case-flow__arrow {
+  color: var(--color-accent);
+  font-size: var(--fs-h3);
+}
+
+@media (max-width: 768px) {
+  .case-flow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .case-flow__arrow {
+    transform: rotate(90deg);
+    transform-origin: left center;
+    margin-left: 6px;
+  }
+}
+
+/* -- Alfabetización: placeholder de media suelto bajo el párrafo -------- */
+.case-literacy__media {
+  margin-top: clamp(28px, 4vw, 44px);
+  max-width: 720px; /* no ocupa todo el ancho del body todavia; se ajusta cuando haya contenido real */
+}
+
+/* -- Desarrollo de canales: TikTok / YouTube en 2 columnas en desktop --- */
+.case-channels__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+}
+
+.case-channels__item {
+  padding-top: clamp(24px, 4vw, 32px);
+  border-top: 1px solid var(--color-line);
+}
+
+.case-channels__name {
+  font-size: var(--fs-h3);
+  margin-bottom: 10px;
+}
+
+.case-channels__text {
+  color: var(--color-muted);
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+@media (max-width: 768px) {
+  .case-channels__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -- Resultados: variante de .result-item sin dato numérico (para TikTok/
+   YouTube, donde todavía no hay métricas para mostrar). Mismo tamaño que
+   .result-item__value para mantener el ritmo visual de la grilla. -------- */
+.result-item__label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+/* -- Navegación final del caso ------------------------------------------- */
+.case-final {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-block: clamp(40px, 6vw, 64px);
+  border-top: 1px solid var(--color-line);
+}
+
+.case-final__next {
+  font-size: var(--fs-small);
+  color: var(--color-muted-2); /* deshabilitado visualmente: todavia no hay siguiente proyecto */
+}
+
+/* --------------------------------------------------------------------------
+   A partir de acá: patrón anterior, más simple (.case-header +
+   .case-hero-media + .case-placeholder-body), usado originalmente por los
+   tres casos mientras eran stubs. Ningún caso en desarrollo lo usa ya --
+   se deja intacto por si un futuro proyecto nuevo arranca primero como
+   stub, como pasó con Andrés, Abuelas y Camila.
+   -------------------------------------------------------------------------- */
+.case-header {
+  padding-block: clamp(32px, 6vw, 56px) clamp(40px, 8vw, 72px);
+}
+
+.case-header__back {
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.case-header__eyebrow {
+  margin-bottom: 16px;
+}
+
+.case-header__title {
+  font-size: var(--fs-h1);
+  grid-column: 1 / span 9;
+}
+
+/* -- Media principal -------------------------------------------------- */
+.case-hero-media {
+  margin-bottom: var(--section-space);
+}
+
+.case-hero-media .media {
+  min-height: 320px;
+}
+
+/* -- Secciones genéricas de caso ---------------------------------------- */
+.case-section {
+  padding-block: clamp(56px, 9vw, 120px);
+  border-top: 1px solid var(--color-line);
+}
+
+/* CONTENEDOR: .case-section usa un .grid directo como hijo, sin pasar por
+   .container -- por eso su contenido quedaba corriendo borde a borde del
+   viewport (bug presente desde el primer caso desarrollado, Andrés
+   Rieznik, y heredado por Abuelas al reusar el mismo componente). La
+   sección en sí (con su border-top divisorio) puede seguir ocupando todo
+   el ancho -- igual que .profile o .contact en la home, que tampoco
+   limitan su propio ancho -- pero el .grid que contiene el contenido
+   real debe respetar el mismo sistema de .container (assets/css/base.css):
+   mismo max-width, mismo centrado y mismo padding lateral que usan la
+   home, el header y el propio .case-hero de este archivo. Al vivir en
+   assets/css/proyecto.css (compartido por todas las páginas de caso),
+   esto contiene tanto a Abuelas como a Andrés sin tocar ningún HTML. */
+.case-section > .grid {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.case-section__label {
+  grid-column: 1 / span 3;
+}
+
+.case-section__body {
+  grid-column: 4 / span 7;
+}
+
+.case-section__body p + p {
+  margin-top: 1.1em;
+}
+
+.case-section__placeholder {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .case-header__title {
+    grid-column: 1 / span 12;
+  }
+  .case-section__label {
+    grid-column: 1 / span 12;
+    margin-bottom: 14px;
+  }
+  .case-section__body {
+    grid-column: 1 / span 12;
+  }
+}
+
+/* -- Trabajo seleccionado del caso: grilla mixta 16:9 / 9:16 ------------ */
+.case-media-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+}
+
+.case-media-grid__item--wide {
+  grid-column: span 8;
+}
+
+.case-media-grid__item--tall {
+  grid-column: span 4;
+}
+
+/* Modificador --half (span 6): pensado para una fila de 2 piezas 9:16
+   parejas, usado por primera vez en Camila Perochena. Reutilizable en
+   cualquier caso futuro que necesite ese mismo ritmo. */
+.case-media-grid__item--half {
+  grid-column: span 6;
+}
+
+.case-media-grid__caption {
+  margin-top: 12px;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+@media (max-width: 768px) {
+  .case-media-grid__item--wide,
+  .case-media-grid__item--tall,
+  .case-media-grid__item--half {
+    grid-column: span 12;
+  }
+}
+
+/* -- Resultados ----------------------------------------------------------- */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: clamp(32px, 5vw, 56px);
+}
+
+.result-item {
+  grid-column: span 4;
+}
+
+.result-item__value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.result-item__caption {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  max-width: 30ch;
+}
+
+@media (max-width: 768px) {
+  .result-item {
+    grid-column: span 12;
+  }
+}
+
+/* Modificador --quad: para Resultados con 4 datos en vez de 3 (Camila
+   Perochena). Sin esto, 4 items a span-4 dejarían un ítem solo en una
+   segunda fila (3+1); con --quad quedan en 2x2, más equilibrado. */
+.results-grid--quad .result-item {
+  grid-column: span 6;
+}
+
+@media (max-width: 768px) {
+  .results-grid--quad .result-item {
+    grid-column: span 12;
+  }
+}
+
+/* -- Stub de casos sin desarrollar todavía (sin uso actual, ver arriba) --- */
+.case-placeholder-body {
+  padding-block: var(--section-space);
+}
+
+.case-placeholder-body__text {
+  grid-column: 1 / span 7;
+  color: var(--color-muted);
+  font-size: var(--fs-lead);
+  font-family: var(--font-body); /* parrafo descriptivo, no es un titulo */
+}
+
+@media (max-width: 1024px) {
+  .case-placeholder-body__text {
+    grid-column: 1 / span 12;
+  }
+}

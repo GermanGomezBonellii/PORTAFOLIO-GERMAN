@@ -1,0 +1,117 @@
+/* ==========================================================================
+   PERFIL — sección "Perfil" de la home (index.html)
+   ========================================================================== */
+
+.profile {
+  padding-block: var(--section-space);
+  border-top: 1px solid var(--color-line);
+}
+
+.profile__grid {
+  align-items: start; /* cada columna conserva su alto intrínseco */
+}
+
+.profile__photo-col {
+  grid-column: 1 / span 5; /* ~41.7% del ancho de la composición */
+}
+
+.profile__content-col {
+  grid-column: 7 / span 6; /* columna 6 se salta a propósito: aire extra entre foto y texto */
+  padding-top: clamp(24px, 5vw, 64px); /* asimetría controlada: el texto arranca un poco más abajo que la foto */
+}
+
+/* -- Fotografía --------------------------------------------------------
+   Placeholder neutro (bloque gris muy claro) mientras no exista
+   img/perfil.webp. Se usa background-image (no <img>) a propósito: si el
+   archivo todavía no existe, el fondo simplemente cae al color sólido de
+   --color-surface -- sin ícono de imagen rota ni texto "SUBIR FOTO".
+
+   PARA AGREGAR LA FOTO DEFINITIVA: colocar el archivo exactamente en
+     img/perfil.webp
+   (misma carpeta que ya usa hero.webp). En cuanto exista, se muestra sola,
+   recortada con cover y centrada -- no hace falta tocar este CSS ni el HTML.
+   ------------------------------------------------------------------------ */
+.profile__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: var(--color-surface);
+  background-image: url('../../img/perfil.webp'); /* <- ruta configurada acá */
+  background-size: cover;
+  background-position: center;
+}
+
+.profile__eyebrow {
+  margin-bottom: 20px;
+  color: var(--color-accent); /* único detalle celeste de la sección, muy puntual */
+}
+
+.profile__title {
+  font-size: var(--fs-h1);
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.profile__text {
+  max-width: 58ch; /* legibilidad: evita una columna de texto demasiado ancha */
+}
+
+.profile__text p {
+  line-height: 1.6;
+}
+
+.profile__text p + p {
+  margin-top: 1.15em;
+}
+
+.profile__facts {
+  margin-top: clamp(40px, 6vw, 64px);
+  max-width: 58ch;
+}
+
+.profile__fact {
+  padding-block: 20px;
+  border-top: 1px solid var(--color-line); /* separación por línea fina, sin cards */
+}
+
+.profile__fact:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.profile__fact-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.profile__fact-value {
+  font-family: var(--font-body); /* dato secundario (no es un titulo): se mantiene en sans, igual que su label */
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.profile__fact-detail {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+@media (max-width: 1024px) {
+  .profile__content-col {
+    padding-top: clamp(16px, 3vw, 32px);
+  }
+}
+
+@media (max-width: 768px) {
+  .profile__photo-col,
+  .profile__content-col {
+    grid-column: 1 / -1;
+  }
+  .profile__content-col {
+    padding-top: 0;
+    margin-top: clamp(32px, 8vw, 48px);
+  }
+}

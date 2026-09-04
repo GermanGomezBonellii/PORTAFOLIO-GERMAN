@@ -1,0 +1,151 @@
+/* ==========================================================================
+   BASE — reset, variables, tipografía, grilla
+   ========================================================================== */
+
+/* -- Reset mínimo -- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+h1, h2, h3, h4, p, figure {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* -- Variables --------------------------------------------------------- */
+:root {
+  /* Color: fondo blanco, texto negro, grises solo para info secundaria */
+  --color-bg: #ffffff;
+  --color-text: #0e0e0d;
+  --color-muted: #6f6f6a;
+  --color-muted-2: #a3a39c;
+  --color-line: #e4e4de;
+  --color-surface: #f3f3ef;
+  --color-accent: #74ACDF; /* celeste editorial, uso puntual (ej. destacado en el hero) */
+
+  /* Tipografía: display editorial + stack segura para cuerpo de texto.
+     Preparado para reemplazar por tipografía definitiva más adelante. */
+  --font-display: 'Merriweather', Georgia, serif; /* Titulos y headings principales -- 400/700 via Google Fonts en el <head> */
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; /* Parrafos, navegacion, labels, metadata, captions, datos secundarios */
+
+  /* Escala tipográfica fluida */
+  --fs-hero: clamp(2.1rem, 5.1vw, 4.8rem); /* ~11% mas chico que la primera version con Merriweather (2.4rem/5.8vw/5.4rem) -- el ajuste anterior se paso de agresivo, este es el punto intermedio */
+  --fs-h1: clamp(2rem, 4.2vw, 3.4rem);
+  --fs-h2: clamp(1.5rem, 2.6vw, 2.1rem);
+  --fs-h3: clamp(1.2rem, 1.8vw, 1.5rem);
+  --fs-lead: clamp(1.15rem, 1.8vw, 1.5rem);
+  --fs-body: 1rem;
+  --fs-small: 0.85rem;
+  --fs-micro: 0.72rem;
+
+  /* Espaciado / grilla */
+  --gutter: clamp(20px, 4vw, 48px);
+  --margin: clamp(20px, 5vw, 64px);
+  --section-space: clamp(72px, 12vw, 160px);
+  --container-max: 1560px;
+  --header-height: 72px; /* alto de referencia del header, usado para calcular el min-height del hero */
+  --hero-scroll-length: 180vh; /* recorrido del hero sticky en desktop -- probar 160vh / 180vh / 200vh / 220vh */
+  --hero-scroll-length-mobile: 130vh; /* idem, recorrido reducido en mobile (media query en assets/css/home.css) */
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Merriweather Regular; el hero usa 700 puntualmente (ver .hero__title) */
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+/* -- Contenedor y grilla de 12 columnas --------------------------------- */
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+}
+
+/* -- Utilidades tipográficas: índices, categorías, etiquetas ------------ */
+.eyebrow,
+.index-label,
+.category-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* -- Foco accesible ------------------------------------------------------ */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+/* -- Breakpoints de referencia (1440 / 1024 / 768 / 390) ----------------- */
+@media (max-width: 1024px) {
+  :root {
+    --margin: clamp(20px, 4vw, 40px);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-space: clamp(56px, 14vw, 96px);
+  }
+}
