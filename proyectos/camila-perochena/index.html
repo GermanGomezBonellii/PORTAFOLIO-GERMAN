@@ -32,7 +32,7 @@
 
     <nav class="site-header__nav" aria-label="Navegación principal">
       <a href="../../index.html#trabajo">Trabajo</a>
-      <a href="../../index.html#perfil">Perfil</a>
+      <a href="../../index.html#perfil">Sobre mí</a>
       <a href="../../index.html#contacto">Contacto</a>
     </nav>
   </div>
@@ -64,14 +64,10 @@
 
       <div class="case-hero__media-col">
         <!-- IMAGEN PRINCIPAL DEL CASO (16:9)
-             Ruta prevista: img/proyectos/camila-perochena/portada.webp
-             Mismo criterio que en Andrés Rieznik y Abuelas de Plaza de
-             Mayo: background-image (no <img>), así que si el archivo
-             todavía no existe el fondo cae al color neutro
-             --color-surface, sin ícono roto. En cuanto se agregue el
-             archivo en esa ruta exacta, aparece solo -- sin tocar este
-             HTML ni este CSS. -->
-        <div class="media media--16-9 case-hero__media case-hero__media--camila" data-label="Imagen principal 16:9 — placeholder"></div>
+             Imagen definitiva: img/camila.webp (background-image, no
+             <img>, definida en .case-hero__media--camila dentro de
+             proyecto.css). -->
+        <div class="media media--16-9 case-hero__media case-hero__media--camila"></div>
       </div>
     </div>
   </section>
@@ -134,67 +130,66 @@
        concretos, full-width dentro del container (.case-work) para que
        los números tengan aire. Un solo acento celeste, en el número de
        mayor alcance. -->
-  <section class="case-section case-work fade-in">
-    <div class="grid">
-      <span class="eyebrow case-section__label">Algunas piezas</span>
-      <div class="case-section__body">
-        <div class="case-highlight-grid">
-          <div class="case-highlight">
-            <span class="case-highlight__value case-highlight__value--accent">3,3M</span>
-            <span class="case-highlight__caption">visualizaciones</span>
-          </div>
-          <div class="case-highlight">
-            <span class="case-highlight__value">1,2M</span>
-            <span class="case-highlight__caption">visualizaciones</span>
-          </div>
-          <div class="case-highlight">
-            <span class="case-highlight__value">600K</span>
-            <span class="case-highlight__caption">visualizaciones</span>
-          </div>
-        </div>
-        <p class="case-highlight-note">Visualizaciones alcanzadas por piezas editadas durante el período de colaboración.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- TRABAJO SELECCIONADO
-       Formato mayormente vertical (9:16), acorde a la plataforma
-       principal de este caso. Reutiliza .case-media-grid con un nuevo
-       modificador --half (span 6) para la segunda fila de dos piezas,
-       ademas de --tall (span 4) ya existente. -->
+       Sección única: antes esto convivía con un bloque separado
+       "Algunas piezas" que repetía los mismos tres números (3,3M / 1,2M
+       / 600K) como resumen abstracto arriba. Se eliminó esa duplicación
+       -- cada métrica ahora vive integrada directamente en la tarjeta de
+       su reel (.case-reel__value), no repetida en otro lado.
+
+       Tres reels reales de Instagram, cada uno como tarjeta clickeable
+       completa (no embed oficial). Grilla propia .case-reel-grid,
+       independiente de .case-media-grid -- ese componente lo comparten
+       Andrés y Abuelas, así que no se toca acá para no afectar esas
+       páginas. Thumbnails definitivas: los tres archivos de origen
+       (1080x1698 los tres, misma proporción entre sí pero distinta de la
+       9:16 del sitio) se resuelven con <img class="case-reel__img"> +
+       object-fit: cover dentro del contenedor .media--9-16 (mismo
+       aspect-ratio que ya usan Andrés/Abuelas para su imagen principal),
+       así las tres se ven parejas sin deformarse -- ver
+       .case-reel__img en proyecto.css. -->
   <section class="case-section case-work fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Trabajo seleccionado</span>
       <div class="case-section__body">
-        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas editadas a partir de intervenciones en streaming y televisión — pendiente de curaduría final.</p>
+        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas editadas a partir de intervenciones en streaming y televisión.</p>
 
-        <!-- PLACEHOLDER: grilla preparada para 4-6 piezas. Cada una está
-             pensada para admitir, más adelante: título, programa de
-             origen, vistas, una descripción corta de la participación y
-             un link externo. Estructura sugerida con
-             .case-media-grid__caption (ya definida en proyecto.css):
-               <div class="case-media-grid__caption">
-                 <span class="eyebrow">Soñé que volaba / OLGA</span>
-                 <p>3,3M visualizaciones — Selección de fragmento · Edición · Adaptación para redes</p>
-               </div>
-             Por ahora se deja solamente el placeholder neutro de media,
-             sin atribuir todavía ninguna métrica a una pieza concreta. -->
-        <div class="case-media-grid">
-          <div class="case-media-grid__item--tall">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--tall">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--tall">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--half">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--half">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
+        <div class="case-reel-grid">
+          <a class="case-reel" href="https://www.instagram.com/reel/DP7VW6REbjH/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Reel / Instagram</span>
+            <div class="media media--9-16 case-reel__media">
+              <img class="case-reel__img" src="../../img/proyectos/camila-perochena/reel-01.webp" alt="Miniatura del reel de Instagram — 3,3M visualizaciones" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__value">3,3M visualizaciones</span>
+              <span class="case-reel__text">Selección de fragmento · Edición · Adaptación para redes</span>
+              <span class="arrow-link">Ver reel <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://www.instagram.com/reel/DNl3g1hxZo6/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Reel / Instagram</span>
+            <div class="media media--9-16 case-reel__media">
+              <img class="case-reel__img" src="../../img/proyectos/camila-perochena/reel-02.webp" alt="Miniatura del reel de Instagram — 1,2M visualizaciones" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__value">1,2M visualizaciones</span>
+              <span class="case-reel__text">Selección de fragmento · Edición · Adaptación para redes</span>
+              <span class="arrow-link">Ver reel <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://www.instagram.com/reel/DMOSInCRCo_/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Reel / Instagram</span>
+            <div class="media media--9-16 case-reel__media">
+              <img class="case-reel__img" src="../../img/proyectos/camila-perochena/reel-03.webp" alt="Miniatura del reel de Instagram — 600K visualizaciones" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__value">600K visualizaciones</span>
+              <span class="case-reel__text">Selección de fragmento · Edición · Adaptación para redes</span>
+              <span class="arrow-link">Ver reel <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -232,36 +227,6 @@
         <div class="case-stat">
           <span class="case-stat-value">14K <span class="case-stat-arrow">→</span> 100K</span>
           <span class="case-stat-caption">Evolución de la comunidad durante el período de trabajo conjunto.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESULTADOS
-       4 datos en vez de 3: .results-grid--quad los distribuye 2x2 en vez
-       de forzar el 3+1 que daría el modificador span-4 original. Sin
-       sumar cifras ni crear métricas agregadas. -->
-  <section class="case-section fade-in">
-    <div class="grid">
-      <span class="eyebrow case-section__label">Resultados</span>
-      <div class="case-section__body">
-        <div class="results-grid results-grid--quad">
-          <div class="result-item">
-            <span class="result-item__value">14K → 100K</span>
-            <span class="result-item__caption">Comunidad durante aproximadamente un año y medio de colaboración.</span>
-          </div>
-          <div class="result-item">
-            <span class="result-item__value">3,3M</span>
-            <span class="result-item__caption">Visualizaciones en una pieza editada.</span>
-          </div>
-          <div class="result-item">
-            <span class="result-item__value">1,2M</span>
-            <span class="result-item__caption">Visualizaciones en otra pieza editada.</span>
-          </div>
-          <div class="result-item">
-            <span class="result-item__value">600K</span>
-            <span class="result-item__caption">Visualizaciones en otra pieza editada.</span>
-          </div>
         </div>
       </div>
     </div>

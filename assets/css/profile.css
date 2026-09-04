@@ -2,22 +2,50 @@
    PERFIL — sección "Perfil" de la home (index.html)
    ========================================================================== */
 
+/* Única sección de alto contraste fuera del hero: fondo negro, relacionado
+   visualmente con el hero (blanco sobre oscuro) pero no idéntico -- el
+   hero usa una foto + overlay sutil, acá es un negro sólido, reutilizando
+   el mismo negro real del sistema (--color-text: #0e0e0d, ya usado como
+   color de texto en toda la página) en vez de inventar un nuevo valor.
+   Es background-color directo sobre .profile (opaco): como .profile vive
+   dentro de .page-content (que trae la textura fondo.webp del resto de
+   secciones, ver home.css), este color simplemente tapa esa textura en
+   el alto exacto de esta sección -- sin gradiente, sin afectar a Trabajo
+   ni Contacto arriba/abajo, sin tocar .page-content. El color blanco de
+   acá se hereda hacia abajo (título, párrafos, .profile__fact-value): no
+   hizo falta declararlo de nuevo en cada uno. Los elementos con su color
+   propio pensado para fondo claro (labels, detail, líneas divisorias de
+   .profile__fact) sí se sobreescriben más abajo. */
 .profile {
   padding-block: var(--section-space);
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: var(--color-text);
+  color: #ffffff;
 }
 
 .profile__grid {
   align-items: start; /* cada columna conserva su alto intrínseco */
+  /* Offset compartido entre columnas: lo usa .profile__content-col como
+     padding-top y .profile__photo-col lo retoma para su margin-top (ver
+     abajo). Una sola fuente de valor -- si cambia acá, las dos columnas
+     se mueven juntas y no pueden desalinearse entre sí. */
+  --profile-content-offset: clamp(24px, 5vw, 64px);
 }
 
 .profile__photo-col {
   grid-column: 1 / span 5; /* ~41.7% del ancho de la composición */
+  /* Alinea el borde superior de la foto con el título, no con el label
+     "Perfil": mismo --profile-content-offset que ya empuja hacia abajo a
+     .profile__content-col, más la altura real de la línea del label
+     (line-height 1.5 * --fs-micro = 1.08rem, ver base.css) más su
+     margin-bottom (20px, ver .profile__eyebrow más abajo). El label
+     queda por encima de la foto a propósito -- no se alinea con ella. */
+  margin-top: calc(var(--profile-content-offset) + 1.08rem + 20px);
 }
 
 .profile__content-col {
   grid-column: 7 / span 6; /* columna 6 se salta a propósito: aire extra entre foto y texto */
-  padding-top: clamp(24px, 5vw, 64px); /* asimetría controlada: el texto arranca un poco más abajo que la foto */
+  padding-top: var(--profile-content-offset); /* asimetría controlada: el label "Perfil" arranca un poco más abajo que el borde superior de la foto */
 }
 
 /* -- Fotografía --------------------------------------------------------
@@ -42,7 +70,18 @@
 
 .profile__eyebrow {
   margin-bottom: 20px;
-  color: var(--color-accent); /* único detalle celeste de la sección, muy puntual */
+  color: var(--color-accent);
+}
+
+/* Subrayado editorial celeste para 1-3 conceptos puntuales dentro de un
+   título -- deliberadamente NO es un <u> ni fondo tipo marcador. La
+   línea queda separada de la letra (padding-bottom) y es más gruesa que
+   un underline por defecto (3px). display: inline-block para que el
+   padding-bottom se aplique de forma prolija bajo cada palabra. */
+.profile-highlight {
+  display: inline-block;
+  border-bottom: 3px solid var(--color-accent);
+  padding-bottom: 4px;
 }
 
 .profile__title {
@@ -69,11 +108,11 @@
 
 .profile__fact {
   padding-block: 20px;
-  border-top: 1px solid var(--color-line); /* separación por línea fina, sin cards */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* separación por línea fina, sin cards -- antes var(--color-line), pensado para fondo claro */
 }
 
 .profile__fact:last-child {
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .profile__fact-label {
@@ -82,7 +121,7 @@
   font-size: var(--fs-micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent); /* celeste sobre negro -- antes var(--color-muted), pensado para fondo claro */
   margin-bottom: 8px;
 }
 
@@ -90,18 +129,19 @@
   font-family: var(--font-body); /* dato secundario (no es un titulo): se mantiene en sans, igual que su label */
   font-size: 1.05rem;
   font-weight: 500;
+  /* color: blanco, heredado de .profile -- sin declarar de nuevo acá */
 }
 
 .profile__fact-detail {
   font-family: var(--font-body);
   font-size: var(--fs-small);
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.65); /* gris claro sobre negro -- antes var(--color-muted), pensado para fondo claro */
   margin-top: 2px;
 }
 
 @media (max-width: 1024px) {
-  .profile__content-col {
-    padding-top: clamp(16px, 3vw, 32px);
+  .profile__grid {
+    --profile-content-offset: clamp(16px, 3vw, 32px);
   }
 }
 
@@ -109,6 +149,9 @@
   .profile__photo-col,
   .profile__content-col {
     grid-column: 1 / -1;
+  }
+  .profile__photo-col {
+    margin-top: 0; /* mobile: la foto vuelve a arrancar normal, sin el offset de desktop */
   }
   .profile__content-col {
     padding-top: 0;

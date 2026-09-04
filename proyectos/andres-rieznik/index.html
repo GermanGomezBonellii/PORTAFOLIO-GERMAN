@@ -32,7 +32,7 @@
 
     <nav class="site-header__nav" aria-label="Navegación principal">
       <a href="../../index.html#trabajo">Trabajo</a>
-      <a href="../../index.html#perfil">Perfil</a>
+      <a href="../../index.html#perfil">Sobre mí</a>
       <a href="../../index.html#contacto">Contacto</a>
     </nav>
   </div>
@@ -56,23 +56,37 @@
         <p class="case-hero__lead">Estrategia, producción y desarrollo de formatos para una presencia digital sostenida.</p>
         <p class="case-hero__roles">Estrategia · Producción · Edición · Desarrollo de formatos · Canales</p>
 
+        <!-- MÉTRICAS -- tres bloques .case-hero__stat apilados (mismo
+             componente que ya usan Camila y Abuelas para un solo dato,
+             repetido acá 3 veces). Cada uno conserva su propio
+             border-top + padding-top: el ritmo entre Instagram/TikTok/
+             YouTube queda igual al que ya había entre "roles" y el dato
+             único anterior -- ni un wrapper ni un gap nuevos, así que no
+             se toca el componente compartido con las otras páginas. -->
         <div class="case-hero__stat">
+          <span class="eyebrow case-hero__stat-label">Instagram</span>
           <span class="case-hero__stat-value">19K <span class="case-hero__stat-arrow">→</span> 480K+</span>
-          <span class="case-hero__stat-caption">Evolución de la comunidad de Instagram durante el período de colaboración.</span>
+          <span class="case-hero__stat-caption">Evolución de la comunidad durante el período de colaboración.</span>
+        </div>
+
+        <div class="case-hero__stat">
+          <span class="eyebrow case-hero__stat-label">TikTok</span>
+          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 72.1K seguidores</span>
+          <span class="case-hero__stat-caption">Cuenta creada y administrada por mí desde su lanzamiento.</span>
+        </div>
+
+        <div class="case-hero__stat">
+          <span class="eyebrow case-hero__stat-label">YouTube</span>
+          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 35.2K suscriptores</span>
+          <span class="case-hero__stat-caption">Canal creado y administrado por mí, con desarrollo de producciones originales.</span>
         </div>
       </div>
 
       <div class="case-hero__media-col">
         <!-- IMAGEN PRINCIPAL DEL CASO (4:5)
-             Ruta prevista: img/proyectos/andres-rieznik/portada.webp
-             Se usa background-image (no <img>), mismo criterio que .hero,
-             .profile__photo y .media--andres en el resto del sitio: si el
-             archivo todavía no existe, el fondo cae al color neutro
-             --color-surface, sin ícono roto y sin texto de "subir imagen".
-             En cuanto se agregue el archivo en esa ruta exacta, aparece
-             solo -- recortado 4:5 con cover, centrado -- sin tocar este
-             HTML ni este CSS. -->
-        <div class="media media--tall case-hero__media" data-label="Imagen principal 4:5 — placeholder"></div>
+             Imagen definitiva: img/andres.webp (background-image, no
+             <img>, definida en .case-hero__media dentro de proyecto.css). -->
+        <div class="media media--tall case-hero__media"></div>
       </div>
     </div>
   </section>
@@ -217,7 +231,7 @@
         <div class="case-channels__list">
           <article class="case-channels__item">
             <h3 class="case-channels__name">TikTok</h3>
-            <p class="case-channels__text">Canal creado y administrado desde su lanzamiento.</p>
+            <p class="case-channels__text">Cuenta creada y administrada desde su lanzamiento.</p>
             <!-- Espacio preparado para screenshot/thumbnail, métricas
                  futuras y link externo al perfil de TikTok. -->
             <div class="media media--16-9 case-channels__media" data-label="Screenshot / thumbnail — placeholder"></div>
@@ -246,7 +260,7 @@
           </div>
           <div class="result-item result-item--text">
             <span class="result-item__label">TikTok</span>
-            <span class="result-item__caption">Canal desarrollado desde su lanzamiento.</span>
+            <span class="result-item__caption">Cuenta desarrollada desde su lanzamiento.</span>
           </div>
           <div class="result-item result-item--text">
             <span class="result-item__label">YouTube</span>
@@ -261,7 +275,7 @@
   <!-- FINAL DEL CASO -->
   <nav class="case-final container" aria-label="Navegación entre casos">
     <a href="/#trabajo" class="back-link">← Todos los trabajos</a>
-    <span class="case-final__next">Siguiente proyecto →</span>
+    <a href="../camila-perochena/index.html" class="arrow-link">Siguiente proyecto <span class="arrow-link__arrow">→</span></a>
   </nav>
 
 </main>

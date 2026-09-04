@@ -66,6 +66,16 @@
   max-width: 42ch;
 }
 
+/* Label de cada métrica (Instagram / TikTok / YouTube) -- reutiliza
+   .eyebrow (mayúsculas, tracking, tamaño chico) para no crear un estilo
+   nuevo, solo agrega el espacio hacia el dato principal de abajo. Usado
+   por primera vez en Andrés Rieznik al pasar de un dato único a tres
+   métricas apiladas dentro de .case-hero__stat. */
+.case-hero__stat-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
 .case-hero__stat-value {
   display: block;
   font-family: var(--font-display);
@@ -88,14 +98,12 @@
   grid-column: 8 / span 5;
 }
 
-/* Imagen principal del caso (4:5). Background-image, no <img>: mismo
-   criterio que .hero / .profile__photo / .media--andres -- si el archivo
-   todavía no existe, el fondo cae al color neutro --color-surface (ya
-   heredado de .media), sin ícono roto. Para reemplazarla, alcanza con
-   colocar el archivo en la ruta exacta de abajo; no hace falta tocar HTML
-   ni CSS. */
+/* Imagen principal del caso de Andrés Rieznik (4:5). Background-image,
+   no <img>: mismo criterio que .hero / .profile__photo. Usa el archivo
+   definitivo img/andres.webp, el mismo que ya se linkea en la preview de
+   la home (.media--andres). */
 .case-hero__media {
-  background-image: url('../../img/proyectos/andres-rieznik/portada.webp');
+  background-image: url('../../img/andres.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -114,38 +122,51 @@
 /* -- Variante --reverse de .case-hero: imagen a la izquierda, contenido a
    la derecha (espejo de la distribución por defecto). Usada por primera
    vez en Abuelas de Plaza de Mayo para que el hero no sea una copia
-   exacta del de Andrés Rieznik, reutilizando el mismo componente. Solo
-   aplica en desktop -- en mobile ambas variantes colapsan igual (el orden
-   del DOM ya pone el texto primero). -------------------------------------- */
-.case-hero--reverse .case-hero__content {
-  grid-column: 8 / span 5;
-}
+   exacta del de Andrés Rieznik, reutilizando el mismo componente.
 
-.case-hero--reverse .case-hero__media-col {
-  grid-column: 1 / span 6;
-}
+   Antes esto se resolvía sobreescribiendo grid-column en .case-hero__grid
+   (12 columnas) sobre cada hijo por separado -- dos reglas de igual
+   especificidad que dependían de leerse en conjunto para entender que
+   imagen y texto quedaban en la misma fila. Se reemplaza por un grid
+   propio de 2 columnas (grid-template-areas), autocontenido en una sola
+   regla: no hay ambigüedad posible sobre qué bloque va en qué columna, y
+   no interfiere con .case-hero__content / .case-hero__media-col de
+   Andrés ni Camila (que no usan --reverse). Solo aplica en desktop -- en
+   mobile no se toca nada: sigue colapsando mediante la regla compartida
+   de @media (max-width: 1024px) de más arriba, que ya cubre content y
+   media-col para cualquier variante. -------------------------------------- */
+@media (min-width: 1025px) {
+  .case-hero--reverse .case-hero__grid {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 1fr) minmax(0, 5fr);
+    grid-template-areas: "media . content";
+  }
 
-@media (max-width: 1024px) {
-  .case-hero--reverse .case-hero__content,
+  .case-hero--reverse .case-hero__content {
+    grid-area: content;
+  }
+
   .case-hero--reverse .case-hero__media-col {
-    grid-column: 1 / span 12;
+    grid-area: media;
   }
 }
 
 /* Imagen principal de Abuelas de Plaza de Mayo -- misma técnica que
-   .case-hero__media (background-image, sin <img>, cae a --color-surface
-   si el archivo todavía no existe), pero con su propia ruta para no
-   pisar la de Andrés. */
+   .case-hero__media (background-image, sin <img>), pero con su propia
+   ruta para no pisar la de Andrés. Usa el archivo definitivo
+   img/abuelas.webp, el mismo que ya se linkea en la preview de la home
+   (.media--abuelas). */
 .case-hero__media--abuelas {
-  background-image: url('../../img/proyectos/abuelas/portada.webp');
+  background-image: url('../../img/abuelas.webp');
 }
 
 /* Imagen principal de Camila Perochena -- misma técnica, ruta propia.
    A diferencia de Andrés/Abuelas, el HTML usa .media--16-9 en vez de
    .media--tall para este caso (material de origen horizontal), así que
-   esta regla solo necesita aportar la imagen. */
+   esta regla solo necesita aportar la imagen. Usa el archivo definitivo
+   img/camila.webp, el mismo que ya se linkea en la preview de la home
+   (.media--camila). */
 .case-hero__media--camila {
-  background-image: url('../../img/proyectos/camila-perochena/portada.webp');
+  background-image: url('../../img/camila.webp');
 }
 
 /* -- Dato destacado dentro de una sección de texto (no en el hero). Mismo
@@ -205,47 +226,6 @@
   font-size: var(--fs-h3);
   line-height: 1;
   padding-block: 6px;
-}
-
-/* -- Números destacados dentro de una sección (Camila Perochena:
-   "Algunas piezas"). Más grandes que .result-item__value a propósito --
-   esta sección busca tener protagonismo visual, a diferencia de
-   Resultados, que es un resumen final. Un solo acento celeste puntual
-   vía --accent, igual criterio que el resto del sitio (nunca los tres a
-   la vez). ------------------------------------------------------------------ */
-.case-highlight-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(24px, 4vw, 48px);
-  margin-bottom: clamp(24px, 4vw, 32px);
-}
-
-.case-highlight__value {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  margin-bottom: 8px;
-}
-
-.case-highlight__value--accent {
-  color: var(--color-accent);
-}
-
-.case-highlight__caption {
-  font-size: var(--fs-small);
-  color: var(--color-muted);
-}
-
-.case-highlight-note {
-  font-size: var(--fs-small);
-  color: var(--color-muted);
-}
-
-@media (max-width: 768px) {
-  .case-highlight-grid {
-    grid-template-columns: 1fr;
-    gap: clamp(20px, 5vw, 32px);
-  }
 }
 
 /* -- Mi rol: lista simple separada por líneas finas, sin íconos --------- */
@@ -359,7 +339,7 @@
   }
 }
 
-/* -- Un canal nuevo (Abuelas de Plaza de Mayo): screenshot del perfil +
+/* -- Una cuenta nueva (Abuelas de Plaza de Mayo): screenshot del perfil +
    piezas verticales, todas 9:16 en una sola fila en desktop. --------------- */
 .case-channel-media {
   display: grid;
@@ -588,6 +568,82 @@
   margin-top: 12px;
   font-size: var(--fs-small);
   color: var(--color-muted);
+}
+
+/* -- Reels reales de Camila Perochena (Trabajo seleccionado): grilla
+   propia de 3 tarjetas clickeables 9:16, deliberadamente separada de
+   .case-media-grid de arriba (que comparten Andrés y Abuelas) para no
+   afectar esas páginas. Cada .case-reel es un <a> completo -- toda la
+   tarjeta lleva al reel original, no solo el texto "Ver reel". --------- */
+.case-reel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gutter);
+}
+
+.case-reel {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.case-reel__label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.case-reel__media {
+  transition: opacity 0.25s var(--ease);
+}
+
+.case-reel:hover .case-reel__media {
+  opacity: 0.92;
+}
+
+.case-reel__caption {
+  margin-top: 12px;
+}
+
+.case-reel__value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem); /* antes clamp(1.4rem, 2vw, 1.8rem) -- se agranda porque ahora es la única aparición de esta métrica (ya no se repite arriba, en "Algunas piezas") */
+  margin-bottom: 8px;
+}
+
+.case-reel__text {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+
+/* Thumbnails definitivas: <img> absoluto dentro de .case-reel__media
+   (que hereda position: relative + overflow: hidden de .media), en vez
+   de background-image -- los tres archivos de origen son 1080x1698
+   (misma proporción entre sí, pero más "cuadrada" que el 9:16 del
+   contenedor), así que object-fit: cover es lo que evita que se vean
+   estiradas o con recortes distintos entre sí. */
+.case-reel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .case-reel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .case-reel-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
