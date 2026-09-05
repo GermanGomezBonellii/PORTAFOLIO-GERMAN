@@ -53,7 +53,7 @@
       <div class="case-hero__content">
         <span class="eyebrow case-hero__eyebrow">01 / Comunicación científica</span>
         <h1 class="case-hero__title">Andrés Rieznik</h1>
-        <p class="case-hero__lead">Estrategia, producción y desarrollo de formatos para una presencia digital sostenida.</p>
+        <p class="case-hero__lead">Asesoría en comunicación y producción de contenidos para articular divulgación científica, educación y lenguajes propios de las plataformas digitales.</p>
         <p class="case-hero__roles">Estrategia · Producción · Edición · Desarrollo de formatos · Canales</p>
 
         <!-- MÉTRICAS -- tres bloques .case-hero__stat apilados (mismo
@@ -66,18 +66,21 @@
         <div class="case-hero__stat">
           <span class="eyebrow case-hero__stat-label">Instagram</span>
           <span class="case-hero__stat-value">19K <span class="case-hero__stat-arrow">→</span> 480K+</span>
+          <span class="case-hero__stat-unit">seguidores</span>
           <span class="case-hero__stat-caption">Evolución de la comunidad durante el período de colaboración.</span>
         </div>
 
         <div class="case-hero__stat">
           <span class="eyebrow case-hero__stat-label">TikTok</span>
-          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 72.1K seguidores</span>
+          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 72.1K</span>
+          <span class="case-hero__stat-unit">seguidores</span>
           <span class="case-hero__stat-caption">Cuenta creada y administrada por mí desde su lanzamiento.</span>
         </div>
 
         <div class="case-hero__stat">
           <span class="eyebrow case-hero__stat-label">YouTube</span>
-          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 35.2K suscriptores</span>
+          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 35.2K</span>
+          <span class="case-hero__stat-unit">suscriptores</span>
           <span class="case-hero__stat-caption">Canal creado y administrado por mí, con desarrollo de producciones originales.</span>
         </div>
       </div>
@@ -102,20 +105,86 @@
     </div>
   </section>
 
-  <!-- MI ROL -->
+  <!-- MI ROL
+       Version interactiva (accordion), mismo componente .role-accordion
+       ya usado en Camila Perochena y Abuelas de Plaza de Mayo --
+       reutilizado tal cual (mismas clases, mismo comportamiento, mismo
+       CSS en proyecto.css), sin crear un tercer sistema para Andres. -->
   <section class="case-section fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Mi rol</span>
       <div class="case-section__body">
-        <ul class="case-role__list">
-          <li>Estrategia de comunicación</li>
-          <li>Desarrollo de formatos</li>
-          <li>Producción</li>
-          <li>Grabación</li>
-          <li>Edición audiovisual</li>
-          <li>Gestión de TikTok y YouTube</li>
-          <li>Publicación de contenidos</li>
-        </ul>
+        <div class="role-accordion-list">
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Estrategia de comunicación</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Participo en la definición de cómo traducir temas vinculados con ciencia, aprendizaje y educación a contenidos capaces de circular en plataformas digitales. El trabajo combina criterios de comunicación, selección de temas y desarrollo de formatos, buscando ampliar el alcance sin perder el rigor de las ideas que se están comunicando.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Desarrollo de formatos</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Trabajo en la búsqueda de estructuras y lenguajes que permitan convertir una idea en un formato reconocible y sostenible en el tiempo. Esto incluye tanto piezas breves para redes como producciones originales de mayor desarrollo, pensadas desde su concepción para funcionar en medios digitales.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Producción</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Participo en el desarrollo de proyectos audiovisuales desde la idea hasta la pieza terminada, articulando decisiones de formato, contenido, grabación y edición. Dentro de la colaboración también desarrollamos producciones originales de mayor escala, entre ellas una miniserie de cuatro capítulos y un mini documental vinculado con el debate sobre alfabetización.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Grabación</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Trabajo en la realización de contenidos originales pensando el registro en función de la pieza que queremos construir después. Esto implica tomar decisiones de encuadre, puesta, dinámica y estructura que permitan que la grabación responda desde el inicio a una intención narrativa y comunicacional.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Edición audiovisual</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Construyo las piezas a partir del material disponible trabajando ritmo, estructura, subtítulos, imagen, sonido y progresión narrativa. En contenidos científicos y educativos, parte del desafío es lograr claridad y dinamismo sin eliminar el contexto necesario para comprender correctamente el argumento.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Gestión de TikTok y YouTube</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Creé y administro los canales de TikTok y YouTube del proyecto, desarrollando junto con Andrés contenidos y formatos específicos para cada plataforma. El trabajo incluye pensar qué tipo de piezas tienen sentido en cada canal y construir progresivamente una identidad propia para esos espacios.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Publicación de contenidos</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Trabajo en la preparación final de las piezas para su circulación digital, considerando formato, duración, presentación y contexto de publicación. La publicación forma parte del proceso creativo: una misma idea puede necesitar distintas decisiones según el canal y la forma en que va a encontrarse con su audiencia.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
   </section>
@@ -205,20 +274,187 @@
   </section>
 
   <!-- ALFABETIZACIÓN
-       Sección deliberadamente mínima por ahora: puede crecer (más texto,
-       más media, resultados propios) sin necesitar rediseño, porque sigue
-       el mismo patrón .case-section que el resto del caso. -->
+       Sección base sin cambios (mismo párrafo introductorio de siempre) +
+       un primer bloque .project-feature: pieza de producción original
+       (mini documental en Arrecifes), con más peso que una tarjeta de
+       "Trabajo seleccionado" pero sin competir con el hero del caso.
+       .project-feature es deliberadamente genérico -- se va a reutilizar
+       tal cual para la miniserie de 4 capítulos más adelante, sin crear
+       un componente nuevo cada vez. Vive dentro de .case-section__body,
+       así que hereda la misma columna angosta de todo el texto del caso
+       -- no se toca el grid de la sección. Video real embebido de
+       YouTube (iframe responsive 16:9 sobre .media, sin autoplay, se
+       reproduce directo en la página, sin modal). -->
   <section class="case-section fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Alfabetización</span>
       <div class="case-section__body">
         <p>Uno de los proyectos desarrollados durante la colaboración estuvo centrado en comunicación y divulgación sobre alfabetización y aprendizaje.</p>
 
-        <!-- Espacio preparado para, más adelante: texto ampliado, imágenes,
-             videos, piezas de campaña y eventualmente datos o resultados.
-             Placeholder neutro de referencia (16:9); el formato definitivo
-             se ajustará cuando haya material real. -->
-        <div class="media media--16-9 case-literacy__media" data-label="Pieza de campaña — placeholder"></div>
+        <div class="project-feature">
+          <div class="project-feature__header">
+            <span class="eyebrow project-feature__eyebrow">Producción original</span>
+            <h3 class="project-feature__title">Mini documental en Arrecifes</h3>
+          </div>
+
+          <div class="project-feature__text">
+            <p>Como parte de la campaña de alfabetización produjimos un mini documental que nos llevó a Arrecifes para conocer de cerca una de las experiencias de implementación del método. Allí registramos los testimonios de los chicos que participaban, de sus madres y de las responsables de llevar adelante el proyecto.</p>
+            <p>La pieza se desarrolló desde cero y requirió pensar cómo convertir esa experiencia en un relato audiovisual: organizar la producción, realizar las entrevistas, registrar el trabajo en territorio y después construir el documental en edición. Más que explicar el proyecto desde afuera, el objetivo fue que quienes lo estaban viviendo pudieran contar qué estaba pasando y qué significaba para ellos.</p>
+          </div>
+
+          <p class="project-feature__role"><span class="eyebrow">Mi rol</span> — Producción · Edición</p>
+
+          <!-- Antes iba un <iframe> embebido de YouTube, pero el video
+               devolvía "Video player configuration error — Error 153" al
+               reproducirse embebido. Reemplazado por thumbnail 16:9 +
+               botón de play, toda la pieza es un <a> que abre el video
+               original en YouTube en una pestaña nueva -- sin reproductor
+               embebido que pueda romperse dentro del portfolio.
+               Thumbnail remota (img.youtube.com): no se pudo descargar
+               una copia local porque este entorno no tiene salida de red
+               hacia ese dominio; si preferís que quede local, agregar el
+               archivo en img/proyectos/andres-rieznik/alfabetizacion-documental.webp
+               y avisar para apuntar el src ahí. -->
+          <a
+            class="media media--16-9 project-feature__media"
+            href="https://youtu.be/qUFMWx6oI-c"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver mini documental de alfabetización en YouTube"
+          >
+            <img
+              class="project-feature__thumb"
+              src="https://img.youtube.com/vi/qUFMWx6oI-c/maxresdefault.jpg"
+              alt="Miniatura del mini documental de alfabetización en Arrecifes"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://img.youtube.com/vi/qUFMWx6oI-c/hqdefault.jpg';"
+            >
+            <span class="project-feature__play" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCCIÓN ORIGINAL — RE-RENACIMIENTO
+       Segunda pieza de producción original del caso (la primera es el
+       mini documental de Arrecifes, dentro de "Alfabetización" -- no se
+       toca). Sección propia porque Re-Renacimiento no forma parte de la
+       campaña de alfabetización, es un proyecto distinto -- por eso el
+       label de sección es "Producción original" en vez de repetirlo
+       también como eyebrow interno de .project-feature (acá sería
+       redundante, a diferencia de Alfabetización donde section-label y
+       eyebrow interno dicen cosas distintas).
+
+       Reutiliza tal cual .project-feature para el título + texto, y
+       .project-feature__media / __thumb / __play para cada capítulo
+       (mismo thumbnail+play+link externo, mismo hover, misma
+       accesibilidad que el documental) -- cero estilos nuevos para el
+       video en sí. Lo único nuevo es .project-series (contenedor de la
+       grilla) / __grid / __episode / __label, para presentar los 4
+       capítulos como UN proyecto compuesto en vez de piezas sueltas de
+       "Trabajo seleccionado". La grilla usa columnas de ancho fijo
+       (~340px, dentro de 300-380px) centradas con justify-content, no
+       estiradas a todo el ancho -- visiblemente más chica que el video
+       grande del documental. -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Producción original</span>
+      <div class="case-section__body">
+        <div class="project-feature">
+          <div class="project-feature__header">
+            <h3 class="project-feature__title">Re-Renacimiento</h3>
+          </div>
+
+          <div class="project-feature__text">
+            <p>Re-Renacimiento fue una serie original de cuatro capítulos cortos que produjimos junto a Andrés. A lo largo de los episodios recorrimos distintos temas combinando explicación, animaciones, material audiovisual, experimentos simples y ejemplos cotidianos.</p>
+            <p>La serie nos permitió trabajar un formato más construido que las piezas habituales para redes: cada capítulo tenía su propio recorrido, pero los cuatro compartían una misma lógica visual y narrativa para hacer accesibles ideas complejas sin convertirlas solamente en fragmentos aislados.</p>
+          </div>
+
+          <div class="project-series">
+            <div class="project-series__grid">
+            <div class="project-series__episode">
+              <a
+                class="media media--16-9 project-feature__media"
+                href="https://youtu.be/cK8Cm7iUcsw"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ver capítulo 1 de Re-Renacimiento en YouTube"
+              >
+                <img
+                  class="project-feature__thumb"
+                  src="https://img.youtube.com/vi/cK8Cm7iUcsw/maxresdefault.jpg"
+                  alt="Miniatura del capítulo 1 de Re-Renacimiento"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='https://img.youtube.com/vi/cK8Cm7iUcsw/hqdefault.jpg';"
+                >
+                <span class="project-feature__play" aria-hidden="true"></span>
+              </a>
+              <span class="eyebrow project-series__label">Capítulo 01</span>
+            </div>
+
+            <div class="project-series__episode">
+              <a
+                class="media media--16-9 project-feature__media"
+                href="https://youtu.be/EPU0s58Z86E"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ver capítulo 2 de Re-Renacimiento en YouTube"
+              >
+                <img
+                  class="project-feature__thumb"
+                  src="https://img.youtube.com/vi/EPU0s58Z86E/maxresdefault.jpg"
+                  alt="Miniatura del capítulo 2 de Re-Renacimiento"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='https://img.youtube.com/vi/EPU0s58Z86E/hqdefault.jpg';"
+                >
+                <span class="project-feature__play" aria-hidden="true"></span>
+              </a>
+              <span class="eyebrow project-series__label">Capítulo 02</span>
+            </div>
+
+            <div class="project-series__episode">
+              <a
+                class="media media--16-9 project-feature__media"
+                href="https://youtu.be/U4V_rI0Eb5I"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ver capítulo 3 de Re-Renacimiento en YouTube"
+              >
+                <img
+                  class="project-feature__thumb"
+                  src="https://img.youtube.com/vi/U4V_rI0Eb5I/maxresdefault.jpg"
+                  alt="Miniatura del capítulo 3 de Re-Renacimiento"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='https://img.youtube.com/vi/U4V_rI0Eb5I/hqdefault.jpg';"
+                >
+                <span class="project-feature__play" aria-hidden="true"></span>
+              </a>
+              <span class="eyebrow project-series__label">Capítulo 03</span>
+            </div>
+
+            <div class="project-series__episode">
+              <a
+                class="media media--16-9 project-feature__media"
+                href="https://youtu.be/OLiECtRNzpA"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Ver capítulo 4 de Re-Renacimiento en YouTube"
+              >
+                <img
+                  class="project-feature__thumb"
+                  src="https://img.youtube.com/vi/OLiECtRNzpA/maxresdefault.jpg"
+                  alt="Miniatura del capítulo 4 de Re-Renacimiento"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='https://img.youtube.com/vi/OLiECtRNzpA/hqdefault.jpg';"
+                >
+                <span class="project-feature__play" aria-hidden="true"></span>
+              </a>
+              <span class="eyebrow project-series__label">Capítulo 04</span>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -232,16 +468,12 @@
           <article class="case-channels__item">
             <h3 class="case-channels__name">TikTok</h3>
             <p class="case-channels__text">Cuenta creada y administrada desde su lanzamiento.</p>
-            <!-- Espacio preparado para screenshot/thumbnail, métricas
-                 futuras y link externo al perfil de TikTok. -->
-            <div class="media media--16-9 case-channels__media" data-label="Screenshot / thumbnail — placeholder"></div>
+            <div class="media media--16-9 case-channels__media case-channels__media--tiktok"></div>
           </article>
           <article class="case-channels__item">
             <h3 class="case-channels__name">YouTube</h3>
             <p class="case-channels__text">Canal creado y administrado desde su lanzamiento, incluyendo el desarrollo de producciones originales.</p>
-            <!-- Espacio preparado para screenshot/thumbnail, métricas
-                 futuras y link externo al canal de YouTube. -->
-            <div class="media media--16-9 case-channels__media" data-label="Screenshot / thumbnail — placeholder"></div>
+            <div class="media media--16-9 case-channels__media case-channels__media--youtube"></div>
           </article>
         </div>
       </div>
@@ -253,18 +485,32 @@
     <div class="grid">
       <span class="eyebrow case-section__label">Resultados</span>
       <div class="case-section__body">
+        <!-- Mismas 3 plataformas, misma estructura y jerarquía que ya usa
+             .case-hero__stat más arriba en esta página (número grande >
+             plataforma visible > unidad secundaria chica > descripción):
+             antes Instagram tenía valor pero TikTok/YouTube solo un
+             .result-item__label grande sin número real, así que las tres
+             no se veían al mismo nivel. .result-item__platform es nueva
+             a propósito -- .result-item__label sigue existiendo tal cual
+             para Abuelas ("Cuenta"/"Contenido", sin número), no se toca. -->
         <div class="results-grid">
           <div class="result-item">
-            <span class="result-item__value">19K → 480K+</span>
-            <span class="result-item__caption">Instagram durante el período de colaboración.</span>
+            <span class="eyebrow result-item__platform">Instagram</span>
+            <span class="result-item__value">19K <span class="case-hero__stat-arrow">→</span> 480K+</span>
+            <span class="result-item__unit">seguidores</span>
+            <span class="result-item__caption">Evolución de la comunidad durante el período de colaboración.</span>
           </div>
-          <div class="result-item result-item--text">
-            <span class="result-item__label">TikTok</span>
-            <span class="result-item__caption">Cuenta desarrollada desde su lanzamiento.</span>
+          <div class="result-item">
+            <span class="eyebrow result-item__platform">TikTok</span>
+            <span class="result-item__value">0 <span class="case-hero__stat-arrow">→</span> 72.1K</span>
+            <span class="result-item__unit">seguidores</span>
+            <span class="result-item__caption">Canal creado y administrado por mí desde su lanzamiento.</span>
           </div>
-          <div class="result-item result-item--text">
-            <span class="result-item__label">YouTube</span>
-            <span class="result-item__caption">Canal desarrollado desde su lanzamiento.</span>
+          <div class="result-item">
+            <span class="eyebrow result-item__platform">YouTube</span>
+            <span class="result-item__value">0 <span class="case-hero__stat-arrow">→</span> 35.2K</span>
+            <span class="result-item__unit">suscriptores</span>
+            <span class="result-item__caption">Canal creado y administrado por mí, con desarrollo de producciones originales.</span>
           </div>
           <!-- PLACEHOLDER: agregar métricas adicionales cuando estén definidas -->
         </div>

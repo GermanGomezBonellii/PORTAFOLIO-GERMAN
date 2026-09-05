@@ -67,24 +67,43 @@
 }
 
 /* Label de cada métrica (Instagram / TikTok / YouTube) -- reutiliza
-   .eyebrow (mayúsculas, tracking, tamaño chico) para no crear un estilo
-   nuevo, solo agrega el espacio hacia el dato principal de abajo. Usado
-   por primera vez en Andrés Rieznik al pasar de un dato único a tres
-   métricas apiladas dentro de .case-hero__stat. */
+   .eyebrow (sans-serif, mayúsculas, tracking editorial), pero
+   sobreescribe tamaño/peso/color: antes heredaba el tamaño "chico" y el
+   gris tenue de .eyebrow, lo que lo dejaba con menos presencia que la
+   propia unidad ("seguidores"/"suscriptores"). Ahora funciona como
+   título de cada bloque -- claramente más grande y en texto casi negro,
+   pero todavía bastante por debajo del número. */
 .case-hero__stat-label {
   display: block;
   margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .case-hero__stat-value {
   display: block;
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
-  margin-bottom: 10px;
+  margin-bottom: 4px; /* antes 10px: ahora .case-hero__stat-unit sigue inmediatamente debajo */
 }
 
 .case-hero__stat-arrow {
   color: var(--color-accent); /* único detalle celeste del hero, muy puntual */
+}
+
+/* Unidad de la métrica (seguidores / suscriptores): antes vivía adentro
+   de .case-hero__stat-value, heredando la serif grande y compitiendo
+   visualmente con el número y con la plataforma. Ahora es una etiqueta
+   secundaria propia, sans-serif y notablemente más chica -- de paso esto
+   reduce el espacio vertical extra que generaba antes. */
+.case-hero__stat-unit {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-muted);
+  margin-bottom: 10px;
 }
 
 .case-hero__stat-caption {
@@ -468,25 +487,141 @@
   }
 }
 
-/* -- Alfabetización: placeholder de media suelto bajo el párrafo -------- */
-.case-literacy__media {
-  margin-top: clamp(28px, 4vw, 44px);
-  max-width: 720px; /* no ocupa todo el ancho del body todavia; se ajusta cuando haya contenido real */
-}
-
-/* -- Desarrollo de canales: TikTok / YouTube en 2 columnas en desktop --- */
-.case-channels__list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gutter);
-}
-
-.case-channels__item {
-  padding-top: clamp(24px, 4vw, 32px);
+/* -- Producción original (.project-feature): bloque editorial para una
+   pieza propia dentro de un caso -- usado primero en el mini documental
+   de Alfabetización (Andrés Rieznik), pensado desde el principio para
+   reutilizarse tal cual en otras piezas de este tipo (la miniserie de 4
+   capítulos, por ejemplo) sin crear un componente nuevo cada vez. Más
+   peso que una tarjeta de .case-reel/.case-media-grid ("Trabajo
+   seleccionado"): el título usa --fs-h2 en vez de --fs-h3/tamaño de
+   caption, pero bastante por debajo del hero (.case-hero__title usa
+   --fs-h1). Vive dentro de .case-section__body, así que hereda la misma
+   columna angosta que el resto del texto del caso -- no se toca el grid
+   de la sección para esto (opción "texto arriba, video grande debajo":
+   es la que mejor dialoga con el resto de la página, que en ningún otro
+   lado usa dos columnas dentro de .case-section__body). */
+.project-feature {
+  margin-top: clamp(40px, 6vw, 64px);
+  padding-top: clamp(32px, 5vw, 48px);
   border-top: 1px solid var(--color-line);
 }
 
+.project-feature__header {
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.project-feature__eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.project-feature__title {
+  font-size: var(--fs-h2);
+}
+
+/* El espaciado entre párrafos del texto lo resuelve automáticamente
+   .case-section__body p + p (ver arriba) -- .project-feature__text es
+   descendiente de .case-section__body, así que no hace falta duplicar
+   la regla acá. */
+
+.project-feature__role {
+  margin-top: clamp(20px, 3vw, 28px);
+  margin-bottom: clamp(28px, 4vw, 40px);
+  color: var(--color-text);
+}
+
+.project-feature__role .eyebrow {
+  margin-right: 8px;
+}
+
+/* .project-feature__media reutiliza .media + .media--16-9 tal cual (ver
+   components.css): aspect-ratio, overflow y el color de superficie
+   neutro mientras la miniatura carga. Ya no es un <iframe> embebido
+   (devolvía "Error 153" al reproducirse dentro del portfolio) sino un
+   <a> que abre el video en YouTube en una pestaña nueva -- thumbnail +
+   botón de play, sin reproductor que pueda romperse acá adentro. */
+.project-feature__media {
+  display: block;
+  cursor: pointer;
+}
+
+.project-feature__thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s var(--ease);
+}
+
+.project-feature__media:hover .project-feature__thumb {
+  transform: scale(1.025); /* zoom muy sutil, dentro del rango pedido (1.02-1.03) */
+}
+
+/* Botón de play: círculo discreto semitransparente + triángulo dibujado
+   con el truco de bordes de CSS (sin SVG ni íconos externos, mismo
+   criterio que el resto del sitio). Pasa a celeste en hover -- único
+   acento de color, igual criterio que .arrow-link / .case-process__arrow. */
+.project-feature__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(14, 14, 13, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s var(--ease);
+}
+
+.project-feature__play::before {
+  content: '';
+  width: 0;
+  height: 0;
+  margin-left: 4px; /* centrado óptico del triángulo dentro del círculo */
+  border-style: solid;
+  border-width: 10px 0 10px 16px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.project-feature__media:hover .project-feature__play {
+  background: var(--color-accent);
+}
+
+/* -- Desarrollo de canales: TikTok / YouTube en 2 columnas en desktop --- */
+/* .case-channels__item pasa a display:contents: deja de generar su
+   propia caja de flujo y sus hijos (título/descripción/imagen) pasan a
+   ser items directos de esta grilla. Con grid-auto-flow:column + 3 filas
+   explícitas, cada columna (TikTok/YouTube) reparte sus 3 hijos en fila
+   1/2/3 respectivamente, y como ambas columnas comparten esas mismas 3
+   filas, la fila 3 (las imágenes) arranca exactamente a la misma altura
+   en las dos columnas sin importar que la descripción de una tenga más
+   líneas que la otra -- sin subgrid, sin JS, sin márgenes manuales por
+   plataforma. align-items:start evita que algo se estire o se centre
+   verticalmente dentro de su fila. */
+.case-channels__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto auto;
+  grid-auto-flow: column;
+  column-gap: var(--gutter);
+  align-items: start;
+}
+
+.case-channels__item {
+  display: contents;
+}
+
+/* La línea divisoria y el espacio superior vivían antes en
+   .case-channels__item; con display:contents ese elemento ya no genera
+   caja propia, así que se mueven al título (primer elemento visible de
+   cada columna) para mantener exactamente el mismo resultado visual. */
 .case-channels__name {
+  padding-top: clamp(24px, 4vw, 32px);
+  border-top: 1px solid var(--color-line);
   font-size: var(--fs-h3);
   margin-bottom: 10px;
 }
@@ -496,9 +631,38 @@
   margin-bottom: clamp(20px, 3vw, 28px);
 }
 
+/* Screenshots definitivos de los canales (img/proyectos/andres-rieznik/
+   tiktok.png y youtube.png). Mismo criterio que .media--andres /
+   .media--camila / .media--abuelas: background-image sobre .media--16-9;
+   cover porque el origen no es exactamente 16:9 (~1.5:1 en ambos casos).
+   background-position: top center (antes "center"): prioriza mantener
+   visible la parte superior de cada captura (cabecera de perfil de
+   TikTok, banner de YouTube) y recorta por abajo en vez de recortar
+   parejo arriba y abajo. */
+.case-channels__media--tiktok {
+  background-image: url('../../img/proyectos/andres-rieznik/tiktok.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.case-channels__media--youtube {
+  background-image: url('../../img/proyectos/andres-rieznik/youtube.png');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
 @media (max-width: 768px) {
+  /* Vuelve a flujo normal de a un item por vez (título/descripción/
+     imagen de TikTok, después título/descripción/imagen de YouTube):
+     con una sola columna, grid-auto-flow:column generaría columnas
+     implícitas extra en vez de apilar -- acá no hace falta compartir
+     filas entre plataformas porque ya están una debajo de la otra. */
   .case-channels__list {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
   }
 }
 
@@ -777,6 +941,36 @@
 .result-item__value {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+/* Nombre de plataforma dentro de un .result-item CON número (por ahora
+   solo Andrés Rieznik) -- mismo criterio que .case-hero__stat-label más
+   arriba en esta misma página: reutiliza .eyebrow (sans-serif,
+   mayúsculas, tracking) pero sobreescribe tamaño/peso/color para que
+   funcione como título visible del bloque. Clase nueva a propósito: NO
+   es .result-item__label, que sigue usándose tal cual en Abuelas para
+   "Cuenta"/"Contenido" (sin número), donde necesita mantenerse grande. */
+.result-item__platform {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Unidad de la métrica (seguidores / suscriptores) -- mismo criterio que
+   .case-hero__stat-unit: etiqueta secundaria chica, nunca el tamaño
+   display grande. El margin-top negativo compensa el margin-bottom de
+   .result-item__value (10px) para que quede pegada al número sin tocar
+   esa regla compartida con Camila/Abuelas. */
+.result-item__unit {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-muted);
+  margin-top: -6px;
   margin-bottom: 10px;
 }
 

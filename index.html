@@ -142,6 +142,42 @@
     </div>
   </section>
 
+  <!-- OTRAS COLABORACIONES
+       Dos colaboraciones adicionales SIN pagina interna: a diferencia de
+       .project-preview de arriba, estas piezas son deliberadamente
+       estaticas -- no son <a>, sin "Ver caso", sin flecha, sin cursor
+       pointer ni hover de interaccion. Menor peso visual a proposito
+       (titulo un escalon mas chico que los de Andres/Camila/Abuelas,
+       descripcion en color secundario). Clases genericas
+       (.secondary-projects / .secondary-project...) para poder sumar mas
+       colaboraciones de este tipo despues sin crear un componente nuevo
+       cada vez.
+
+       Imagenes definitivas: Emilse Garzón (img/emilse.webp) y María
+       Roca (img/maria_roca.webp), ver .media--emilse-garzon y
+       .media--maria-roca en home.css. -->
+  <section class="secondary-projects fade-in">
+    <div class="container">
+      <span class="eyebrow secondary-projects__label">Otras colaboraciones</span>
+
+      <div class="secondary-projects__list">
+        <div class="secondary-project">
+          <div class="media media--16-9 secondary-project__media media--emilse-garzon"></div>
+          <span class="category-label secondary-project__category">Ciberseguridad</span>
+          <h3 class="secondary-project__title">Emilse Garzón</h3>
+          <p class="secondary-project__description">Edición de participaciones en streamings e entrevistas sobre inteligencia artificial, ciberseguridad, política y regulación tecnológica. El material partía de conversaciones extensas que luego se adaptaban a piezas breves para redes, conservando el contexto necesario para entender cada tema.</p>
+        </div>
+
+        <div class="secondary-project">
+          <div class="media media--16-9 secondary-project__media media--maria-roca"></div>
+          <span class="category-label secondary-project__category">Neurociencia</span>
+          <h3 class="secondary-project__title">María Roca</h3>
+          <p class="secondary-project__description">Edición de intervenciones sobre neurociencia, salud cerebral y bienestar cognitivo. A partir de participaciones de María Roca, investigadora vinculada a INECO, se desarrollaban piezas breves para redes a partir de contenidos originalmente pensados para entrevistas y formatos más extensos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PERFIL -->
   <section class="profile" id="perfil">
     <div class="container">

@@ -84,21 +84,97 @@
     </div>
   </section>
 
-  <!-- MI ROL -->
+  <!-- MI ROL
+       Version interactiva (accordion), mismo componente .role-accordion
+       ya usado en Camila Perochena -- reutilizado tal cual (mismas
+       clases, mismo comportamiento, mismo CSS en proyecto.css), sin
+       crear un sistema propio para Abuelas. Andres todavia usa
+       .case-role__list sin cambios. -->
   <section class="case-section fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Mi rol</span>
       <div class="case-section__body">
-        <ul class="case-role__list">
-          <li>Prensa y difusión</li>
-          <li>Estrategia y desarrollo de contenidos</li>
-          <li>Creación y administración de TikTok</li>
-          <li>Producción audiovisual</li>
-          <li>Grabación</li>
-          <li>Edición</li>
-          <li>Trabajo con material de archivo</li>
-          <li>Adaptación de contenidos para plataformas digitales</li>
-        </ul>
+        <div class="role-accordion-list">
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Prensa y difusión</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Formé parte del área de Prensa y Difusión, participando en la producción de contenidos para trasladar el trabajo, la historia y las actividades de la institución a sus plataformas digitales. Esto implicó trabajar dentro de una comunicación institucional con una identidad y una responsabilidad pública muy definidas.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Estrategia y desarrollo de contenidos</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Participé en la búsqueda y desarrollo de formatos capaces de comunicar el trabajo de Abuelas dentro de las dinámicas de las redes sociales. La estrategia debía contemplar los lenguajes de cada plataforma sin separar los contenidos del contexto histórico e institucional que les da sentido.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Creación y administración de TikTok</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Inicié y administré el canal de TikTok de Abuelas desde cero. El trabajo incluyó experimentar con formatos, criterios de publicación y formas narrativas propias de la plataforma, construyendo progresivamente una presencia institucional en un espacio en el que Abuelas todavía no tenía un canal propio.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Producción audiovisual</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Desarrollé piezas audiovisuales específicamente pensadas para los canales digitales de la institución. El trabajo combinó planificación, registro y edición, buscando que cada contenido pudiera funcionar dentro de redes sociales sin perder claridad ni coherencia con la comunicación de Abuelas.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Grabación</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Participé en la realización y registro de contenidos originales, tomando decisiones de encuadre, duración y construcción de las piezas en función de su publicación posterior. Pensar la grabación desde el destino digital permitía que el formato no dependiera únicamente de decisiones tomadas durante la edición.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Edición</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Trabajé sobre ritmo, estructura, subtítulos, imagen y sonido para convertir el material registrado en piezas claras y accesibles. En contenidos vinculados con memoria y derechos humanos, la edición requería además especial cuidado para que los recursos propios de las redes no alteraran el sentido ni trivializaran el material.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Trabajo con material de archivo</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Trabajé con imágenes y registros audiovisuales históricos para recuperarlos y adaptarlos a nuevas piezas digitales. El desafío era encontrar nuevas formas de circulación para ese material preservando su contexto, su valor documental y su relación con la historia que se estaba contando.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Adaptación de contenidos para plataformas digitales</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Adapté contenidos institucionales a formatos, duraciones y lenguajes propios de las plataformas digitales. La intención no era simplemente trasladar el mismo material de un medio a otro, sino encontrar una forma adecuada de comunicarlo en cada entorno manteniendo la identidad y el sentido del contenido original.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
   </section>

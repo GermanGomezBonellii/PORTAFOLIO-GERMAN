@@ -357,3 +357,75 @@
     display: none;
   }
 }
+
+/* -- Otras colaboraciones -------------------------------------------------
+   Dos colaboraciones adicionales sin pagina interna, deliberadamente
+   estaticas: sin <a>, sin "Ver caso", sin cursor pointer ni hover de
+   interaccion (a diferencia de .project-preview de arriba). Comparte
+   .container/max-width con el resto del home, pero el titulo usa
+   --fs-h3 (un escalon por debajo del --fs-h2 de los tres proyectos
+   principales) y la descripcion usa color secundario -- menor peso
+   visual a proposito. Clases genericas para poder sumar mas
+   colaboraciones de este tipo despues sin crear un componente nuevo
+   cada vez. --------------------------------------------------------------- */
+.secondary-projects {
+  padding-block: var(--section-space);
+  border-top: 1px solid var(--color-line);
+}
+
+.secondary-projects__label {
+  display: block;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.secondary-projects__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(48px, 6vw, 96px); /* gap amplio y editorial, mas generoso que --gutter a proposito */
+}
+
+.secondary-project__media {
+  margin-bottom: 20px;
+}
+
+/* Imagen definitiva de Emilse Garzón (img/emilse.webp, formato 16:9).
+   Mismo criterio que .media--andres / .media--camila / .media--abuelas:
+   background-image sobre .media--16-9. */
+.media--emilse-garzon {
+  background-image: url('../../img/emilse.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Imagen definitiva de María Roca (img/maria_roca.webp, formato 16:9).
+   Mismo criterio que .media--andres / .media--camila / .media--abuelas /
+   .media--emilse-garzon: background-image sobre .media--16-9. */
+.media--maria-roca {
+  background-image: url('../../img/maria_roca.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.secondary-project__category {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.secondary-project__title {
+  font-size: var(--fs-h3);
+  margin-bottom: 10px;
+}
+
+.secondary-project__description {
+  color: var(--color-muted);
+  max-width: 42ch;
+}
+
+@media (max-width: 768px) {
+  .secondary-projects__list {
+    grid-template-columns: 1fr;
+    gap: clamp(40px, 9vw, 64px);
+  }
+}
