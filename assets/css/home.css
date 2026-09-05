@@ -298,6 +298,26 @@
   max-width: 34ch;
 }
 
+/* Contador animado del valor final (ver .count-up en main.js). El valor
+   inicial y la flecha ("19K → ") quedan fuera de este span y nunca se
+   tocan -- animar es exclusivo del numero final. tabular-nums evita que
+   el ancho de los digitos "salte" mientras cuenta (en la mayoria de
+   fuentes cada digito ya tiene el mismo ancho, pero esto lo garantiza);
+   min-width cubre el caso mas largo, "480K+", para que el conteo no
+   empuje el resto de la linea de derecha a izquierda mientras crece. */
+.count-up {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  min-width: 5ch;
+  transition: color 300ms ease;
+}
+
+/* Se agrega por JS (main.js) recien cuando el conteo llega al valor
+   definitivo -- nunca antes, y nunca sobre el resto de la linea. */
+.count-up.is-counted {
+  color: var(--color-accent);
+}
+
 .project-preview__placeholder-note {
   font-size: var(--fs-small);
   color: var(--color-muted-2);

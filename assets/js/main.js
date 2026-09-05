@@ -49,6 +49,168 @@
     });
   }
 
+  /* -- Typewriter: escritura progresiva para textos marcados con
+     [data-typewriter] (por ahora, solo la parte celeste del titulo de
+     "Trabajo seleccionado" en la home). El HTML ya trae el texto completo
+     puesto de forma normal (funciona sin JS, accesible, no perjudica
+     SEO). Con JS activo, recien cuando el elemento entra REALMENTE en el
+     viewport (IntersectionObserver) se le agrega al lado un duplicado
+     .visually-hidden con el texto completo para lectores de pantalla --
+     asi la frase se lee una sola vez, nunca caracter por caracter -- se
+     marca el elemento visible como aria-hidden, y se anima. La altura del
+     heading que lo contiene se fija (min-height) mientras dura la
+     animacion para que las secciones de mas abajo no salten al haber
+     momentaneamente menos texto (y por lo tanto menos lineas) que en la
+     version final. Con prefers-reduced-motion activo directamente no se
+     inicia nada: queda el texto completo estatico de siempre. */
+  var typewriterEls = document.querySelectorAll('[data-typewriter]');
+  var prefersReducedMotionForTypewriter =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function runTypewriter(el) {
+    var fullText = el.textContent;
+    var speed = parseInt(el.getAttribute('data-speed'), 10) || 40;
+
+    var srCopy = document.createElement('span');
+    srCopy.className = 'visually-hidden';
+    srCopy.textContent = fullText;
+    el.insertAdjacentElement('beforebegin', srCopy);
+    el.setAttribute('aria-hidden', 'true');
+
+    /* Se mide con el texto completo todavia puesto, antes de vaciarlo. */
+    var heightLockEl = el.closest('h1, h2, h3, h4, p') || el.parentElement;
+    heightLockEl.style.minHeight = heightLockEl.getBoundingClientRect().height + 'px';
+
+    el.textContent = '';
+    el.classList.add('typewriter--typing');
+
+    var i = 0;
+
+    function typeNext() {
+      i += 1;
+      el.textContent = fullText.slice(0, i);
+
+      if (i < fullText.length) {
+        /* Pausa breve y sutil despues de comas/puntos y de cada palabra
+           (espacio), para que la escritura tenga un ritmo natural en vez
+           de un tic-tac perfectamente uniforme -- sin salirse del rango
+           de ~2 segundos totales pedido. */
+        var lastChar = fullText.charAt(i - 1);
+        var extraPause = 0;
+        if (lastChar === ',' || lastChar === '.') {
+          extraPause = 110;
+        } else if (lastChar === ' ') {
+          extraPause = 40;
+        }
+        window.setTimeout(typeNext, speed + extraPause);
+      } else {
+        window.setTimeout(function () {
+          el.classList.remove('typewriter--typing');
+          heightLockEl.style.minHeight = '';
+        }, 500);
+      }
+    }
+
+    window.setTimeout(typeNext, speed);
+  }
+
+  if (
+    'IntersectionObserver' in window &&
+    typewriterEls.length &&
+    !prefersReducedMotionForTypewriter
+  ) {
+    var typewriterObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            runTypewriter(entry.target);
+            typewriterObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    typewriterEls.forEach(function (el) {
+      typewriterObserver.observe(el);
+    });
+  }
+  /* Sin IntersectionObserver disponible, o con prefers-reduced-motion
+     activo: no hacemos nada y queda el texto completo estatico que ya
+     trae el HTML. */
+
+  /* -- Contador animado para las métricas de crecimiento de la home -----
+     .count-up ya trae el valor final escrito en el HTML (fallback sin JS,
+     accesible, no perjudica SEO). Con JS activo, recién cuando el bloque
+     entra REALMENTE en el viewport (IntersectionObserver, no al cargar la
+     página) se reemplaza temporalmente por una cuenta animada desde
+     data-start hasta data-end con easeOutCubic; al llegar exactamente a
+     data-end se vuelve a fijar el texto final completo (numero + sufijo,
+     "+" incluido) y se agrega .is-counted, que dispara el cambio a
+     celeste vía CSS (transition: color, ver home.css). Cada contador se
+     observa y anima una sola vez. */
+  var countEls = document.querySelectorAll('.count-up');
+  var prefersReducedMotionForCounters =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCountUp(el) {
+    var start = parseInt(el.getAttribute('data-start'), 10);
+    var end = parseInt(el.getAttribute('data-end'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    /* El "+" (caso Andrés) solo debe aparecer al terminar, no en cada
+       valor intermedio mientras todavía está contando. */
+    var suffixWhileCounting = suffix.replace(/\+$/, '');
+    var duration = 2000;
+
+    if (prefersReducedMotionForCounters) {
+      el.textContent = end + suffix;
+      el.classList.add('is-counted');
+      return;
+    }
+
+    var startTime = null;
+
+    function step(timestamp) {
+      if (startTime === null) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var current = Math.round(start + (end - start) * easeOutCubic(progress));
+
+      if (progress < 1) {
+        el.textContent = current + suffixWhileCounting;
+        window.requestAnimationFrame(step);
+      } else {
+        el.textContent = end + suffix; /* valor exacto + sufijo completo, "+" incluido */
+        el.classList.add('is-counted');
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window && countEls.length) {
+    var countObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCountUp(entry.target);
+            countObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    countEls.forEach(function (el) {
+      countObserver.observe(el);
+    });
+  }
+  /* Sin IntersectionObserver disponible: no hacemos nada y queda el
+     valor final estático que ya trae el HTML. */
+
   /* -- Hero sticky / scrollytelling: aparición de los textos según el
      progreso de scroll dentro de .hero-scroll -----------------------------
      .hero__lead y .hero__secondary usan .reveal-on-scroll (ver

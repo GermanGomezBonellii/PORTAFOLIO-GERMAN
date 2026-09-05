@@ -270,3 +270,26 @@ a:hover .arrow-link__arrow {
     transition: none;
   }
 }
+
+/* -- Typewriter: cursor del efecto de escritura progresiva (logica en
+   main.js, atributos data-typewriter / data-speed en el HTML). El cursor
+   es un pseudo-elemento -- no agrega texto real ni interfiere con el
+   contenido accesible. Sin color propio: hereda currentColor, asi que
+   toma automaticamente el color del texto donde se use (celeste en el
+   caso actual, pero reutilizable en cualquier otro contexto). Cuando
+   prefers-reduced-motion esta activo, main.js directamente no inicia el
+   efecto, asi que esta clase nunca llega a aplicarse para esos usuarios. */
+.typewriter--typing::after {
+  content: "|";
+  margin-left: 1px;
+  animation: typewriter-blink 800ms step-end infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
