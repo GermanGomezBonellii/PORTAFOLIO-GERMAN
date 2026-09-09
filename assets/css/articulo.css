@@ -1,0 +1,121 @@
+/* ==========================================================================
+   ARTICULO — página editorial de lectura para /articulos/*
+   Se carga únicamente en las páginas de artículo (no en home.css ni
+   proyecto.css) para no mezclar los estilos del listado de Artítulos
+   (home.css) con los de una página de lectura larga. Fondo claro por
+   defecto: no se sobreescribe --color-bg ni se agrega ningún wrapper de
+   fondo (a diferencia de .page-content en la home) -- igual criterio que
+   las páginas de proyecto. La prioridad acá es la lectura, no un nuevo
+   case study.
+   ========================================================================== */
+
+.article-page {
+  padding-block: clamp(32px, 6vw, 56px) clamp(64px, 10vw, 120px);
+}
+
+.article-page__back {
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.article-page__header {
+  max-width: 860px;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.article-page__label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.article-page__title {
+  font-size: var(--fs-h1);
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.article-page__dek {
+  font-family: var(--font-body);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--color-muted);
+  max-width: 62ch;
+}
+
+/* -- Cuerpo del artículo --------------------------------------------------
+   Ancho de lectura acotado (no el max-width del .container general): entre
+   700 y 780px, pensado para ~65-75 caracteres por línea. Por ahora el
+   contenedor queda vacío (ver index.html: <article class="article-body">
+   con un comentario adentro) -- estos estilos quedan preparados para
+   cuando se escriba el texto completo del ensayo. -------------------------- */
+.article-body {
+  max-width: 740px;
+}
+
+.article-body p {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.1vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.article-body p + p {
+  margin-top: 1.3em;
+}
+
+.article-body h2 {
+  font-size: var(--fs-h3);
+  margin-top: clamp(40px, 6vw, 56px);
+  margin-bottom: 0.6em;
+}
+
+.article-body h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-top: clamp(32px, 5vw, 44px);
+  margin-bottom: 0.5em;
+}
+
+/* base.css resetea <ul> a list-style: none / sin margin ni padding para
+   toda la página -- acá, dentro del cuerpo del artículo, se restaura el
+   list-style para contenido futuro tipo ensayo. */
+.article-body ul,
+.article-body ol {
+  margin-top: 1.2em;
+  padding-left: 1.4em;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.1vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.article-body ul {
+  list-style: disc;
+}
+
+.article-body ol {
+  list-style: decimal;
+}
+
+.article-body li + li {
+  margin-top: 0.5em;
+}
+
+.article-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-body blockquote {
+  margin: clamp(28px, 4vw, 40px) 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .article-page {
+    padding-block: clamp(24px, 6vw, 40px) clamp(48px, 10vw, 72px);
+  }
+}

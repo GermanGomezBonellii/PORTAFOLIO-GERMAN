@@ -46,7 +46,7 @@
        con una imagen principal 16:9 en vez de 4:5 -- el material de origen
        de este caso es audiovisual horizontal (streaming/TV), no vertical.
        ========================================================================== -->
-  <section class="case-hero container">
+  <section class="case-hero case-hero--camila container">
     <a href="../../index.html#trabajo" class="back-link case-hero__back">← Volver a mis trabajos</a>
 
     <div class="grid case-hero__grid">
@@ -236,37 +236,47 @@
   </section>
 
   <!-- CONTENIDOS DE ORIGEN
-       Reutiliza .case-channels__list (mismo layout a 2 columnas que
-       "Desarrollo de canales" en Abuelas de Plaza de Mayo), sin el bloque
-       de media -- acá todavía no van logos ni imágenes. -->
+       Bloque propio (.sources-list / .source-item...), no reutiliza
+       .case-channels__list: ese layout está pensado para exactamente 3
+       filas por columna (título / descripción / media, ver "Desarrollo
+       de canales" en Andrés / Abuelas) y acá cada item solo tenía 2
+       hijos (sin media), lo que rompía el auto-placement de la grilla:
+       el título de "Odisea Argentina" terminaba encajado en la fila 3
+       de la primera columna y su descripción quedaba sola, flotando en
+       una segunda columna. Estructura nueva: dos filas apiladas, cada
+       una con su propio bloque de texto (título real + fuente/conductor
+       como metadato aparte -- ya no un <br> dentro del mismo heading) y
+       una captura 16:9 al lado. -->
   <section class="case-section fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Contenidos de origen</span>
       <div class="case-section__body">
-        <div class="case-channels__list">
-          <article class="case-channels__item">
-            <h3 class="case-channels__name">Soñé que volaba<br>OLGA</h3>
-            <p class="case-channels__text">Intervenciones sobre historia, política y actualidad posteriormente adaptadas para redes.</p>
+        <div class="sources-list">
+          <article class="source-item">
+            <div class="source-item__text">
+              <h3 class="source-item__title">Soñé que volaba</h3>
+              <p class="eyebrow source-item__meta">OLGA</p>
+              <p class="source-item__description">Intervenciones sobre historia, política y actualidad posteriormente adaptadas para redes.</p>
+            </div>
+            <div class="source-item__media">
+              <div class="source-media">
+                <img src="../../img/proyectos/camila-perochena/origen-olga.webp" alt="Captura del programa Soñé que volaba, OLGA" loading="lazy" onerror="this.style.display='none';">
+              </div>
+            </div>
           </article>
-          <article class="case-channels__item">
-            <h3 class="case-channels__name">Odisea Argentina<br>Carlos Pagni</h3>
-            <p class="case-channels__text">Participaciones de análisis histórico y político utilizadas como material de origen para nuevas piezas digitales.</p>
+
+          <article class="source-item">
+            <div class="source-item__text">
+              <h3 class="source-item__title">Odisea Argentina</h3>
+              <p class="eyebrow source-item__meta">Carlos Pagni</p>
+              <p class="source-item__description">Participaciones de análisis histórico y político utilizadas como material de origen para nuevas piezas digitales.</p>
+            </div>
+            <div class="source-item__media">
+              <div class="source-media">
+                <img src="../../img/proyectos/camila-perochena/origen-odisea.webp" alt="Captura del programa Odisea Argentina, Carlos Pagni" loading="lazy" onerror="this.style.display='none';">
+              </div>
+            </div>
           </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CRECIMIENTO ORGÁNICO -->
-  <section class="case-section fade-in">
-    <div class="grid">
-      <span class="eyebrow case-section__label">Crecimiento orgánico</span>
-      <div class="case-section__body">
-        <p>Evolución de la comunidad durante aproximadamente un año y medio de colaboración, acompañada por un flujo sostenido de contenidos derivados de sus intervenciones en medios y streaming.</p>
-
-        <div class="case-stat">
-          <span class="case-stat-value">14K <span class="case-stat-arrow">→</span> 100K</span>
-          <span class="case-stat-caption">Evolución de la comunidad durante el período de trabajo conjunto.</span>
         </div>
       </div>
     </div>

@@ -188,6 +188,24 @@
   background-image: url('../../img/camila.webp');
 }
 
+/* -- Variante compacta de .case-hero para Camila Perochena --------------
+   Un solo dato principal (no tres, como Andrés) y una imagen 16:9 en vez
+   de 4:5: la columna izquierda queda bastante más baja que en los otros
+   casos. El padding-bottom compartido de .case-hero (var(--section-space),
+   hasta 160px) sumado a ese contenido más corto dejaba un vacío enorme
+   antes de "El proyecto". Se acota puntualmente acá, sin tocar el resto
+   de .case-hero -- Andrés y Abuelas siguen usando el valor compartido. */
+.case-hero.case-hero--camila {
+  padding-bottom: clamp(80px, 8vw, 120px);
+}
+
+/* Acerca el dato 14K → 100K al bloque de roles de arriba (mismo
+   contenido: línea, número, flecha celeste, descripción -- solo menos
+   aire antes). */
+.case-hero.case-hero--camila .case-hero__stat {
+  padding-top: clamp(16px, 2.5vw, 24px);
+}
+
 /* -- Dato destacado dentro de una sección de texto (no en el hero). Mismo
    lenguaje visual que .case-hero__stat, pero reutilizable en cualquier
    .case-section__body -- pensado para futuros casos, no solo Abuelas. --- */
@@ -589,6 +607,39 @@
 
 .project-feature__media:hover .project-feature__play {
   background: var(--color-accent);
+}
+
+/* -- Producción original: miniserie (Re-Renacimiento) --------------------
+   Extiende .project-feature sin tocarlo: reutiliza tal cual .media,
+   .media--16-9, .project-feature__media, .project-feature__thumb y
+   .project-feature__play (mismo thumbnail+play+link externo que el
+   documental de Arrecifes). Lo único nuevo es el contenedor de grilla
+   para presentar varios episodios como un solo proyecto, visiblemente
+   más chico que el video grande del documental. */
+.project-series {
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+.project-series__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 340px));
+  gap: clamp(20px, 3vw, 32px);
+  justify-content: center;
+}
+
+.project-series__episode {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-series__label {
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .project-series__grid {
+    grid-template-columns: minmax(0, 340px);
+  }
 }
 
 /* -- Desarrollo de canales: TikTok / YouTube en 2 columnas en desktop --- */
@@ -1014,5 +1065,84 @@
 @media (max-width: 1024px) {
   .case-placeholder-body__text {
     grid-column: 1 / span 12;
+  }
+}
+
+/* -- Contenidos de origen: dos fuentes apiladas, texto + captura 16:9 ----
+   Bloque propio, no reutiliza .case-channels__list (ver comentario en el
+   HTML de proyectos/camila-perochena/index.html): cada .source-item es su
+   propia fila de 2 columnas (texto ~38% / captura ~62%), alineadas arriba
+   (align-items: start) para que el título del programa y el borde
+   superior de la captura arranquen en la misma línea visual. Una sola
+   línea divisoria entre los dos orígenes (border-top en el segundo
+   .source-item), sin altura fija: el alto de la sección sale del
+   contenido real, no de un mínimo impuesto. --------------------------- */
+.sources-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.source-item {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  column-gap: var(--gutter);
+  align-items: start;
+  padding-block: clamp(28px, 4vw, 40px);
+}
+
+.source-item:first-child {
+  padding-top: 0;
+}
+
+.source-item + .source-item {
+  border-top: 1px solid var(--color-line);
+}
+
+.source-item__title {
+  font-size: var(--fs-h3);
+  margin-bottom: 6px;
+}
+
+/* Fuente / conductor: jerarquía claramente secundaria respecto del
+   título -- reutiliza .eyebrow (sans-serif, uppercase, tracking
+   editorial, gris secundario), mismo criterio que el resto del sitio
+   para metadata puntual (categorías, índices, labels). */
+.source-item__meta {
+  margin-bottom: 14px;
+}
+
+.source-item__description {
+  color: var(--color-muted);
+}
+
+.source-item__media {
+  min-width: 0; /* evita que la imagen fuerce el ancho de su columna */
+}
+
+/* Wrapper reutilizable para una captura 16:9: <img> real (no
+   background-image), para conservar el alt como texto accesible --
+   informativa, sin zoom, sin play, sin interacción. background-color de
+   respaldo mientras no exista el archivo (el onerror del <img> la oculta
+   en vez de mostrar el ícono de imagen rota del navegador). */
+.source-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.source-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 768px) {
+  .source-item {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
   }
 }

@@ -90,7 +90,7 @@
               <span class="project-preview__stat-caption">Evolución de la comunidad de Instagram durante el período de colaboración.</span>
             </div>
 
-            <span class="arrow-link">Ver caso <span class="arrow-link__arrow">→</span></span>
+            <span class="arrow-link">Ver trabajo <span class="arrow-link__arrow">→</span></span>
           </div>
         </a>
 
@@ -112,7 +112,7 @@
               <span class="project-preview__stat-caption">Evolución de la comunidad durante aproximadamente un año y medio de colaboración.</span>
             </div>
 
-            <span class="arrow-link">Ver caso <span class="arrow-link__arrow">→</span></span>
+            <span class="arrow-link">Ver trabajo <span class="arrow-link__arrow">→</span></span>
           </div>
         </a>
 
@@ -134,7 +134,7 @@
               <span class="project-preview__stat-caption">Comunidad alcanzada durante aproximadamente un año desde el lanzamiento de la cuenta de TikTok.</span>
             </div>
 
-            <span class="arrow-link">Ver caso <span class="arrow-link__arrow">→</span></span>
+            <span class="arrow-link">Ver trabajo <span class="arrow-link__arrow">→</span></span>
           </div>
         </a>
 
@@ -145,7 +145,7 @@
   <!-- OTRAS COLABORACIONES
        Dos colaboraciones adicionales SIN pagina interna: a diferencia de
        .project-preview de arriba, estas piezas son deliberadamente
-       estaticas -- no son <a>, sin "Ver caso", sin flecha, sin cursor
+       estaticas -- no son <a>, sin "Ver trabajo", sin flecha, sin cursor
        pointer ni hover de interaccion. Menor peso visual a proposito
        (titulo un escalon mas chico que los de Andres/Camila/Abuelas,
        descripcion en color secundario). Clases genericas
@@ -165,14 +165,20 @@
           <div class="media media--16-9 secondary-project__media media--emilse-garzon"></div>
           <span class="category-label secondary-project__category">Ciberseguridad</span>
           <h3 class="secondary-project__title">Emilse Garzón</h3>
-          <p class="secondary-project__description">Edición de participaciones en streamings e entrevistas sobre inteligencia artificial, ciberseguridad, política y regulación tecnológica. El material partía de conversaciones extensas que luego se adaptaban a piezas breves para redes, conservando el contexto necesario para entender cada tema.</p>
+          <div class="secondary-project__description">
+            <p>Entre diciembre de 2024 y marzo de 2025 trabajé con participaciones de Emilse en streamings y otros programas, editando contenidos sobre inteligencia artificial, ciberseguridad, política y regulación tecnológica para convertirlos en reels.</p>
+            <p>Fue también un trabajo especialmente cercano a mi interés por los cruces entre tecnología y política. Un buen ejemplo es <a href="https://www.instagram.com/reel/DFftzHNx0d7/?stkn=NjVoZG1yd3R5anQz" target="_blank" rel="noopener noreferrer">Las Malvinas Argentinas según ChatGPT</a>, una pieza construida alrededor de cómo una herramienta de inteligencia artificial responde frente a una cuestión atravesada por historia, soberanía y política.</p>
+          </div>
         </div>
 
         <div class="secondary-project">
           <div class="media media--16-9 secondary-project__media media--maria-roca"></div>
           <span class="category-label secondary-project__category">Neurociencia</span>
           <h3 class="secondary-project__title">María Roca</h3>
-          <p class="secondary-project__description">Edición de intervenciones sobre neurociencia, salud cerebral y bienestar cognitivo. A partir de participaciones de María Roca, investigadora vinculada a INECO, se desarrollaban piezas breves para redes a partir de contenidos originalmente pensados para entrevistas y formatos más extensos.</p>
+          <div class="secondary-project__description">
+            <p>Trabajé con participaciones de la Dra. María Roca, <em>Coordinadora de Actividades de Acercamiento a la Comunidad</em> en INECO, editando contenidos sobre neurociencia, salud cerebral y bienestar cognitivo para convertirlos en videos cortos.</p>
+            <p>Sus intervenciones abordaban temas muy ligados a la vida cotidiana, como la memoria, los hábitos, el envejecimiento y el cuidado del cerebro. Fue un trabajo muy conectado con mi interés por la neurociencia.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -220,6 +226,30 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- ARTICULOS -- subseccion editorial al final de Perfil. Vive
+           dentro de #perfil (.profile, fondo negro / texto blanco): mismo
+           container, mismo fondo, sin cards ni bloques de otro color.
+           Clases genericas (.profile-articles / .profile-article...) para
+           poder sumar nuevos articulos despues agregando solo un nuevo
+           <article class="profile-article"> dentro de
+           .profile-articles__list, sin escribir CSS nuevo. id="artitulos"
+           es el destino del link "Volver a Artículos" desde la pagina
+           individual de cada articulo. -->
+      <div class="profile-articles" id="artitulos">
+        <h2 class="profile-articles__title">Artículos</h2>
+        <p class="profile-articles__intro">Hay un sentido político en la comunicación: las redes moldean nuestra visión del mundo y la forma en que interactuamos entre nosotros. En esta sección reúno algunas de las reflexiones que me surgen al pensar estas transformaciones.</p>
+
+        <div class="profile-articles__list">
+          <article class="profile-article">
+            <a class="profile-article__link" href="./articulos/autocensura-y-nueva-lengua/index.html">
+              <span class="eyebrow profile-article__label">Artículo 01</span>
+              <h3 class="profile-article__title">Autocensura y nueva-lengua: el mecanismo del que nadie habla</h3>
+              <p class="profile-article__excerpt">Desde “des-vivirse” hasta “el pintor con bigote”, el algoritmo está modificando nuestra lengua. ¿Cómo podemos prevenir la violencia sin hablar sobre ella?</p>
+            </a>
+          </article>
+        </div>
       </div>
     </div>
   </section>
