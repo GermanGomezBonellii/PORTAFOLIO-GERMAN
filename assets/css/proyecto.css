@@ -818,6 +818,88 @@
   font-style: italic;
 }
 
+/* -- Franja oscura para secciones puntuales dentro de un caso -----------
+   ------------------------------------------------------------------------
+   Misma imagen y misma logica visual que .hero de la home (ver
+   assets/css/home.css): background-image con url('../../img/hero.webp'),
+   background-size: cover, background-position: center, background-repeat:
+   no-repeat. La diferencia es el overlay -- el hero de la home usa un
+   ::before aparte con rgba(0,0,0,.15) porque el propio .hero ocupa casi
+   toda la altura de la pantalla y el titulo es enorme y blanco; acá las
+   franjas son mucho mas bajas (aparece menos imagen visible con "cover")
+   y el texto es de cuerpo, mas chico, así que hace falta mas contraste --
+   0.55 en vez de 0.15, mezclado en el mismo background-image (un
+   linear-gradient encima de la imagen, un solo layer) en vez de un
+   ::before de overlay separado -- misma idea, un paso mas simple.
+
+   El ::before pinta esto de forma explicita, detras del contenido: el
+   wrapper (.case-dark-band) crea su propio contexto de apilamiento
+   (position: relative + isolation: isolate) para que la capa quede
+   contenida ahi adentro; ::before con z-index: 0 se ubica atras de
+   .case-section (z-index: 1) sin tocar z-index negativos. background:
+   #0d0d0d solido en el propio wrapper queda como respaldo mientras
+   hero.webp carga o si la ruta llegara a fallar. */
+.case-dark-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+.case-dark-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../../img/hero.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.case-dark-band > .case-section {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* .case-section--dark-hero queda como estaba pero SOLO para lo que le
+   corresponde de verdad: colores de texto sobre fondo oscuro y quitar el
+   border-top (la separación visual ahora la da el propio cambio de
+   fondo del wrapper). Ya no pinta background acá -- esa responsabilidad
+   pasó por completo a .case-dark-band, para no tener dos sistemas
+   intentando pintar la misma franja. */
+.case-section.case-section--dark-hero {
+  border-top: none;
+  color: #f5f5f3;
+}
+
+.case-section.case-section--dark-hero h2,
+.case-section.case-section--dark-hero h3 {
+  color: #f5f5f3;
+}
+
+/* Labels de sección ("Contenidos de origen" / "Trabajo seleccionado"),
+   metadatos (OLGA, Carlos Pagni) y label de cada reel ("Reel /
+   Instagram") comparten la clase compartida .eyebrow -- blanco
+   secundario para las tres, mismo criterio que el resto del sitio usa
+   para jerarquía secundaria (nunca el celeste, reservado para acentos
+   puntuales de interacción/hover). */
+.case-section--dark-hero .eyebrow {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.case-section--dark-hero .source-item__description,
+.case-section--dark-hero .case-reel__unit,
+.case-section--dark-hero .case-reel__text,
+.case-section--dark-hero .case-section__placeholder {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.case-section--dark-hero .source-item + .source-item {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
 @media (max-width: 1024px) {
   .case-header__title {
     grid-column: 1 / span 12;
