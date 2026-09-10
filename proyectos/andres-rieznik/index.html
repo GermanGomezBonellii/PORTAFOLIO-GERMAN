@@ -65,21 +65,52 @@
              se toca el componente compartido con las otras páginas. -->
         <div class="case-hero__stat">
           <span class="eyebrow case-hero__stat-label">Instagram</span>
-          <span class="case-hero__stat-value">19K <span class="case-hero__stat-arrow">→</span> 480K+</span>
+          <!-- Metrica animada: unica de esta pagina en usar este patron
+               (a proposito, pedido asi -- no se toco TikTok/YouTube ni
+               los mismos valores repetidos en "Resultados" mas abajo).
+               .metric-sequence / .metric-start / .metric-arrow /
+               .metric-end quedan como clases genericas reutilizables (ver
+               assets/css/proyecto.css) por si mas adelante se pide lo
+               mismo en otra metrica. aria-hidden en la secuencia visual +
+               .visually-hidden con el texto plano: un lector de pantalla
+               siempre lee "19K → 480K+" una sola vez, sin depender de que
+               JS corra ni de en que estado quedo la animacion. -->
+          <span class="case-hero__stat-value">
+            <span class="metric-sequence" data-metric-animate aria-hidden="true">
+              <span class="metric-start">19K</span>
+              <span class="metric-arrow"></span>
+              <span class="metric-end">480K+</span>
+            </span>
+            <span class="visually-hidden">19K → 480K+</span>
+          </span>
           <span class="case-hero__stat-unit">seguidores</span>
           <span class="case-hero__stat-caption">Evolución de la comunidad durante el período de colaboración.</span>
         </div>
 
         <div class="case-hero__stat">
           <span class="eyebrow case-hero__stat-label">TikTok</span>
-          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 72.1K</span>
+          <span class="case-hero__stat-value">
+            <span class="metric-sequence" data-metric-animate aria-hidden="true">
+              <span class="metric-start">0</span>
+              <span class="metric-arrow"></span>
+              <span class="metric-end">72.1K</span>
+            </span>
+            <span class="visually-hidden">0 → 72.1K</span>
+          </span>
           <span class="case-hero__stat-unit">seguidores</span>
           <span class="case-hero__stat-caption">Cuenta creada y administrada por mí desde su lanzamiento.</span>
         </div>
 
         <div class="case-hero__stat">
           <span class="eyebrow case-hero__stat-label">YouTube</span>
-          <span class="case-hero__stat-value">0 <span class="case-hero__stat-arrow">→</span> 35.2K</span>
+          <span class="case-hero__stat-value">
+            <span class="metric-sequence" data-metric-animate aria-hidden="true">
+              <span class="metric-start">0</span>
+              <span class="metric-arrow"></span>
+              <span class="metric-end">35.2K</span>
+            </span>
+            <span class="visually-hidden">0 → 35.2K</span>
+          </span>
           <span class="case-hero__stat-unit">suscriptores</span>
           <span class="case-hero__stat-caption">Canal creado y administrado por mí, con desarrollo de producciones originales.</span>
         </div>
@@ -94,179 +125,229 @@
     </div>
   </section>
 
-  <!-- EL PROYECTO -->
-  <section class="case-section fade-in">
+  <!-- EL PROYECTO
+       Fusiona lo que antes eran dos secciones separadas ("El proyecto" +
+       "Mi rol") en una sola, para evitar la repetición conceptual entre
+       ambas -- "Mi rol" como sección independiente queda eliminada por
+       completo. El resto de la página (Áreas de trabajo, métricas,
+       Trabajo seleccionado, hero, footer) no se modifica. -->
+  <!-- Fondo oscuro con hero.webp: mismo .case-dark-band ya probado en
+       Camila Perochena ("Trabajo seleccionado"/"Contenidos de origen") y
+       reutilizado tal cual acá, sin tocar su CSS. -->
+  <div class="case-dark-band">
+  <section class="case-section case-section--dark-hero fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">El proyecto</span>
       <div class="case-section__body">
-        <p>Trabajo junto a Andrés Rieznik, físico y neurocientífico especializado en aprendizaje, en el desarrollo de su comunicación digital.</p>
-        <p>La colaboración comenzó cuando su cuenta de Instagram tenía alrededor de 19.000 seguidores y continúa actualmente, con una comunidad de más de 480.000. Durante este proceso trabajamos en la construcción de una estrategia de contenidos que combina divulgación científica, producción audiovisual y desarrollo de formatos específicos para distintas plataformas.</p>
+        <p>Trabajo junto a Andrés Rieznik, físico y neurocientífico especializado en aprendizaje, en el desarrollo de su comunicación digital. La colaboración comenzó cuando su cuenta de Instagram tenía alrededor de 19.000 seguidores y continúa actualmente, con una comunidad de más de 480.000.</p>
+        <p>A lo largo de este proceso participo de forma sostenida en la definición de la estrategia, los formatos y los contenidos para cada plataforma. Mi trabajo abarca el desarrollo de las piezas desde la idea hasta su versión final: pienso cómo abordar cada tema, defino la forma de grabación y trabajo sobre la edición, el ritmo, la estructura, los subtítulos, la imagen y el sonido. El objetivo es adaptar contenidos científicos y educativos a las lógicas de circulación digital sin perder claridad ni rigor.</p>
       </div>
     </div>
   </section>
-
-  <!-- MI ROL
-       Version interactiva (accordion), mismo componente .role-accordion
-       ya usado en Camila Perochena y Abuelas de Plaza de Mayo --
-       reutilizado tal cual (mismas clases, mismo comportamiento, mismo
-       CSS en proyecto.css), sin crear un tercer sistema para Andres. -->
-  <section class="case-section fade-in">
-    <div class="grid">
-      <span class="eyebrow case-section__label">Mi rol</span>
-      <div class="case-section__body">
-        <div class="role-accordion-list">
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Estrategia de comunicación</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Participo en la definición de cómo traducir temas vinculados con ciencia, aprendizaje y educación a contenidos capaces de circular en plataformas digitales. El trabajo combina criterios de comunicación, selección de temas y desarrollo de formatos, buscando ampliar el alcance sin perder el rigor de las ideas que se están comunicando.</p>
-            </div>
-          </details>
-
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Desarrollo de formatos</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Trabajo en la búsqueda de estructuras y lenguajes que permitan convertir una idea en un formato reconocible y sostenible en el tiempo. Esto incluye tanto piezas breves para redes como producciones originales de mayor desarrollo, pensadas desde su concepción para funcionar en medios digitales.</p>
-            </div>
-          </details>
-
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Producción</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Participo en el desarrollo de proyectos audiovisuales desde la idea hasta la pieza terminada, articulando decisiones de formato, contenido, grabación y edición. Dentro de la colaboración también desarrollamos producciones originales de mayor escala, entre ellas una miniserie de cuatro capítulos y un mini documental vinculado con el debate sobre alfabetización.</p>
-            </div>
-          </details>
-
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Grabación</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Trabajo en la realización de contenidos originales pensando el registro en función de la pieza que queremos construir después. Esto implica tomar decisiones de encuadre, puesta, dinámica y estructura que permitan que la grabación responda desde el inicio a una intención narrativa y comunicacional.</p>
-            </div>
-          </details>
-
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Edición audiovisual</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Construyo las piezas a partir del material disponible trabajando ritmo, estructura, subtítulos, imagen, sonido y progresión narrativa. En contenidos científicos y educativos, parte del desafío es lograr claridad y dinamismo sin eliminar el contexto necesario para comprender correctamente el argumento.</p>
-            </div>
-          </details>
-
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Gestión de TikTok y YouTube</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Creé y administro los canales de TikTok y YouTube del proyecto, desarrollando junto con Andrés contenidos y formatos específicos para cada plataforma. El trabajo incluye pensar qué tipo de piezas tienen sentido en cada canal y construir progresivamente una identidad propia para esos espacios.</p>
-            </div>
-          </details>
-
-          <details class="role-accordion">
-            <summary class="role-accordion__summary">
-              <span class="role-accordion__title">Publicación de contenidos</span>
-              <span class="role-accordion__icon" aria-hidden="true"></span>
-            </summary>
-            <div class="role-accordion__content">
-              <p class="role-accordion__description">Trabajo en la preparación final de las piezas para su circulación digital, considerando formato, duración, presentación y contexto de publicación. La publicación forma parte del proceso creativo: una misma idea puede necesitar distintas decisiones según el canal y la forma en que va a encontrarse con su audiencia.</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ÁREAS DE TRABAJO
-       Estructura provisional: lista numerada de bloques, no cards. Pensada
-       para poder agregar, eliminar o reordenar ítems fácilmente después
-       (ver .case-areas__item en assets/css/proyecto.css). -->
-  <section class="case-section fade-in">
-    <div class="grid">
-      <span class="eyebrow case-section__label">Áreas de trabajo</span>
-      <div class="case-section__body">
-        <div class="case-areas__list">
-          <article class="case-areas__item">
-            <span class="case-areas__index">01</span>
-            <div class="case-areas__content">
-              <h3 class="case-areas__title">Contenido para redes</h3>
-              <p class="case-areas__text">Adaptación de columnas, entrevistas, streamings y otras participaciones a formatos digitales, junto con el desarrollo de contenidos concebidos específicamente para redes.</p>
-            </div>
-          </article>
-          <article class="case-areas__item">
-            <span class="case-areas__index">02</span>
-            <div class="case-areas__content">
-              <h3 class="case-areas__title">Canales propios</h3>
-              <p class="case-areas__text">Creación y administración de TikTok y YouTube, desarrollando formatos y lógicas específicas para cada plataforma.</p>
-            </div>
-          </article>
-          <article class="case-areas__item">
-            <span class="case-areas__index">03</span>
-            <div class="case-areas__content">
-              <h3 class="case-areas__title">Producción original</h3>
-              <p class="case-areas__text">Desarrollo y coproducción de una serie de videos originales para YouTube, desde la definición de formatos hasta la grabación, edición y publicación.</p>
-            </div>
-          </article>
-          <article class="case-areas__item">
-            <span class="case-areas__index">04</span>
-            <div class="case-areas__content">
-              <h3 class="case-areas__title">Alfabetización</h3>
-              <p class="case-areas__text">Participación en el desarrollo comunicacional de una campaña sobre alfabetización y aprendizaje.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- TRABAJO SELECCIONADO
-       Composición editorial 1 horizontal grande + 2 verticales + 1
-       horizontal (reutiliza .case-media-grid, ya preparada para esta
-       proporción). Sección full-width dentro del container para dar más
-       aire a la media -- variación de ritmo respecto a las secciones de
-       texto de arriba y abajo. -->
+       Restructurada en dos bloques dentro de la misma sección, tomando
+       como referencia directa "Trabajo seleccionado" de Camila Perochena:
+       reutiliza tal cual su sistema .case-reel-grid / .case-reel (tarjeta
+       completa clickeable, sin embeds) en vez de crear una segunda
+       implementación paralela. Camila no tiene un array de datos en JS
+       para sus reels -- son HTML estático -- así que se mantiene el
+       mismo criterio acá por consistencia (ver reporte al final de la
+       tarea).
+
+       Bloque 1 "Videos para redes": 6 piezas de Instagram/TikTok/YouTube,
+       9:16, misma grilla .case-reel-grid de Camila -- 3 columnas x 2
+       filas en desktop, 2 columnas en tablet, 1 en mobile, sin tocar su
+       CSS (ya soporta 6 items).
+
+       Bloque 2 "Recortes en Youtube": 3 piezas horizontales 16:9,
+       mismo componente .case-reel pero con .media--16-9 en vez de
+       --9-16 y el modificador nuevo .case-reel-grid--wide (columnas
+       flexibles en vez de los 220px fijos de arriba, pensados para 9:16).
+
+       Todo el contenido (thumbnails, links, cifras, títulos) es
+       placeholder explícito, fácil de ubicar y reemplazar. -->
   <section class="case-section case-work fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Trabajo seleccionado</span>
       <div class="case-section__body">
-        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas que combinan formatos verticales y horizontales — pendiente de curaduría final.</p>
+        <p class="case-section__placeholder" style="margin-bottom: 32px;">Selección de piezas para redes y producciones propias para YouTube — thumbnails, cifras y enlaces pendientes de reemplazo.</p>
 
-        <!-- PLACEHOLDER: grilla preparada para combinar video 16:9 y 9:16.
-             Cada pieza está pensada para admitir, más adelante: título,
-             categoría, plataforma, una descripción corta de la
-             participación y un link externo (Instagram / TikTok /
-             YouTube o un embed de YouTube). Estructura sugerida para
-             cuando haya contenido real, usando .case-media-grid__caption
-             (ya definida en proyecto.css):
-               <div class="case-media-grid__caption">
-                 <span class="eyebrow">Serie original / YouTube</span>
-                 <p>Desarrollo de formato · Producción · Grabación · Edición</p>
-               </div>
-             Por ahora se deja solamente el placeholder neutro de media. -->
-        <div class="case-media-grid">
-          <div class="case-media-grid__item--wide">
-            <div class="media media--16-9" data-label="Video 16:9 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--tall">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--tall">
-            <div class="media media--9-16" data-label="Video vertical 9:16 — placeholder"></div>
-          </div>
-          <div class="case-media-grid__item--wide">
-            <div class="media media--16-9" data-label="Video 16:9 — placeholder"></div>
+        <!-- Miniaturas: "de dónde sale la imagen" y "a dónde lleva la tarjeta"
+             son dos cosas separadas -- .case-reel__img es siempre el mismo
+             elemento, y el <a href> nunca depende de la fuente del thumbnail.
+               - Los 4 reels de Instagram y el video de TikTok NO tienen una API
+                 oficial que devuelva una imagen usable (scraping, endpoints
+                 privados o URLs temporales -- TikTok oEmbed se evaluó puntualmente
+                 y no es viable desde un frontend estático, ver comentario en esa
+                 tarjeta más abajo). Para estos 5, existe una versión equivalente
+                 publicada como YouTube Short: se usa el thumbnail de ESE Short
+                 como portada -- el link de la tarjeta sigue siendo el de
+                 Instagram/TikTok, YouTube actúa solo como fuente de la imagen.
+               - Los 2 videos que además viven en YouTube (Para partirte el bocho,
+                 Nitrógeno y globos) usan su propio videoId tanto para el link
+                 como para el thumbnail -- misma lógica, sin nada especial.
+             En todos los casos solo se guarda el videoId en data-youtube-id; la
+             URL del thumbnail (con fallback maxresdefault -> hqdefault, sin loop
+             de onerror) se arma en runtime -- ver getYouTubeThumbnail() al final
+             de assets/js/main.js. Si la imagen final no carga, se oculta y queda
+             visible el placeholder de .media (data-label) en vez del ícono de
+             imagen rota del navegador. -->
+        <h3 class="case-work__subhead">Videos para redes</h3>
+        <div class="case-reel-grid">
+          <a class="case-reel" href="https://www.instagram.com/reel/DQIYOPIDNZP/?stkn=OGRrMGdydTl0cmg5" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Video / Instagram</span>
+            <div class="media media--9-16 case-reel__media" data-label="Miniatura de YouTube no disponible">
+              <img class="case-reel__img" data-youtube-id="Q8wIWGZy5rI" alt="Miniatura de YouTube — Alfabetización para todos y todas" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Alfabetización para todos y todas</span>
+              <span class="case-reel__value">3,5 M</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver video <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://youtube.com/shorts/zE5ozpbSVUk?si=1I_nH_HrUcRfdUDO" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Video / YouTube</span>
+            <div class="media media--9-16 case-reel__media" data-label="Miniatura de YouTube no disponible">
+              <img class="case-reel__img" data-youtube-id="zE5ozpbSVUk" alt="Miniatura de YouTube — Para partirte el bocho" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Para partirte el bocho</span>
+              <span class="case-reel__value">1,6 M</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver video <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://www.instagram.com/reel/DJ7lUhrxWys/?stkn=MXkybWN4OTVicjFrZQ==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Video / Instagram</span>
+            <div class="media media--9-16 case-reel__media" data-label="Miniatura de YouTube no disponible">
+              <img class="case-reel__img" data-youtube-id="zkuOXYpbvCI" alt="Miniatura de YouTube — El Homúnculo de Penfield" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">El Homúnculo de Penfield</span>
+              <span class="case-reel__value">1,3 M</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver video <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://youtube.com/shorts/exOAvW4a08M?si=UWtSPYYMdoCdaVeG" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Video / YouTube</span>
+            <div class="media media--9-16 case-reel__media" data-label="Miniatura de YouTube no disponible">
+              <img class="case-reel__img" data-youtube-id="exOAvW4a08M" alt="Miniatura de YouTube — Nitrógeno y globos" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Nitrógeno y globos</span>
+              <span class="case-reel__value">1,3 M</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver video <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://www.instagram.com/reel/DEN9a5bRuoC/?stkn=MTBpMmZoejI3Nnp2OA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Video / Instagram</span>
+            <div class="media media--9-16 case-reel__media" data-label="Miniatura de YouTube no disponible">
+              <img class="case-reel__img" data-youtube-id="4ohFhugVYUs" alt="Miniatura de YouTube — Cómo facilitar las matemáticas" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Cómo facilitar las matemáticas</span>
+              <span class="case-reel__value">1 M</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver video <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <!-- TikTok: se evaluó el oEmbed oficial (https://www.tiktok.com/oembed)
+               para obtener thumbnail_url en runtime, pero no hay garantía de que
+               TikTok exponga cabeceras CORS (Access-Control-Allow-Origin) para
+               que un fetch desde el navegador en un dominio de terceros pueda
+               leer la respuesta -- ni la documentación oficial ni ejemplos
+               públicos (incluido uno alojado en GitHub Pages) hacen ese fetch
+               desde el cliente; todos resuelven el oEmbed server-side. Como este
+               sitio no tiene backend, se descartó ese camino. En su lugar se usa
+               el thumbnail del YouTube Short equivalente a este mismo video --
+               el link de la tarjeta sigue siendo el de TikTok, YouTube es
+               únicamente la fuente de la imagen. -->
+          <a class="case-reel" href="https://vt.tiktok.com/ZSqy5PY8S/" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Video / TikTok</span>
+            <div class="media media--9-16 case-reel__media" data-label="Miniatura de YouTube no disponible">
+              <img class="case-reel__img" data-youtube-id="nSEEpar96X0" alt="Miniatura de YouTube — Innovación empresarial" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Innovación empresarial</span>
+              <span class="case-reel__value">989 K</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver video <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fondo oscuro con hero.webp SOLO en este sub-bloque -- "Videos para
+         redes" arriba se queda con fondo blanco. Full-bleed real: el
+         <section> ya ocupa todo el ancho del viewport (solo su .grid hijo
+         directo queda centrado con --container-max, ver ".case-section >
+         .grid" en proyecto.css) -- por eso .case-work__youtube-band vive
+         acá afuera del primer .grid, como hermano, en vez de adentro de
+         .case-section__body como antes (ahí el fondo quedaba limitado al
+         ancho de esa columna central, con márgenes blancos a los costados:
+         el bug reportado). Adentro de la banda se reabre un .grid +
+         .case-section__body (selector extendido en proyecto.css) que
+         alinea "Recortes en Youtube" exactamente con "Videos para redes"
+         de arriba, pese a que el fondo ahora sí llega de borde a borde. No
+         reutiliza .case-dark-band tal cual (esa clase envuelve una
+         <section> completa en otros lados) sino .case-work__youtube-band,
+         su propia copia del mismo criterio de capas, para no arriesgar
+         efectos secundarios sobre .case-dark-band en uso en otras
+         páginas. -->
+    <div class="case-work__youtube-band">
+      <div class="grid">
+        <div class="case-section__body">
+          <h3 class="case-work__subhead">Recortes en Youtube</h3>
+          <div class="case-reel-grid case-reel-grid--wide">
+          <a class="case-reel" href="https://youtu.be/TRYJuW_VVQM?si=3aD28nxQMe4Squ-E" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Diseño gráfico y posicionamiento en Youtube</span>
+            <div class="media media--16-9 case-reel__media">
+              <img class="case-reel__img" src="https://img.youtube.com/vi/TRYJuW_VVQM/maxresdefault.jpg" alt="Miniatura de YouTube — En un solo semestre DUPLICARON la comprensión lectora de los chicos de Chaco" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/TRYJuW_VVQM/hqdefault.jpg';">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">En un solo semestre DUPLICARON la comprensión lectora de los chicos de Chaco</span>
+              <span class="case-reel__value">74 K</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver en YouTube <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://youtu.be/YIc5MWMdzBo?si=omm4KYBdsVRPTREX" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Diseño gráfico y posicionamiento en Youtube</span>
+            <div class="media media--16-9 case-reel__media">
+              <img class="case-reel__img" src="https://img.youtube.com/vi/YIc5MWMdzBo/maxresdefault.jpg" alt="Miniatura de YouTube — Esto es una tragedia porque sabemos como evitarlo y no lo estamos haciendo" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/YIc5MWMdzBo/hqdefault.jpg';">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Esto es una tragedia porque sabemos como evitarlo y no lo estamos haciendo</span>
+              <span class="case-reel__value">37 K</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver en YouTube <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://youtu.be/y90xirpbj4s?si=vHhujKnnpmWKBsz6" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Diseño gráfico y posicionamiento en Youtube</span>
+            <div class="media media--16-9 case-reel__media">
+              <img class="case-reel__img" src="https://img.youtube.com/vi/y90xirpbj4s/maxresdefault.jpg" alt="Miniatura de YouTube — Estos experimentos solo se pueden explicar como fenómenos cuánticos macroscópicos" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/y90xirpbj4s/hqdefault.jpg';">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__title">Estos experimentos solo se pueden explicar como fenómenos cuánticos macroscópicos</span>
+              <span class="case-reel__value">19 K</span>
+              <span class="case-reel__unit">visualizaciones</span>
+              <span class="arrow-link">Ver en YouTube <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
           </div>
         </div>
       </div>
@@ -331,6 +412,99 @@
             >
             <span class="project-feature__play" aria-hidden="true"></span>
           </a>
+
+          <!-- Piezas gráficas de lanzamiento: carrusel editorial (no un
+               slider genérico) con las 5 piezas usadas para anunciar y
+               difundir el mini documental. Objetivo doble: mostrar el
+               material de difusión Y evidenciar el trabajo de diseño
+               gráfico -- por eso va después del video, como cierre de
+               todo el feature, no antes ni mezclado con el texto.
+               Los 5 archivos (1.jpeg a 5.jpeg, subidos por Germán a esta
+               misma carpeta) miden los cinco exactamente 1047x1280 --
+               proporción fijada tal cual en .graphic-carousel__media
+               (proyecto.css) en vez de una relación redondeada como 4:5.
+               Si alguno no cargara, cae al placeholder de .media
+               (data-label) vía onerror, igual que el resto del sitio;
+               object-fit: contain evita además que se recorte el diseño
+               si en el futuro se reemplaza alguna pieza por otra de
+               proporción distinta.
+               Mecánica: scroll-snap nativo (swipe táctil, scroll de
+               mouse/trackpad) + JS liviano en main.js solo para flechas,
+               contador, arrastre con mouse en desktop y marcar la slide
+               "activa" (protagonismo visual vs. el peek de la siguiente).
+               Sin autoplay. Click en una pieza abre el lightbox genérico
+               (ver .lightbox en components.css) -- primer lightbox del
+               sitio, reutilizable para cualquier galería futura. -->
+          <div class="project-feature__graphics">
+            <div class="launch-graphics-layout">
+              <div class="launch-graphics-layout__text">
+            <h4 class="project-feature__graphics-title">Piezas gráficas de lanzamiento</h4>
+            <p class="project-feature__graphics-text">Piezas desarrolladas para acompañar el lanzamiento y la circulación del mini documental en redes.</p>
+
+            <span class="eyebrow graphic-carousel__label">Carrusel de Instagram · 5 slides</span>
+              </div>
+
+              <div class="launch-graphics-layout__media">
+            <div class="graphic-carousel" data-carousel>
+              <div class="graphic-carousel__frame">
+              <div
+                class="graphic-carousel__viewport"
+                data-carousel-viewport
+                tabindex="0"
+                role="region"
+                aria-roledescription="carrusel"
+                aria-label="Piezas gráficas de lanzamiento del mini documental en Arrecifes"
+              >
+                <ul class="graphic-carousel__track" data-carousel-track>
+                  <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="1 de 5">
+                    <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza gráfica 1 en tamaño completo">
+                      <div class="media graphic-carousel__media" data-label="Pieza gráfica no disponible">
+                        <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/andres-rieznik/1.jpeg" alt="Pieza tipo Instagram Story: una docente señala en el pizarrón la frase armada con tarjetas &quot;Empezó el carnaval&quot;, alumnos mirando desde sus bancos, con el titular superpuesto &quot;Un Milagro ocurrió en Arrecifes&quot;." loading="eager" onerror="this.style.display='none';">
+                      </div>
+                    </button>
+                  </li>
+                  <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="2 de 5">
+                    <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza gráfica 2 en tamaño completo">
+                      <div class="media graphic-carousel__media" data-label="Pieza gráfica no disponible">
+                        <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/andres-rieznik/2.jpeg" alt="Pieza con una tabla comparativa 1997–2019 del ranking educativo latinoamericano (fuente UNESCO), mostrando la caída de Argentina del puesto 2 al 10, con el texto &quot;la situación no hizo más que empeorar&quot;." loading="lazy" onerror="this.style.display='none';">
+                      </div>
+                    </button>
+                  </li>
+                  <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="3 de 5">
+                    <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza gráfica 3 en tamaño completo">
+                      <div class="media graphic-carousel__media" data-label="Pieza gráfica no disponible">
+                        <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/andres-rieznik/3.jpeg" alt="Pieza con un peluche de conejo y el texto &quot;Una experiencia podría cambiarlo todo&quot;, presentando que en Arrecifes los chicos de algunas escuelas públicas mejoraron drásticamente sus niveles de alfabetización." loading="lazy" onerror="this.style.display='none';">
+                      </div>
+                    </button>
+                  </li>
+                  <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="4 de 5">
+                    <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza gráfica 4 en tamaño completo">
+                      <div class="media graphic-carousel__media" data-label="Pieza gráfica no disponible">
+                        <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/andres-rieznik/4.jpeg" alt="Pieza con un gráfico de barras &quot;Aceleración en el aprendizaje&quot; (fuente Provincia de Buenos Aires) comparando escuelas con y sin alumnos Kalulu, con una mejora de más del 300% destacada en rojo." loading="lazy" onerror="this.style.display='none';">
+                      </div>
+                    </button>
+                  </li>
+                  <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="5 de 5">
+                    <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza gráfica 5 en tamaño completo">
+                      <div class="media graphic-carousel__media" data-label="Pieza gráfica no disponible">
+                        <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/andres-rieznik/5.jpeg" alt="Pieza con una foto grupal del equipo de producción junto a vecinos de Arrecifes frente a un edificio en ruinas, con el texto &quot;¿Pero cómo lo lograron? Fuimos a Arrecifes para escuchar la historia de parte de sus protagonistas&quot;, anunciando que el mini documental ya está disponible." loading="lazy" onerror="this.style.display='none';">
+                      </div>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <button class="graphic-carousel__arrow graphic-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Pieza anterior">‹</button>
+              <button class="graphic-carousel__arrow graphic-carousel__arrow--next" type="button" data-carousel-next aria-label="Pieza siguiente">›</button>
+              </div>
+
+              <div class="graphic-carousel__counter" aria-live="polite" aria-atomic="true">
+                Slide <span data-carousel-current>01</span> / <span data-carousel-total>05</span>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -460,7 +634,9 @@
   </section>
 
   <!-- DESARROLLO DE CANALES -->
-  <section class="case-section fade-in">
+  <!-- Fondo oscuro con hero.webp: mismo .case-dark-band de siempre. -->
+  <div class="case-dark-band">
+  <section class="case-section case-section--dark-hero fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Desarrollo de canales</span>
       <div class="case-section__body">
@@ -479,44 +655,86 @@
       </div>
     </div>
   </section>
+  </div>
 
-  <!-- RESULTADOS -->
+  <!-- ÁREAS DE TRABAJO
+       Estructura provisional: lista numerada de bloques, no cards. Pensada
+       para poder agregar, eliminar o reordenar ítems fácilmente después
+       (ver .case-areas__item en assets/css/proyecto.css).
+
+       "Estrategia de comunicación" se suma acá como primer ítem (movida
+       desde "Mi rol", texto sin modificar) para que esta sección
+       concentre el desglose concreto de QUÉ se hace, mientras "Mi rol"
+       (más arriba) queda como visión breve y global de CÓMO se participa.
+       Los ítems 03 y 05 (antes 02 y 04) suman una frase corta más para
+       una extensión/tono más parejo con el nuevo ítem 01, más largo --
+       dato agregado en cada caso ya mencionado en otra parte de esta
+       misma página (Canales propios: "creada y administrada desde su
+       lanzamiento", ver "Desarrollo de canales" más arriba; Alfabetización:
+       el mini documental en Arrecifes, ver esa misma sección más arriba),
+       nada nuevo inventado. "Contenido para redes" y "Producción
+       original" no necesitaban el ajuste, ya tenían una extensión
+       similar.
+
+       Movida al final de la página (después de "Desarrollo de canales")
+       para que funcione como cierre del caso -- un resumen de tareas
+       después de haber mostrado el trabajo concreto arriba, en vez de
+       adelantarlo antes de "Trabajo seleccionado". -->
   <section class="case-section fade-in">
     <div class="grid">
-      <span class="eyebrow case-section__label">Resultados</span>
+      <span class="eyebrow case-section__label">Áreas de trabajo</span>
       <div class="case-section__body">
-        <!-- Mismas 3 plataformas, misma estructura y jerarquía que ya usa
-             .case-hero__stat más arriba en esta página (número grande >
-             plataforma visible > unidad secundaria chica > descripción):
-             antes Instagram tenía valor pero TikTok/YouTube solo un
-             .result-item__label grande sin número real, así que las tres
-             no se veían al mismo nivel. .result-item__platform es nueva
-             a propósito -- .result-item__label sigue existiendo tal cual
-             para Abuelas ("Cuenta"/"Contenido", sin número), no se toca. -->
-        <div class="results-grid">
-          <div class="result-item">
-            <span class="eyebrow result-item__platform">Instagram</span>
-            <span class="result-item__value">19K <span class="case-hero__stat-arrow">→</span> 480K+</span>
-            <span class="result-item__unit">seguidores</span>
-            <span class="result-item__caption">Evolución de la comunidad durante el período de colaboración.</span>
-          </div>
-          <div class="result-item">
-            <span class="eyebrow result-item__platform">TikTok</span>
-            <span class="result-item__value">0 <span class="case-hero__stat-arrow">→</span> 72.1K</span>
-            <span class="result-item__unit">seguidores</span>
-            <span class="result-item__caption">Canal creado y administrado por mí desde su lanzamiento.</span>
-          </div>
-          <div class="result-item">
-            <span class="eyebrow result-item__platform">YouTube</span>
-            <span class="result-item__value">0 <span class="case-hero__stat-arrow">→</span> 35.2K</span>
-            <span class="result-item__unit">suscriptores</span>
-            <span class="result-item__caption">Canal creado y administrado por mí, con desarrollo de producciones originales.</span>
-          </div>
-          <!-- PLACEHOLDER: agregar métricas adicionales cuando estén definidas -->
+        <div class="case-areas__list">
+          <article class="case-areas__item">
+            <span class="case-areas__index">01</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Estrategia de comunicación</h3>
+              <p class="case-areas__text">Participo en la definición de cómo traducir temas vinculados con ciencia, aprendizaje y educación a contenidos capaces de circular en plataformas digitales. El trabajo combina criterios de comunicación, selección de temas y desarrollo de formatos, buscando ampliar el alcance sin perder el rigor de las ideas que se están comunicando.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">02</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Contenido para redes</h3>
+              <p class="case-areas__text">Adaptación de columnas, entrevistas, streamings y otras participaciones a formatos digitales, junto con el desarrollo de contenidos concebidos específicamente para redes.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">03</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Canales propios</h3>
+              <p class="case-areas__text">Creación y administración de TikTok y YouTube desde su lanzamiento, desarrollando formatos y lógicas específicas para cada plataforma.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">04</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Producción original</h3>
+              <p class="case-areas__text">Desarrollo y coproducción de una serie de videos originales para YouTube, desde la definición de formatos hasta la grabación, edición y publicación, incluyendo una miniserie de cuatro capítulos pensada especialmente para el canal.</p>
+            </div>
+          </article>
+          <article class="case-areas__item">
+            <span class="case-areas__index">05</span>
+            <div class="case-areas__content">
+              <h3 class="case-areas__title">Alfabetización</h3>
+              <p class="case-areas__text">Participación en el desarrollo comunicacional de una campaña sobre alfabetización y aprendizaje, que incluyó la producción de un mini documental grabado en Arrecifes.</p>
+            </div>
+          </article>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Lightbox genérico (ver .lightbox en components.css): un solo
+       elemento a nivel de página, reutilizado por cualquier galería que
+       lo necesite -- hoy solo el carrusel de piezas gráficas de
+       Arrecifes lo abre, pero no queda atado a él. -->
+  <div class="lightbox" data-lightbox hidden>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Cerrar imagen">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Imagen anterior">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next aria-label="Imagen siguiente">›</button>
+    <img class="lightbox__img" data-lightbox-img src="" alt="">
+  </div>
 
   <!-- FINAL DEL CASO -->
   <nav class="case-final container" aria-label="Navegación entre casos">

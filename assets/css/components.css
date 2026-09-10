@@ -105,13 +105,55 @@
   }
 }
 
-/* -- Footer ----------------------------------------------------------- */
+/* -- Footer ------------------------------------------------------------
+   ------------------------------------------------------------------------
+   Full-bleed real, mismo criterio ya probado en .case-dark-band y en
+   .case-work__youtube-band (proyecto.css): el fondo oscuro + hero.webp
+   vive en el propio .site-footer -- el <footer> no tiene max-width
+   propio, ocupa todo el ancho de la página igual que <section> en el
+   resto del sitio -- mientras que .site-footer__inner sigue siendo
+   .container (max-width: var(--container-max) + margin-inline: auto +
+   padding-inline: var(--margin), ver base.css) y sigue centrando el
+   contenido. Nunca al revés: eso repetiría el bug ya corregido en
+   "Recortes en Youtube", donde el fondo quedaba limitado al ancho de la
+   columna central.
+
+   Misma imagen y misma mecánica que .hero (assets/css/home.css): mismo
+   archivo (../../img/hero.webp, misma profundidad de carpeta que
+   assets/css/home.css), mismo background-size/position/repeat
+   (cover/center/no-repeat). El overlay NO copia el rgba(0,0,0,.15) del
+   hero -- ese valor es apenas un tinte pensado para legibilidad de texto
+   grande sobre una imagen protagonista y luminosa, un criterio de
+   apertura. Para un cierre oscuro y discreto se reutiliza en cambio el
+   rgba(0,0,0,.55) que ya usa .case-dark-band en el resto del sitio para
+   "franjas oscuras" con esta misma textura -- mismo sistema visual ya
+   validado, no una aproximación nueva. background-color: #0d0d0d en el
+   propio elemento actúa de respaldo mientras carga la imagen o si la
+   ruta llegara a fallar. */
 .site-footer {
-  border-top: 1px solid var(--color-line);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding-block: clamp(32px, 6vw, 56px);
+  background-color: #0d0d0d;
+  color: #f5f5f3;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../../img/hero.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .site-footer__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 16px 40px;
@@ -126,7 +168,18 @@
 
 .site-footer__meta {
   font-size: var(--fs-small);
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* .back-link se reutiliza también fuera del footer (ej. el nav "Final del
+   caso", sobre fondo blanco) -- se sobreescribe acá SOLO dentro de
+   .site-footer para no tocar esos otros usos. */
+.site-footer .back-link {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer .back-link:hover {
+  color: var(--color-accent);
 }
 
 /* -- Placeholder de sección (perfil / contacto en esta etapa) --------- */
@@ -291,5 +344,96 @@ a:hover .arrow-link__arrow {
   }
   50% {
     opacity: 0;
+  }
+}
+
+
+/* -- Lightbox genérico: fondo oscuro, imagen centrada, cerrar con X o
+   Escape -- primer lightbox del sitio, pensado para reutilizarse en
+   cualquier galería futura (por ahora lo abre el carrusel de piezas
+   gráficas de Arrecifes en Andrés Rieznik, ver proyecto.css/main.js).
+   Vive oculto (atributo hidden) hasta que JS lo activa; sin animación
+   de aparición para mantenerlo simple -- es una utilidad, no una pieza
+   editorial en sí misma. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(14, 14, 13, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--margin);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+/* Outline de foco propio: el default global (a:focus-visible /
+   button:focus-visible en base.css) usa var(--color-text), casi negro
+   -- invisible sobre el fondo oscuro del lightbox. */
+.lightbox button:focus-visible {
+  outline-color: #fff;
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  border-color: var(--color-accent);
+}
+
+.lightbox__close {
+  top: var(--margin);
+  right: var(--margin);
+}
+
+.lightbox__nav--prev {
+  left: var(--margin);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox__nav--next {
+  right: var(--margin);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Evita que el fondo scrollee detrás del lightbox mientras está abierto
+   (JS agrega/quita esta clase en <body> al abrir/cerrar). */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .lightbox__close,
+  .lightbox__nav {
+    width: 38px;
+    height: 38px;
   }
 }

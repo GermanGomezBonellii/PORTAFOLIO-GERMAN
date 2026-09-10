@@ -92,6 +92,127 @@
   color: var(--color-accent); /* único detalle celeste del hero, muy puntual */
 }
 
+/* -- Metrica animada (19K -> 480K+ de Andres Rieznik) --------------------
+   ------------------------------------------------------------------------
+   Genérico y reutilizable (.metric-sequence / .metric-start /
+   .metric-arrow / .metric-end), aunque por ahora solo lo usa esta
+   métrica puntual. Vive DENTRO de .case-hero__stat-value sin cambiar esa
+   clase -- mismo font-family/font-size/margin-bottom de siempre, así que
+   el layout general del bloque no se mueve un pixel.
+
+   Estado inicial (sin JS, sin intersección todavía): .metric-start y
+   .metric-end en opacity:0 + una pequeña traslación vertical: el HTML ya
+   trae el texto final completo (accesible / SEO / sin-JS), la animación
+   es puramente visual. Cuando main.js agrega .is-metric-animated a
+   .metric-sequence (al entrar en viewport, una sola vez), cada parte
+   revela con su propio transition-delay para lograr la secuencia
+   19K -> línea -> punta -> 480K+. Solo transform + opacity en todo el
+   bloque, nada de propiedades costosas. */
+.metric-sequence {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2em;
+}
+
+.metric-start,
+.metric-end {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+
+.metric-end {
+  transition-delay: 1.05s; /* arranca justo cuando la línea + punta ya terminaron */
+}
+
+/* La flecha se "dibuja": una línea horizontal (::before) que crece de
+   izquierda a derecha vía transform: scaleX() con transform-origin:
+   left, y una punta (::after, triángulo por border-trick) que aparece
+   recién cuando la línea termina de crecer. El contenedor tiene un ancho
+   fijo (clamp, responsive) porque scaleX necesita una caja con ancho
+   propio para animar -- la línea/punta se dibujan dentro de esa caja vía
+   ::before/::after en vez de depender del carácter "→". */
+.metric-arrow {
+  position: relative;
+  display: inline-block;
+  width: clamp(26px, 6vw, 44px);
+  height: 1em;
+  vertical-align: middle;
+  flex: 0 0 auto;
+}
+
+.metric-arrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+  transition-delay: 0.45s; /* empieza justo cuando termina de aparecer 19K */
+}
+
+.metric-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent var(--color-accent);
+  opacity: 0;
+  transform: translateY(-50%) scale(0);
+  transform-origin: center;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  transition-delay: 0.85s; /* aparece justo cuando la línea termina de crecer (0.45s + 0.5s = 0.95s) */
+}
+
+.is-metric-animated .metric-start,
+.is-metric-animated .metric-end {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.is-metric-animated .metric-arrow::before {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.is-metric-animated .metric-arrow::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* prefers-reduced-motion: el HTML ya trae "19K → 480K+" completo (via
+   .visually-hidden, siempre presente) -- acá alcanza con mostrar también
+   la versión visual ya resuelta, sin transición ni secuencia, sin
+   depender de que main.js llegue a agregar ninguna clase. */
+@media (prefers-reduced-motion: reduce) {
+  .metric-start,
+  .metric-end {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .metric-arrow::before {
+    transform: translateY(-50%) scaleX(1);
+    transition: none;
+  }
+
+  .metric-arrow::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+    transition: none;
+  }
+}
+
 /* Unidad de la métrica (seguidores / suscriptores): antes vivía adentro
    de .case-hero__stat-value, heredando la serif grande y compitiendo
    visualmente con el número y con la plataforma. Ahora es una etiqueta
@@ -795,7 +916,12 @@
    home, el header y el propio .case-hero de este archivo. Al vivir en
    assets/css/proyecto.css (compartido por todas las páginas de caso),
    esto contiene tanto a Abuelas como a Andrés sin tocar ningún HTML. */
-.case-section > .grid {
+.case-section > .grid,
+.case-work__youtube-band > .grid {
+  /* .case-work__youtube-band > .grid: mismo centrado que .case-section >
+     .grid de arriba -- la banda ahora es full-bleed (ver comentario en esa
+     clase, más abajo en este archivo) y necesita el mismo .grid interno
+     para alinear su contenido con el resto de "Trabajo seleccionado". */
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--margin);
@@ -898,6 +1024,19 @@
 
 .case-section--dark-hero .source-item + .source-item {
   border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+/* "Desarrollo de canales" (Andrés Rieznik) sobre fondo oscuro:
+   .case-channels__name tiene su propia línea divisoria (no depende de
+   .source-item) y .case-channels__text usa el mismo muted que el resto
+   -- mismo criterio de 0.15 / 0.72 que las reglas de arriba, solo que
+   scopeadas a las clases propias de este bloque en vez de .source-item. */
+.case-section--dark-hero .case-channels__name {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+.case-section--dark-hero .case-channels__text {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 @media (max-width: 1024px) {
@@ -1048,6 +1187,125 @@
        pide que cada pieza ocupe ~70-85% del ancho disponible en vez de
        un px fijo, ya que el viewport mobile varía mucho más. */
     grid-template-columns: minmax(0, 80%);
+  }
+}
+
+/* -- Subtítulos que separan los dos bloques de "Trabajo seleccionado"
+   (Andrés Rieznik): .case-work__subhead simple, mismo tamaño que el
+   resto de los subtítulos de sección (--fs-h3). El modificador
+   --divider agrega la línea fina de arriba, reservada para el segundo
+   bloque -- el primero ya queda separado por el propio borde superior
+   de .case-section. ------------------------------------------------- */
+.case-work__subhead {
+  font-size: var(--fs-h3);
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.case-work__subhead--divider {
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid var(--color-line);
+}
+
+/* -- Franja oscura SOLO para "Recortes en Youtube" (Andrés Rieznik) ------
+   ------------------------------------------------------------------------
+   Mismo criterio de capas que .case-dark-band (wrapper con su propio
+   contexto de apilamiento + ::before con el mismo overlay + hero.webp),
+   pero como copia independiente y con su propia clase: acá el wrapper
+   envuelve un sub-bloque DENTRO de "Trabajo seleccionado" (h3 + grilla),
+   no una <section> completa como en los otros casos, así que no puede
+   reusar ".case-dark-band > .case-section" (no hay ningún .case-section
+   ahí adentro) ni asumir que el color de texto ya viene heredado desde
+   afuera. Se mantiene separada a propósito para no arriesgar efectos
+   secundarios sobre .case-dark-band en uso en Camila y en las otras dos
+   franjas de esta misma página.
+
+   Full-bleed real, sin truco de 100vw: en el HTML, .case-work__youtube-band
+   ya NO vive adentro de .case-section__body (eso hacía que el fondo
+   quedara limitado al ancho de esa columna central, con márgenes blancos
+   a los costados). Ahora es hermano del primer .grid de la sección, así
+   que hereda el ancho completo de <section> igual que .case-dark-band lo
+   hereda de <main> -- ningún .case-section tiene max-width propio, solo su
+   .grid hijo directo lo tiene (ver ".case-section > .grid" más arriba en
+   este archivo, selector extendido para cubrir también este caso).
+   Adentro de la banda se reabre un .grid + .case-section__body que alinea
+   "Recortes en Youtube" exactamente con "Videos para redes" de arriba,
+   pese a que el fondo ahora sí llega de borde a borde. padding-block le da
+   aire arriba/abajo al contenido; el margin-top reemplaza al espacio que
+   antes daba .case-work__subhead--divider (ya no se usa ese modificador
+   en este bloque -- el propio cambio de fondo ahora cumple el rol de
+   separador visual). */
+.case-work__youtube-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #0d0d0d;
+  color: #f5f5f3;
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-block: clamp(32px, 5vw, 56px);
+}
+
+.case-work__youtube-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../../img/hero.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.case-work__youtube-band > * {
+  position: relative;
+  z-index: 1;
+}
+
+.case-work__youtube-band .eyebrow {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.case-work__youtube-band .case-reel__unit {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* -- Título dentro de .case-reel__caption: usado ahora tanto por los 6
+   reels de "Videos para redes" (títulos reales, columna angosta de
+   220px) como por los de "Producciones para YouTube" (columna más
+   ancha). overflow-wrap: break-word evita que un título largo como
+   "Alfabetización para todos y todas" fuerce overflow horizontal o
+   descuadre el ancho fijo de la columna -- mismo criterio que
+   .case-reel__value/__unit más abajo. No lo usan los reels de Camila --
+   si no hay título, simplemente no se incluye el elemento. ------------ */
+.case-reel__title {
+  display: block;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+}
+
+/* -- Modificador --wide de .case-reel-grid: mismo componente .case-reel,
+   pero pensado para miniaturas 16:9 (.media--16-9) en vez de las 9:16 de
+   arriba -- columnas flexibles en vez del ancho fijo de 220px, que
+   encogería demasiado una miniatura horizontal. Reglas declaradas
+   después de las de .case-reel-grid (incluidas sus media queries) para
+   ganar la cascada en los mismos breakpoints. Solo 3 piezas por ahora,
+   así que no hay wrapping que resolver -- pasa directo a 1 columna en
+   mobile en vez de un paso intermedio de 2 con un ítem suelto. -------- */
+.case-reel-grid--wide {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .case-reel-grid--wide {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .case-reel-grid--wide {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1226,5 +1484,277 @@
   .source-item {
     grid-template-columns: 1fr;
     row-gap: 20px;
+  }
+}
+
+
+/* ==========================================================================
+   PIEZAS GRÁFICAS DE LANZAMIENTO (Andrés Rieznik — Alfabetización /
+   Mini documental en Arrecifes): sub-bloque + carrusel editorial.
+   ========================================================================== */
+
+/* Sub-bloque dentro de .project-feature, después del video -- separado
+   por una línea fina más liviana que la que abre todo el feature
+   (border-top de .project-feature), porque es un sub-tema (la difusión
+   gráfica) dentro de la misma pieza, no una sección nueva. */
+.project-feature__graphics {
+  margin-top: clamp(32px, 5vw, 48px);
+  padding-top: clamp(24px, 4vw, 32px);
+  border-top: 1px solid var(--color-line);
+}
+
+.project-feature__graphics-title {
+  font-size: var(--fs-h3);
+  margin-bottom: 8px;
+}
+
+.project-feature__graphics-text {
+  color: var(--color-muted);
+  font-size: var(--fs-small);
+  max-width: 46ch;
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+/* -- Layout de dos columnas para "Piezas gráficas de lanzamiento" -------
+   ------------------------------------------------------------------------
+   Cambio puramente visual/de layout: el funcionamiento del carrusel
+   (navegación, contador, JS) es el mismo de siempre y no se toca acá ni
+   en main.js. Antes el carrusel quedaba angosto (440px, centrado) y
+   debajo del título, con mucho espacio vacío alrededor; ahora va al lado
+   del título en desktop, usando el ancho real disponible de
+   .project-feature__graphics -- la misma columna angosta de
+   .case-section__body que el resto del contenido del caso (no se toca
+   el grid de la sección para esto, igual que .project-feature).
+   align-items: start alinea el techo del texto con el techo del
+   carrusel a propósito -- no se quiere centrado vertical de la columna
+   de texto contra el carrusel. */
+.launch-graphics-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  column-gap: var(--gutter);
+  align-items: start;
+}
+
+/* El carrusel deja su ancho fijo angosto (440px, pensado para cuando
+   vivía centrado y solo debajo del título) y pasa a ocupar el 100% de
+   su columna -- override scopeado acá adentro, sin tocar los valores
+   por defecto de .graphic-carousel (sigue siendo reutilizable tal cual,
+   con su tamaño original, en cualquier otro lugar del sitio). El slide
+   activo pasa de ~264px a ~420-480px según el viewport, dentro del
+   rango pedido, mantenimiento el peek de la slide siguiente (más
+   angosto que antes a propósito: ahora la protagonista debe notarse
+   todavía más). */
+.launch-graphics-layout__media .graphic-carousel {
+  --carousel-slide-width: 84%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+/* Por debajo de 768px (mismo quiebre que ya usa .graphic-carousel para
+   simplificar su propio comportamiento a una sola slide protagonista,
+   ver más abajo en este archivo) dos columnas ya comprimen demasiado la
+   columna de texto en el ancho angosto de .case-section__body -- se
+   apilan en vez de deformar: Título -> Descripción -> Label -> Carrusel
+   grande, este último casi a ancho completo. */
+@media (max-width: 768px) {
+  .launch-graphics-layout {
+    display: block;
+  }
+
+  .launch-graphics-layout__media {
+    margin-top: clamp(20px, 4vw, 28px);
+  }
+}
+
+/* -- Carrusel: galería editorial (no un slider genérico) -- una pieza
+   grande protagonista + un "peek" de la próxima. scroll-snap nativo
+   resuelve swipe táctil / scroll de mouse-trackpad sin JS; el JS en
+   main.js solo agrega flechas, contador, arrastre con mouse en desktop
+   y la clase "activa" (protagonismo visual vs. el peek). Sin autoplay.
+   Reutilizable tal cual para cualquier otra galería del sitio. */
+.graphic-carousel {
+  --carousel-slide-width: 60%;
+  max-width: min(440px, 100%);
+  margin-inline: auto;
+}
+
+.graphic-carousel__label {
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* -- Carrusel: galería editorial (no un slider genérico) -- una pieza
+   grande protagonista, con peek de la anterior Y la siguiente a los
+   costados (cuando existan). scroll-snap nativo resuelve swipe táctil /
+   scroll de mouse-trackpad sin JS; el JS en main.js agrega flechas,
+   contador, arrastre con mouse en desktop, navegación exacta de a una
+   slide por click/tecla y la clase "activa". Sin autoplay, sin loop.
+   Reutilizable tal cual para cualquier otra galería del sitio. */
+
+/* .graphic-carousel__frame: contenedor propio solo para el viewport +
+   flechas, con su propio contexto de posicionamiento -- antes las
+   flechas usaban .graphic-carousel entero (que también incluye el
+   contador debajo) como referencia para "top: 50%", así que quedaban
+   centradas contra la altura total del bloque en vez de contra la
+   imagen, un poco más abajo de donde debían verse. Acá quedan
+   centradas exactamente contra la pieza activa. */
+.graphic-carousel__frame {
+  position: relative;
+}
+
+.graphic-carousel__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Edge/IE legacy */
+}
+
+.graphic-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.graphic-carousel__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.graphic-carousel__viewport:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+/* Sin padding-right "de relleno": con scroll-snap-align: center y el
+   cálculo de scroll en main.js (centra la slide activa sumando la
+   distancia real entre centros de sus getBoundingClientRect), el propio
+   límite natural del scroll ya resuelve los extremos -- la primera
+   slide queda pegada a la izquierda con peek solo a la derecha, la
+   última pegada a la derecha con peek solo a la izquierda, sin
+   necesitar espacio extra simulado con padding. */
+.graphic-carousel__track {
+  display: flex;
+  gap: 16px;
+}
+
+.graphic-carousel__slide {
+  flex: 0 0 var(--carousel-slide-width);
+  scroll-snap-align: center;
+}
+
+.graphic-carousel__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+/* Proporción real medida de los 5 archivos (1.jpeg a 5.jpeg, los cinco
+   exactamente 1047x1280) -- fijada tal cual en vez de una relación
+   redondeada como 4:5, para que el viewport sea estable sin dejar
+   franjas de sobra con object-fit: contain.
+   Jerarquía activa/vecina: escala y opacidad de las vecinas un poco más
+   marcadas que antes (0.96/0.55 -> 0.9/0.45) para que la protagonista
+   se note más ahora que también se ve un costado de la anterior -- sin
+   sombra ni elevación, el sitio no usa cards/shadows en ningún otro
+   componente, así que la jerarquía se resuelve solo con escala +
+   opacidad, coherente con el resto del lenguaje visual. */
+.graphic-carousel__media {
+  aspect-ratio: 1047 / 1280;
+  transform: scale(0.9);
+  opacity: 0.45;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.graphic-carousel__slide.is-active .graphic-carousel__media {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.graphic-carousel__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.graphic-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--color-text);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.graphic-carousel__arrow:hover {
+  background: #fff;
+  border-color: var(--color-accent);
+}
+
+.graphic-carousel__arrow:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Sin loop: al llegar al extremo, la flecha correspondiente se
+   deshabilita (atributo disabled real en el <button>, ver main.js) en
+   vez de dar la vuelta -- pedido explícito por sobre un carrusel
+   infinito. */
+.graphic-carousel__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.graphic-carousel__arrow--prev {
+  left: 10px;
+}
+
+.graphic-carousel__arrow--next {
+  right: 10px;
+}
+
+.graphic-carousel__counter {
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .graphic-carousel__slide {
+    /* Slide principal más grande y peek más chico que en desktop -- en
+       pantallas angostas, mostrar mucho de la anterior y la siguiente
+       compite con la lectura de la activa en vez de ayudar. */
+    flex: 0 0 86%;
+  }
+  .graphic-carousel__track {
+    gap: 10px;
+  }
+  .graphic-carousel__arrow {
+    /* El swipe táctil ya es suficientemente claro en mobile -- se
+       mantiene el contador, que no depende del mouse. */
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .graphic-carousel__viewport {
+    scroll-behavior: auto;
+  }
+  .graphic-carousel__media {
+    transition: none;
   }
 }

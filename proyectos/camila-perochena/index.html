@@ -159,6 +159,56 @@
   </section>
   </div>
 
+
+  <!-- CONTENIDOS DE ORIGEN
+       Bloque propio (.sources-list / .source-item...), no reutiliza
+       .case-channels__list: ese layout está pensado para exactamente 3
+       filas por columna (título / descripción / media, ver "Desarrollo
+       de canales" en Andrés / Abuelas) y acá cada item solo tenía 2
+       hijos (sin media), lo que rompía el auto-placement de la grilla:
+       el título de "Odisea Argentina" terminaba encajado en la fila 3
+       de la primera columna y su descripción quedaba sola, flotando en
+       una segunda columna. Estructura nueva: dos filas apiladas, cada
+       una con su propio bloque de texto (título real + fuente/conductor
+       como metadato aparte -- ya no un <br> dentro del mismo heading) y
+       una captura 16:9 al lado. -->
+  <div class="case-dark-band">
+  <section class="case-section case-section--dark-hero fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Contenidos de origen</span>
+      <div class="case-section__body">
+        <div class="sources-list">
+          <article class="source-item">
+            <div class="source-item__text">
+              <h3 class="source-item__title">Soñé que volaba</h3>
+              <p class="eyebrow source-item__meta">OLGA</p>
+              <p class="source-item__description">Intervenciones sobre historia, política y actualidad posteriormente adaptadas para redes.</p>
+            </div>
+            <div class="source-item__media">
+              <div class="source-media">
+                <img src="../../img/proyectos/camila-perochena/origen-olga.webp" alt="Captura del programa Soñé que volaba, OLGA" loading="lazy" onerror="this.style.display='none';">
+              </div>
+            </div>
+          </article>
+
+          <article class="source-item">
+            <div class="source-item__text">
+              <h3 class="source-item__title">Odisea Argentina</h3>
+              <p class="eyebrow source-item__meta">Carlos Pagni</p>
+              <p class="source-item__description">Participaciones de análisis histórico y político utilizadas como material de origen para nuevas piezas digitales.</p>
+            </div>
+            <div class="source-item__media">
+              <div class="source-media">
+                <img src="../../img/proyectos/camila-perochena/origen-odisea.webp" alt="Captura del programa Odisea Argentina, Carlos Pagni" loading="lazy" onerror="this.style.display='none';">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
   <!-- MI ROL
        Version interactiva (accordion): prueba del componente
        .role-accordion, por ahora exclusiva de esta pagina. Andres y
@@ -236,55 +286,6 @@
       </div>
     </div>
   </section>
-
-  <!-- CONTENIDOS DE ORIGEN
-       Bloque propio (.sources-list / .source-item...), no reutiliza
-       .case-channels__list: ese layout está pensado para exactamente 3
-       filas por columna (título / descripción / media, ver "Desarrollo
-       de canales" en Andrés / Abuelas) y acá cada item solo tenía 2
-       hijos (sin media), lo que rompía el auto-placement de la grilla:
-       el título de "Odisea Argentina" terminaba encajado en la fila 3
-       de la primera columna y su descripción quedaba sola, flotando en
-       una segunda columna. Estructura nueva: dos filas apiladas, cada
-       una con su propio bloque de texto (título real + fuente/conductor
-       como metadato aparte -- ya no un <br> dentro del mismo heading) y
-       una captura 16:9 al lado. -->
-  <div class="case-dark-band">
-  <section class="case-section case-section--dark-hero fade-in">
-    <div class="grid">
-      <span class="eyebrow case-section__label">Contenidos de origen</span>
-      <div class="case-section__body">
-        <div class="sources-list">
-          <article class="source-item">
-            <div class="source-item__text">
-              <h3 class="source-item__title">Soñé que volaba</h3>
-              <p class="eyebrow source-item__meta">OLGA</p>
-              <p class="source-item__description">Intervenciones sobre historia, política y actualidad posteriormente adaptadas para redes.</p>
-            </div>
-            <div class="source-item__media">
-              <div class="source-media">
-                <img src="../../img/proyectos/camila-perochena/origen-olga.webp" alt="Captura del programa Soñé que volaba, OLGA" loading="lazy" onerror="this.style.display='none';">
-              </div>
-            </div>
-          </article>
-
-          <article class="source-item">
-            <div class="source-item__text">
-              <h3 class="source-item__title">Odisea Argentina</h3>
-              <p class="eyebrow source-item__meta">Carlos Pagni</p>
-              <p class="source-item__description">Participaciones de análisis histórico y político utilizadas como material de origen para nuevas piezas digitales.</p>
-            </div>
-            <div class="source-item__media">
-              <div class="source-media">
-                <img src="../../img/proyectos/camila-perochena/origen-odisea.webp" alt="Captura del programa Odisea Argentina, Carlos Pagni" loading="lazy" onerror="this.style.display='none';">
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-  </div>
 
   <!-- FINAL DEL CASO
        "Siguiente proyecto" sí queda conectado acá: a diferencia de

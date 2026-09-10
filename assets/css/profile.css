@@ -2,25 +2,62 @@
    PERFIL — sección "Perfil" de la home (index.html)
    ========================================================================== */
 
-/* Única sección de alto contraste fuera del hero: fondo negro, relacionado
-   visualmente con el hero (blanco sobre oscuro) pero no idéntico -- el
-   hero usa una foto + overlay sutil, acá es un negro sólido, reutilizando
-   el mismo negro real del sistema (--color-text: #0e0e0d, ya usado como
-   color de texto en toda la página) en vez de inventar un nuevo valor.
-   Es background-color directo sobre .profile (opaco): como .profile vive
+/* Única sección de alto contraste fuera del hero: ahora con la misma
+   textura hero.webp del hero de la home (antes era negro solido plano),
+   relacionada visualmente con el hero (misma imagen, mismo tratamiento)
+   sin ser identica -- el hero pinta la imagen directo sobre si mismo con
+   un overlay muy sutil (rgba(0,0,0,.15), ver .hero en home.css) porque
+   ocupa casi toda la pantalla con un titulo enorme; acá la seccion es
+   mas baja (menos imagen visible con "cover") y el texto es de cuerpo,
+   así que hace falta mas contraste -- 0.55, mezclado en un solo
+   background-image (linear-gradient encima de la imagen) sobre un
+   ::before, en vez de pintarlo directo sobre .profile: misma tecnica ya
+   probada y confirmada en las dos franjas oscuras de Camila Perochena
+   (.case-dark-band en proyecto.css) -- wrapper con su propio contexto de
+   apilamiento (position: relative + isolation: isolate) y el contenido
+   real (.container) por encima con z-index. overflow: hidden evita que
+   el ::before (inset: 0) sobresalga si algun contenido interno llegara a
+   desbordar. background-color solido queda como respaldo mientras
+   hero.webp carga o si la ruta llegara a fallar. Como .profile vive
    dentro de .page-content (que trae la textura fondo.webp del resto de
-   secciones, ver home.css), este color simplemente tapa esa textura en
-   el alto exacto de esta sección -- sin gradiente, sin afectar a Trabajo
-   ni Contacto arriba/abajo, sin tocar .page-content. El color blanco de
-   acá se hereda hacia abajo (título, párrafos, .profile__fact-value): no
-   hizo falta declararlo de nuevo en cada uno. Los elementos con su color
+   secciones, ver home.css), esta nueva capa simplemente tapa esa textura
+   en el alto exacto de esta sección -- sin afectar a Trabajo ni Contacto
+   arriba/abajo, sin tocar .page-content. El color blanco de acá se
+   hereda hacia abajo (título, párrafos, .profile__fact-value): no hizo
+   falta declararlo de nuevo en cada uno. Los elementos con su color
    propio pensado para fondo claro (labels, detail, líneas divisorias de
-   .profile__fact) sí se sobreescriben más abajo. */
+   .profile__fact) sí se sobreescriben más abajo -- ninguno de estos se
+   tocó en este cambio, solo el fondo. */
 .profile {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding-block: var(--section-space);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   background-color: var(--color-text);
   color: #ffffff;
+}
+
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../../img/hero.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* .container es una clase global compartida (header, contact, footer,
+   etc.) -- se escala acá SOLO como descendiente directo de .profile
+   (.profile > .container), nunca en el selector base, para no afectar
+   ninguna otra sección de ninguna otra página. Sube el contenido real
+   (Perfil + Artículos, que vive completo dentro de este mismo
+   .container, ver index.html) por encima del ::before. */
+.profile > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .profile__grid {

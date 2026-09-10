@@ -276,4 +276,394 @@
       updateHeroReveal(); /* estado inicial, por si la página carga con scroll restaurado */
     }
   }
+
+  /* -- Métricas animadas (hero de Andrés Rieznik: Instagram / TikTok /
+     YouTube) -----------------------------------------------------------
+     [data-metric-animate] ya trae el HTML final completo en cada una
+     (numero inicial / flecha / numero final, mas un .visually-hidden con
+     el texto plano para lectores de pantalla -- ver
+     proyectos/andres-rieznik/index.html). La secuencia interna de cada
+     metrica (aparece el numero inicial, se dibuja la flecha, aparece el
+     numero final) es CSS puro por transition-delay (ver .metric-sequence
+     en proyecto.css) y dura ~1.5s de punta a punta.
+
+     Acá se encadenan las tres UNA DESPUES DE LA OTRA (Instagram, después
+     TikTok, después YouTube) en vez de que las tres animen en simultaneo
+     al entrar juntas en viewport: se observan las tres, pero apenas la
+     PRIMERA que cruza el umbral dispara runMetricSequence() una única vez
+     (metricStarted evita que una segunda intersección -- por ej. si
+     TikTok cruza el umbral una fracción despues que Instagram -- dispare
+     la secuencia de nuevo); ahí se agrega .is-metric-animated a cada
+     elemento con un setTimeout escalonado según su posición en el HTML
+     (METRIC_SEQUENCE_GAP entre el inicio de una y la siguiente, tiempo
+     suficiente para que la metrica anterior ya haya terminado del todo
+     antes de que arranque la próxima). Una sola vez por carga de página
+     (se desobservan las tres apenas arranca la secuencia), nunca se
+     repite al scrollear hacia arriba y abajo. Con prefers-reduced-motion
+     directamente no se observa nada -- la regla @media en CSS ya deja
+     las tres secuencias completas sin transición. */
+  var metricEls = document.querySelectorAll('[data-metric-animate]');
+  var prefersReducedMotionForMetric =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var METRIC_SEQUENCE_GAP = 1600; /* ms entre el arranque de una métrica y la siguiente -- la secuencia individual de cada una dura ~1.5s, así que la próxima arranca recién cuando la anterior ya terminó */
+
+  function runMetricSequence(els) {
+    els.forEach(function (el, index) {
+      window.setTimeout(function () {
+        el.classList.add('is-metric-animated');
+      }, index * METRIC_SEQUENCE_GAP);
+    });
+  }
+
+  if (
+    'IntersectionObserver' in window &&
+    metricEls.length &&
+    !prefersReducedMotionForMetric
+  ) {
+    var metricStarted = false;
+    var metricElsArray = Array.prototype.slice.call(metricEls);
+
+    var metricObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !metricStarted) {
+            metricStarted = true;
+            runMetricSequence(metricElsArray);
+            metricElsArray.forEach(function (el) {
+              metricObserver.unobserve(el);
+            });
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    metricElsArray.forEach(function (el) {
+      metricObserver.observe(el);
+    });
+  } else if (!prefersReducedMotionForMetric) {
+    /* Sin IntersectionObserver disponible: se muestran directo, sin
+       animación escalonada, en vez de quedar invisibles para siempre. */
+    metricEls.forEach(function (el) {
+      el.classList.add('is-metric-animated');
+    });
+  }
+  /* Con prefers-reduced-motion activo no hacemos nada: la regla @media
+     (prefers-reduced-motion: reduce) en CSS ya deja la secuencia
+     completa sin transición, sin necesidad de la clase. */
+})();
+
+/* -- Thumbnails de YouTube en "Videos para redes" (Andrés Rieznik): estas
+   tarjetas no guardan la URL completa de la miniatura, solo el videoId
+   (atributo data-youtube-id) -- getYouTubeThumbnail() arma la URL en
+   runtime, así no hay que repetirla a mano por cada video nuevo. Primer
+   intento con maxresdefault (mejor calidad, no siempre disponible);
+   si falla, se reemplaza por hqdefault (casi siempre disponible) y se
+   reemplaza el handler de error por uno distinto para no volver a
+   intentar maxresdefault -- sin loop. Si incluso hqdefault fallara, ese
+   segundo handler oculta la imagen para que quede visible el placeholder
+   de .media (data-label) en vez del ícono de imagen rota del navegador,
+   igual que en el resto del sitio. No toca las miniaturas de YouTube ya
+   hardcodeadas en "Recortes en Youtube" ni en "Producción original" --
+   siguen con su propio onerror inline, sin cambios. */
+(function () {
+  function getYouTubeThumbnail(videoId, quality) {
+    return 'https://img.youtube.com/vi/' + videoId + '/' + (quality || 'maxresdefault') + '.jpg';
+  }
+
+  document.querySelectorAll('img[data-youtube-id]').forEach(function (img) {
+    var videoId = img.getAttribute('data-youtube-id');
+    if (!videoId) return;
+
+    img.onerror = function () {
+      this.onerror = function () {
+        this.onerror = null;
+        this.style.display = 'none';
+      };
+      this.src = getYouTubeThumbnail(videoId, 'hqdefault');
+    };
+    img.src = getYouTubeThumbnail(videoId, 'maxresdefault');
+  });
+})();
+
+/* -- Carrusel de piezas gráficas (galería editorial genérica, primer uso
+   en "Mini documental en Arrecifes" de Andrés Rieznik): scroll-snap
+   nativo resuelve swipe táctil y scroll de mouse/trackpad sin JS; este
+   bloque solo agrega flechas, contador, arrastre con mouse en desktop y
+   la clase "activa" de cada slide (protagonismo visual vs. el peek de
+   la siguiente, ver .graphic-carousel__media en proyecto.css). Sin
+   autoplay -- el usuario decide cuándo avanzar. Reutilizable tal cual
+   para cualquier otro carrusel [data-carousel] que se agregue después,
+   no quedó atado a esta página. */
+(function () {
+  var carousels = document.querySelectorAll('[data-carousel]');
+  if (!carousels.length) return;
+
+  var prefersReducedMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function pad(n) {
+    return n < 10 ? '0' + n : '' + n;
+  }
+
+  carousels.forEach(function (root) {
+    var viewport = root.querySelector('[data-carousel-viewport]');
+    var slides = Array.prototype.slice.call(root.querySelectorAll('[data-carousel-slide]'));
+    var prevBtn = root.querySelector('[data-carousel-prev]');
+    var nextBtn = root.querySelector('[data-carousel-next]');
+    var currentEl = root.querySelector('[data-carousel-current]');
+    var totalEl = root.querySelector('[data-carousel-total]');
+    if (!viewport || !slides.length) return;
+
+    var activeIndex = 0;
+
+    if (totalEl) totalEl.textContent = pad(slides.length);
+
+    /* activeIndex es la única fuente de verdad de "cuál slide está
+       activa", y solo cambia en dos momentos controlados: un click en
+       flecha/teclado (goToIndex, síncrono) o cuando un scroll nativo
+       (swipe, trackpad, soltar un arrastre con mouse) se asienta
+       (handleScrollSettled). Antes se resolvía con un IntersectionObserver
+       que actualizaba el índice de forma asíncrona según qué tanto
+       porcentaje de cada slide era visible -- si se hacía otro click
+       antes de que el observer llegara a disparar, ese segundo click
+       calculaba "siguiente" sobre un índice todavía viejo, y de ahí la
+       sensación de que el carrusel "seguía de largo" o se salteaba
+       posiciones. Acá cada click actualiza activeIndex y la UI (clase
+       is-active, contador, flechas deshabilitadas) al instante, sin
+       esperar a que termine la animación de scroll -- 1 click siempre
+       mueve exactamente 1 slide. */
+    function updateUI() {
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === activeIndex);
+      });
+      if (currentEl) currentEl.textContent = pad(activeIndex + 1);
+      if (prevBtn) prevBtn.disabled = activeIndex === 0;
+      if (nextBtn) nextBtn.disabled = activeIndex === slides.length - 1;
+    }
+
+    /* Centra la slide activa en el viewport calculando la distancia real
+       entre sus centros (getBoundingClientRect, no offsetLeft -- así no
+       depende de cuál termine siendo el offsetParent) y sumándola al
+       scrollLeft actual. Sin loop: si el resultado cae fuera del rango
+       de scroll válido, scrollTo lo recorta solo al extremo -- la
+       primera slide queda pegada a la izquierda mostrando peek solo a
+       la derecha, la última pegada a la derecha con peek solo a la
+       izquierda. Es el "cuando exista" pedido, sin necesitar padding
+       extra en el track para simularlo. */
+    function scrollToActive(behavior) {
+      var slide = slides[activeIndex];
+      var viewportRect = viewport.getBoundingClientRect();
+      var slideRect = slide.getBoundingClientRect();
+      var delta = (slideRect.left + slideRect.width / 2) - (viewportRect.left + viewportRect.width / 2);
+      viewport.scrollTo({
+        left: viewport.scrollLeft + delta,
+        behavior: behavior
+      });
+    }
+
+    function goToIndex(index) {
+      var clamped = Math.max(0, Math.min(slides.length - 1, index));
+      if (clamped === activeIndex) return;
+      activeIndex = clamped;
+      updateUI();
+      scrollToActive(prefersReducedMotion ? 'auto' : 'smooth');
+    }
+
+    /* Qué slide queda activa después de un scroll nativo (swipe táctil,
+       trackpad, o soltar un arrastre con mouse): la de centro
+       geométricamente más cercano al centro del viewport en ese momento
+       -- más preciso que un umbral de intersección y no depende de
+       IntersectionObserver. */
+    function nearestIndexFromScroll() {
+      var viewportRect = viewport.getBoundingClientRect();
+      var center = viewportRect.left + viewportRect.width / 2;
+      var bestIndex = activeIndex;
+      var bestDistance = Infinity;
+      slides.forEach(function (slide, i) {
+        var rect = slide.getBoundingClientRect();
+        var distance = Math.abs(rect.left + rect.width / 2 - center);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = i;
+        }
+      });
+      return bestIndex;
+    }
+
+    function handleScrollSettled() {
+      var index = nearestIndexFromScroll();
+      if (index !== activeIndex) {
+        activeIndex = index;
+        updateUI();
+      }
+    }
+
+    var scrollSettleTimer = null;
+    if ('onscrollend' in window) {
+      viewport.addEventListener('scrollend', handleScrollSettled);
+    } else {
+      /* Fallback para navegadores sin evento "scrollend" nativo: se
+         considera asentado el scroll cuando pasan 120ms sin que se
+         dispare un nuevo evento "scroll". */
+      viewport.addEventListener('scroll', function () {
+        if (scrollSettleTimer) clearTimeout(scrollSettleTimer);
+        scrollSettleTimer = setTimeout(handleScrollSettled, 120);
+      });
+    }
+
+    updateUI();
+    scrollToActive('auto');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        goToIndex(activeIndex - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        goToIndex(activeIndex + 1);
+      });
+    }
+
+    viewport.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goToIndex(activeIndex + 1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goToIndex(activeIndex - 1);
+      }
+    });
+
+    /* Arrastre con mouse en desktop -- el swipe táctil ya lo resuelve
+       scroll-snap nativo, por eso se ignora pointerType === 'touch' acá
+       (dejarlo pasar de largo sin preventDefault ni scrollLeft manual).
+       Al soltar, se fuerza el snap a la slide más cercana (goToIndex) en
+       vez de confiar en que el navegador snapee solo tras una asignación
+       manual de scrollLeft -- así nunca queda a mitad de camino entre
+       dos slides. */
+    var isDragging = false;
+    var dragMoved = false;
+    var dragStartX = 0;
+    var dragStartScroll = 0;
+
+    viewport.addEventListener('pointerdown', function (event) {
+      if (event.pointerType === 'touch') return;
+      isDragging = true;
+      dragMoved = false;
+      dragStartX = event.clientX;
+      dragStartScroll = viewport.scrollLeft;
+      viewport.classList.add('is-dragging');
+    });
+
+    viewport.addEventListener('pointermove', function (event) {
+      if (!isDragging) return;
+      var delta = event.clientX - dragStartX;
+      if (Math.abs(delta) > 4) dragMoved = true;
+      viewport.scrollLeft = dragStartScroll - delta;
+    });
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      viewport.classList.remove('is-dragging');
+      if (dragMoved) {
+        goToIndex(nearestIndexFromScroll());
+      }
+    }
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointerleave', endDrag);
+
+    /* Abrir el lightbox en la pieza clickeada -- pero no si ese click en
+       realidad fue el final de un arrastre (soltar después de arrastrar
+       no debería abrir la imagen). */
+    var openButtons = Array.prototype.slice.call(root.querySelectorAll('[data-carousel-open]'));
+    openButtons.forEach(function (btn, i) {
+      btn.addEventListener('click', function (event) {
+        if (dragMoved) {
+          event.preventDefault();
+          dragMoved = false;
+          return;
+        }
+        openLightbox(root, i);
+      });
+    });
+  });
+
+  /* -- Lightbox genérico (ver .lightbox en components.css): un solo
+     elemento a nivel de página, reutilizado por cualquier [data-carousel]
+     que lo necesite. Cierra con la X, con Escape o clickeando el fondo;
+     ArrowLeft/ArrowRight navegan entre las imágenes de la MISMA galería
+     que lo abrió. */
+  var lightbox = document.querySelector('[data-lightbox]');
+  var lightboxImg = lightbox && lightbox.querySelector('[data-lightbox-img]');
+  var activeGalleryImages = null;
+  var activeGalleryIndex = 0;
+  var lastFocusedEl = null;
+
+  function showLightboxImage() {
+    var img = activeGalleryImages[activeGalleryIndex];
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+  }
+
+  function openLightbox(galleryRoot, index) {
+    if (!lightbox || !lightboxImg) return;
+    var images = Array.prototype.slice.call(galleryRoot.querySelectorAll('[data-carousel-img]'));
+    if (!images.length) return;
+    activeGalleryImages = images;
+    activeGalleryIndex = index;
+    showLightboxImage();
+    lastFocusedEl = document.activeElement;
+    lightbox.hidden = false;
+    document.body.classList.add('lightbox-open');
+    var closeBtn = lightbox.querySelector('[data-lightbox-close]');
+    if (closeBtn) closeBtn.focus();
+    document.addEventListener('keydown', onLightboxKeydown);
+  }
+
+  function closeLightbox() {
+    if (!lightbox || lightbox.hidden) return;
+    lightbox.hidden = true;
+    document.body.classList.remove('lightbox-open');
+    document.removeEventListener('keydown', onLightboxKeydown);
+    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+      lastFocusedEl.focus();
+    }
+  }
+
+  function lightboxStep(delta) {
+    if (!activeGalleryImages) return;
+    activeGalleryIndex =
+      (activeGalleryIndex + delta + activeGalleryImages.length) % activeGalleryImages.length;
+    showLightboxImage();
+  }
+
+  function onLightboxKeydown(event) {
+    if (event.key === 'Escape') {
+      closeLightbox();
+    } else if (event.key === 'ArrowRight') {
+      lightboxStep(1);
+    } else if (event.key === 'ArrowLeft') {
+      lightboxStep(-1);
+    }
+  }
+
+  if (lightbox) {
+    var lbClose = lightbox.querySelector('[data-lightbox-close]');
+    var lbPrev = lightbox.querySelector('[data-lightbox-prev]');
+    var lbNext = lightbox.querySelector('[data-lightbox-next]');
+
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lbPrev) lbPrev.addEventListener('click', function () { lightboxStep(-1); });
+    if (lbNext) lbNext.addEventListener('click', function () { lightboxStep(1); });
+
+    /* Click en el fondo oscuro (no en la imagen ni en los botones) cierra
+       el lightbox -- basta con chequear que el target sea el propio
+       contenedor, ya que la imagen y los botones son hijos directos. */
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) closeLightbox();
+    });
+  }
 })();
