@@ -405,6 +405,40 @@
 
 .role-accordion__title {
   font-size: var(--fs-lead); /* mismo tamaño que tenia cada fila en .case-role__list */
+  color: var(--color-text); /* negro editorial del sitio -- estado normal/cerrado */
+  transition: color 180ms ease;
+}
+
+/* Estados interactivos SOLO del titulo (span .role-accordion__title) --
+   el icono +/- ya tiene su propio color en hover (regla de arriba,
+   .role-accordion__summary:hover .role-accordion__icon) y no se toca; la
+   descripcion, el label "Mi rol" y las lineas divisorias tampoco cambian
+   de color en ningun estado. Jerarquia pedida:
+     - cerrado, sin hover: var(--color-text) (regla de arriba, sin cambios)
+     - hover (abierto o cerrado) o foco por teclado: var(--color-accent) (#74ACDF)
+     - abierto, sin hover/foco: #4F8FC4 (celeste mas oscuro)
+   Cerrar el <details> no necesita una regla propia: como
+   .role-accordion[open] deja de matchear, el titulo vuelve solo al
+   var(--color-text) de la regla base de arriba.
+
+   Nota de especificidad: ".role-accordion__summary:hover .role-accordion__title"
+   y ".role-accordion[open] .role-accordion__title" tienen la MISMA
+   especificidad (3 selectores de clase cada una) -- por eso hace falta la
+   tercera regla combinada de abajo (5 selectores de clase) para que
+   "abierto + hover" le gane de forma explicita a "abierto sin hover",
+   sin depender del orden en que queden escritas. */
+.role-accordion__summary:hover .role-accordion__title,
+.role-accordion__summary:focus-visible .role-accordion__title {
+  color: var(--color-accent); /* #74ACDF */
+}
+
+.role-accordion[open] .role-accordion__title {
+  color: #4F8FC4;
+}
+
+.role-accordion[open] .role-accordion__summary:hover .role-accordion__title,
+.role-accordion[open] .role-accordion__summary:focus-visible .role-accordion__title {
+  color: var(--color-accent); /* #74ACDF -- gana por especificidad sobre la regla de arriba */
 }
 
 .role-accordion__icon {
@@ -524,106 +558,127 @@
   grid-column: 1 / span 12;
 }
 
-/* -- Producción y archivo (Abuelas de Plaza de Mayo): dos bloques grandes
-   lado a lado en desktop, sin cards -- separados por una línea fina
-   arriba de cada uno, mismo criterio que .case-areas__item. Pensada para
-   tener bastante presencia visual, ya que es una característica central
-   de este caso. ------------------------------------------------------------ */
-.case-duo {
+/* -- Una cuenta nueva (Abuelas de Plaza de Mayo): screenshot de la cuenta
+   + animación original del logo, lado a lado en desktop -- pueden tener
+   proporciones distintas a propósito (align-items: start, sin forzar
+   igual altura), la screenshot puede pesar más visualmente (60/40
+   sugerido vía el fr-split de abajo). Sin cards. -------------------------- */
+.case-account-media {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gutter);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  column-gap: var(--gutter);
+  align-items: start;
+  margin-top: clamp(28px, 4vw, 40px);
 }
 
-.case-duo__block {
-  padding-top: clamp(24px, 4vw, 32px);
-  border-top: 1px solid var(--color-line);
+@media (max-width: 640px) {
+  .case-account-media {
+    display: block;
+  }
+  .case-account-media__animation {
+    margin-top: clamp(20px, 4vw, 28px);
+  }
 }
 
-.case-duo__index {
+/* Video de la animación del logo, cuando exista: sin controles visibles,
+   pensado para leerse como pieza gráfica y no como reproductor (ver
+   comentario HTML en "Una cuenta nueva" con el marcado real a usar). */
+.case-account-media__video {
   display: block;
-  font-family: var(--font-body);
-  font-size: var(--fs-small);
-  color: var(--color-muted-2);
-  margin-bottom: 12px;
+  width: 100%;
+  height: auto;
 }
 
-.case-duo__title {
-  font-size: var(--fs-h3);
-  margin-bottom: 10px;
+/* Fix: screenshot.png real (590x1280px) se estaba deformando -- el <img>
+   trae width/height fijos en el HTML (medidos con Pillow) para reservar
+   espacio y evitar salto de layout, pero la regla global "img { max-width:
+   100%; }" (base.css) no incluye height: auto, asi que al achicarse el
+   ancho dentro de la columna de 3fr, el alto se quedaba clavado en el
+   valor del atributo (1280px) en vez de escalar proporcionalmente --
+   mismo criterio ya aplicado en .case-text-media__media img (arriba, para
+   indice.jpeg). Ademas se limita el ancho maximo del contenedor .media a
+   300px para que la captura de telefono se vea a un tamaño de referencia
+   razonable en vez de estirarse a ocupar las 3fr completas de la
+   columna. La animacion del logo (300x300, cuadrada) recibe el mismo
+   width: 100%; height: auto por consistencia / robustez en mobile,
+   aunque al ser cuadrada el bug era menos notorio. */
+.case-account-media__screenshot .media {
+  max-width: 300px;
 }
 
-.case-duo__text {
-  max-width: 46ch;
-  margin-bottom: clamp(24px, 4vw, 32px);
+.case-account-media__screenshot img,
+.case-account-media__animation img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.case-duo__archive-grid {
+/* -- Derechos humanos, ciencia e identidad: texto | imagen (índice de
+   abuelidad, indice.jpeg) -- ~62.5% texto / ~37.5% imagen. Modelo
+   estructural de .source-item (Camila Perochena) pero con la proporción
+   invertida (acá el texto pesa más que la imagen, al revés que ahí).
+   max-width en la imagen: 400-500px pedido, aunque el contenedor real
+   (.case-work ancho completo) ya lo deja bastante por debajo de ese tope
+   en viewports intermedios -- ver comentario HTML de la sección. --------- */
+.case-text-media {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(var(--gutter) / 2);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 3fr);
+  column-gap: var(--gutter);
+  align-items: start;
+}
+
+.case-text-media__text {
+  max-width: 62ch;
+}
+
+.case-text-media__media {
+  max-width: 480px;
+  width: 100%;
+}
+
+.case-text-media__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line);
 }
 
 @media (max-width: 768px) {
-  .case-duo {
-    grid-template-columns: 1fr;
-    gap: clamp(32px, 6vw, 48px);
+  .case-text-media {
+    display: block;
+  }
+  .case-text-media__text {
+    max-width: none;
+  }
+  .case-text-media__media {
+    margin-top: clamp(20px, 4vw, 28px);
+    max-width: 420px;
   }
 }
 
-/* -- Una cuenta nueva (Abuelas de Plaza de Mayo): screenshot del perfil +
-   piezas verticales, todas 9:16 en una sola fila en desktop. --------------- */
-.case-channel-media {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--gutter);
-  margin-top: clamp(32px, 5vw, 48px);
-}
-
-@media (max-width: 1024px) {
-  .case-channel-media {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .case-channel-media {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-  }
-}
-
-/* -- Del archivo a la plataforma: flujo conceptual mínimo (3 pasos), sin
-   media -- sección deliberadamente liviana, todavía experimental. -------- */
-.case-flow {
+/* -- Más material (Abuelas de Plaza de Mayo, sección todavía comentada en
+   el HTML): carrusel horizontal chico y secundario, sin librerías --
+   scroll-snap nativo. A propósito SIN aspect-ratio fijo en
+   .media-strip__item (el material futuro puede variar de proporción);
+   cada item define su propia proporción con una clase .media existente
+   (media--9-16, media--16-9, media--square, o media a secas). Scrollbar
+   visible a propósito (a diferencia de .graphic-carousel): esto es una
+   navegación secundaria discreta, no una pieza protagonista, así que no
+   hace falta ocultarla. Reutilizable para cualquier otra galería
+   secundaria futura del sitio, no exclusiva de Abuelas. ------------------ */
+.media-strip {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 14px;
-  margin-top: clamp(24px, 4vw, 36px);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
 }
 
-.case-flow__step {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-}
-
-.case-flow__arrow {
-  color: var(--color-accent);
-  font-size: var(--fs-h3);
-}
-
-@media (max-width: 768px) {
-  .case-flow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .case-flow__arrow {
-    transform: rotate(90deg);
-    transform-origin: left center;
-    margin-left: 6px;
-  }
+.media-strip__item {
+  flex: 0 0 clamp(260px, 30vw, 360px);
+  scroll-snap-align: start;
 }
 
 /* -- Producción original (.project-feature): bloque editorial para una
@@ -838,17 +893,6 @@
   }
 }
 
-/* -- Resultados: variante de .result-item sin dato numérico (para TikTok/
-   YouTube, donde todavía no hay métricas para mostrar). Mismo tamaño que
-   .result-item__value para mantener el ritmo visual de la grilla. -------- */
-.result-item__label {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  margin-bottom: 10px;
-}
-
 /* -- Navegación final del caso ------------------------------------------- */
 .case-final {
   display: flex;
@@ -1037,6 +1081,26 @@
 
 .case-section--dark-hero .case-channels__text {
   color: rgba(255, 255, 255, 0.72);
+}
+
+/* "Una cuenta nueva" / "Derechos humanos, ciencia e identidad" (Abuelas
+   de Plaza de Mayo) sobre fondo oscuro: mismo criterio de 0.15 / 0.72 de
+   arriba, aplicado a los elementos propios de estas dos secciones que
+   todavía no existían dentro de un .case-section--dark-hero -- el dato
+   destacado (.case-stat, línea divisoria + caption) y el borde de la
+   imagen de índice de abuelidad (.case-text-media__media img), que en
+   var(--color-line) quedaría demasiado claro/brillante sobre la imagen
+   oscura de fondo. */
+.case-section--dark-hero .case-stat {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+.case-section--dark-hero .case-stat-caption {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.case-section--dark-hero .case-text-media__media img {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 @media (max-width: 1024px) {
@@ -1313,79 +1377,6 @@
   .case-media-grid__item--wide,
   .case-media-grid__item--tall,
   .case-media-grid__item--half {
-    grid-column: span 12;
-  }
-}
-
-/* -- Resultados ----------------------------------------------------------- */
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  row-gap: clamp(32px, 5vw, 56px);
-}
-
-.result-item {
-  grid-column: span 4;
-}
-
-.result-item__value {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  margin-bottom: 10px;
-}
-
-/* Nombre de plataforma dentro de un .result-item CON número (por ahora
-   solo Andrés Rieznik) -- mismo criterio que .case-hero__stat-label más
-   arriba en esta misma página: reutiliza .eyebrow (sans-serif,
-   mayúsculas, tracking) pero sobreescribe tamaño/peso/color para que
-   funcione como título visible del bloque. Clase nueva a propósito: NO
-   es .result-item__label, que sigue usándose tal cual en Abuelas para
-   "Cuenta"/"Contenido" (sin número), donde necesita mantenerse grande. */
-.result-item__platform {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-/* Unidad de la métrica (seguidores / suscriptores) -- mismo criterio que
-   .case-hero__stat-unit: etiqueta secundaria chica, nunca el tamaño
-   display grande. El margin-top negativo compensa el margin-bottom de
-   .result-item__value (10px) para que quede pegada al número sin tocar
-   esa regla compartida con Camila/Abuelas. */
-.result-item__unit {
-  display: block;
-  font-size: 1.05rem;
-  font-weight: 400;
-  line-height: 1.3;
-  color: var(--color-muted);
-  margin-top: -6px;
-  margin-bottom: 10px;
-}
-
-.result-item__caption {
-  font-size: var(--fs-small);
-  color: var(--color-muted);
-  max-width: 30ch;
-}
-
-@media (max-width: 768px) {
-  .result-item {
-    grid-column: span 12;
-  }
-}
-
-/* Modificador --quad: para Resultados con 4 datos en vez de 3 (Camila
-   Perochena). Sin esto, 4 items a span-4 dejarían un ítem solo en una
-   segunda fila (3+1); con --quad quedan en 2x2, más equilibrado. */
-.results-grid--quad .result-item {
-  grid-column: span 6;
-}
-
-@media (max-width: 768px) {
-  .results-grid--quad .result-item {
     grid-column: span 12;
   }
 }

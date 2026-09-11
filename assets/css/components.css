@@ -43,6 +43,49 @@
   border-bottom-color: var(--color-text);
 }
 
+/* -- Selector de idioma ES / EN -----------------------------------------
+   Vive DENTRO de .site-header__nav (ultimo item del mismo flex row que
+   Trabajo/Sobre mi/Contacto) a proposito: asi hereda gratis el mismo
+   comportamiento responsive que el resto de la navegacion (se oculta en
+   el menu hamburguesa en mobile y reaparece en el overlay a pantalla
+   completa junto con los demas links, ver @media max-width:768px mas
+   abajo) sin tocar el markup del header, el JS del menu mobile ni el
+   layout de .site-header__inner (justify-content: space-between entre
+   el nombre y este mismo nav sigue intacto). El idioma activo es un
+   <span> (no un link a si mismo); el otro idioma es un <a> real que
+   navega a la pagina EN/ES equivalente -- nunca un dropdown, bandera,
+   icono ni modal. */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-switcher__sep {
+  color: var(--color-muted);
+}
+
+.language-switcher__item {
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+a.language-switcher__item {
+  color: var(--color-muted);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+a.language-switcher__item:hover {
+  color: var(--color-text);
+  border-bottom-color: var(--color-text);
+}
+
+.language-switcher__item--active {
+  color: var(--color-text);
+  font-weight: 600;
+  border-bottom-color: var(--color-text);
+}
+
 /* -- Menú mobile ------------------------------------------------------- */
 .site-header__toggle {
   display: none;
@@ -101,6 +144,13 @@
     font-family: var(--font-body); /* navegacion: se mantiene neutra aunque sea grande */
     padding-block: 14px;
     border-bottom: 1px solid var(--color-line);
+    width: 100%;
+  }
+
+  .site-header__nav .language-switcher {
+    font-size: 1.4rem;
+    font-family: var(--font-body);
+    padding-block: 14px;
     width: 100%;
   }
 }

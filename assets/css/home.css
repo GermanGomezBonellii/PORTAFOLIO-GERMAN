@@ -97,6 +97,21 @@
   color: var(--color-accent);
 }
 
+/* Balance de líneas SOLO para el titulo en ingles: el texto en ingles
+   ("Communication strategy and content production for science and
+   politics.") no cae tan parejo entre renglones como el español con el
+   wrap por defecto -- text-wrap: balance le pide al navegador redistribuir
+   las palabras para que todos los renglones queden con un ancho similar,
+   en vez de llenar cada renglón al maximo antes de saltar al siguiente.
+   Scopeado con html[lang="en"] (no una clase nueva en el span, no toca
+   home.css para el resto del sitio) para no afectar el titulo en español,
+   que ya wrappea parejo tal cual esta. Progressive enhancement: en un
+   navegador que no soporte la propiedad, el titulo sigue wrappeando
+   normal, sin romperse. */
+html[lang="en"] .hero__title {
+  text-wrap: balance;
+}
+
 .hero__lead {
   grid-column: 1 / span 8;
   font-size: clamp(1.5rem, 2vw, 2rem); /* nivel 2: bajada editorial, mas grande que antes */
@@ -172,6 +187,7 @@
   grid-column: 1 / span 7;
   font-size: var(--fs-h1);
   margin-top: 14px;
+  text-wrap: balance;
 }
 
 /* Destacado puntual dentro del titulo de "Trabajo seleccionado", mismo

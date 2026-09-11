@@ -36,6 +36,11 @@
       <a href="#trabajo">Trabajo</a>
       <a href="#perfil">Sobre mí</a>
       <a href="#contacto">Contacto</a>
+      <div class="language-switcher" aria-label="Selector de idioma">
+        <span class="language-switcher__item language-switcher__item--active" aria-current="true">ES</span>
+        <span class="language-switcher__sep">/</span>
+        <a class="language-switcher__item" href="en/index.html">EN</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -66,7 +71,7 @@
   <section class="work" id="trabajo">
     <div class="container">
       <div class="grid work__header">
-        <h2 class="work__title">Proyectos desarrollados en colaboración con <span class="work__title-highlight typewriter" data-typewriter data-speed="40">investigadores, divulgadores e instituciones.</span></h2>
+        <h2 class="work__title">Algunos proyectos que representan <span class="work__title-highlight typewriter" data-typewriter data-speed="40">mi forma de trabajar.</span></h2>
       </div>
 
       <div class="project-list">
@@ -82,7 +87,7 @@
           <div class="project-preview__content">
             <span class="category-label project-preview__category">01 / Comunicación científica</span>
             <h3 class="project-preview__name">Andrés Rieznik</h3>
-            <p class="project-preview__description">Estrategia, producción y desarrollo de formatos para una presencia digital sostenida.</p>
+            <p class="project-preview__description">Asesoría en comunicación y producción de contenidos para articular divulgación científica, educación y lenguajes propios de las plataformas digitales.</p>
             <p class="project-preview__roles">Estrategia · Producción · Edición · Desarrollo de formatos · Canales</p>
 
             <div class="project-preview__stat">
@@ -236,11 +241,10 @@
            <article class="profile-article"> dentro de
            .profile-articles__list, sin escribir CSS nuevo. id="artitulos"
            es el destino del link "Volver a Artículos" desde la pagina
-           individual de cada articulo. -->
+           individual de cada articulo. El titulo grande y la bajada
+           editorial de esta subseccion se quitaron por pedido del usuario
+           -- el listado de articulos en si (Articulo 01) se mantiene. -->
       <div class="profile-articles" id="artitulos">
-        <h2 class="profile-articles__title">Artículos</h2>
-        <p class="profile-articles__intro">Hay un sentido político en la comunicación: las redes moldean nuestra visión del mundo y la forma en que interactuamos entre nosotros. En esta sección reúno algunas de las reflexiones que me surgen al pensar estas transformaciones.</p>
-
         <div class="profile-articles__list">
           <article class="profile-article">
             <a class="profile-article__link" href="./articulos/autocensura-y-nueva-lengua/index.html">
@@ -251,6 +255,7 @@
           </article>
         </div>
       </div>
+
     </div>
   </section>
 

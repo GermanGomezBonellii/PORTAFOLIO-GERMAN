@@ -130,6 +130,22 @@ h1, h2, h3, h4 {
   white-space: nowrap;
 }
 
+/* Utilidad genérica: pega una palabra a la puntuación que la sigue de
+   inmediato (ej. una palabra dentro de un span estilizado + una coma o
+   punto justo después, sin espacio) para que nunca se separen entre
+   líneas. Hace falta sobre todo cuando la palabra vive en un elemento
+   inline-block (ej. .profile-highlight, ver profile.css): un inline-block
+   siempre admite un salto de línea justo después de sí mismo, incluso sin
+   espacio en el HTML, así que la puntuación puede terminar sola al
+   principio del renglón siguiente. Envolver ambos (palabra + puntuación)
+   en un span con esta clase no afecta ningún estilo propio de la palabra
+   (el span interno conserva el suyo, ej. el subrayado celeste) -- solo
+   evita que el conjunto se corte en dos líneas distintas. Reutilizable en
+   cualquier caso futuro con el mismo problema. */
+.no-break {
+  white-space: nowrap;
+}
+
 /* -- Foco accesible ------------------------------------------------------ */
 a:focus-visible,
 button:focus-visible {
