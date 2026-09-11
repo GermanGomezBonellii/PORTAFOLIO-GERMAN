@@ -6,15 +6,46 @@
 <title>Camila Perochena — Germán Gómez Bonelli</title>
 <meta name="description" content="Historia y comunicación política — edición y adaptación de contenidos para plataformas digitales.">
 
+<!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
+     y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
+     para no duplicar contenido a mano. og:image usa ruta relativa: funciona para
+     preview local, pero la mayoria de los crawlers (Facebook, LinkedIn, WhatsApp)
+     necesitan una URL absoluta para poder descargar la imagen -- una vez que el
+     sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
+     algo como https://tu-dominio.com/img/logo.png. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Camila Perochena — Germán Gómez Bonelli">
+<meta property="og:description" content="Historia y comunicación política — edición y adaptación de contenidos para plataformas digitales.">
+<meta property="og:image" content="../../img/logo.png">
+<meta property="og:locale" content="es_AR">
+
 <!-- Favicon / isotipo del portfolio -->
 <link rel="icon" type="image/png" href="../../img/logo.png">
 <link rel="apple-touch-icon" href="../../img/logo.png">
 
 <!-- Merriweather (titulos y headings principales, var(--font-display)).
-     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero). -->
+     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero).
+     display=optional (antes: swap) -- bugfix del "glitch" reportado por el
+     usuario al cambiar de idioma en las subpaginas: con swap, el navegador
+     pinta primero el fallback (Georgia, bastante mas angosto que
+     Merriweather) y reemplaza la fuente en cuanto termina de bajarla, sin
+     importar cuanto tarde -- ese reemplazo mueve el texto de los headings
+     grandes (hero, eyebrows) y se ve como si la pagina "se redimensionara".
+     Cada cambio de idioma es una navegacion de pagina completa (sitio sin
+     backend, un <html> por idioma), asi que ese salto podia repetirse en
+     cada switch si la fuente no llegaba a tiempo. optional le da al
+     navegador una ventana muy corta para tener la fuente lista ANTES de
+     pintar; si no llega a tiempo usa el fallback para toda esa vista y no
+     la reemplaza despues -- se elimina el salto a costa de, en una
+     conexion muy lenta y sin cache todavia, no mostrar Merriweather en esa
+     carga puntual (con la fuente ya en cache, que es el caso normal
+     navegando el sitio, esto no pasa: se ve igual que con swap). Mismo
+     cambio replicado tal cual en los otros 9 HTML del sitio que cargan
+     esta misma fuente (home ES/EN, los 3 casos ES/EN, el articulo ES/EN),
+     para que el comportamiento sea consistente en todas las paginas. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
 
 <link rel="stylesheet" href="../../assets/css/base.css">
 <link rel="stylesheet" href="../../assets/css/components.css">

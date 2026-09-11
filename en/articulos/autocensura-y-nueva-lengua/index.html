@@ -6,15 +6,32 @@
 <title>Self-censorship and Newspeak: the mechanism no one talks about — Germán Gómez Bonelli</title>
 <meta name="description" content="From “unaliving” to “the painter with the mustache,” the algorithm is changing our language. How can we prevent violence without talking about it?">
 
+<!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
+     y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
+     para no duplicar contenido a mano. og:image usa ruta relativa: funciona para
+     preview local, pero la mayoria de los crawlers (Facebook, LinkedIn, WhatsApp)
+     necesitan una URL absoluta para poder descargar la imagen -- una vez que el
+     sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
+     algo como https://tu-dominio.com/img/logo.png. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Self-censorship and Newspeak: the mechanism no one talks about — Germán Gómez Bonelli">
+<meta property="og:description" content="From “unaliving” to “the painter with the mustache,” the algorithm is changing our language. How can we prevent violence without talking about it?">
+<meta property="og:image" content="../../../img/logo.png">
+<meta property="og:locale" content="en_US">
+
 <!-- Favicon / isotipo del portfolio -->
 <link rel="icon" type="image/png" href="../../../img/logo.png">
 <link rel="apple-touch-icon" href="../../../img/logo.png">
 
 <!-- Merriweather: mismo criterio que el resto de las paginas internas
-     (titulos y headings principales, var(--font-display)). -->
+     (titulos y headings principales, var(--font-display)). display=optional
+     (antes: swap) -- bugfix del "glitch" de resize al cambiar de idioma,
+     ver el comentario completo en proyectos/andres-rieznik/index.html;
+     mismo cambio replicado tal cual en los 10 HTML del sitio que cargan
+     esta fuente. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
 
 <link rel="stylesheet" href="../../../assets/css/base.css">
 <link rel="stylesheet" href="../../../assets/css/components.css">

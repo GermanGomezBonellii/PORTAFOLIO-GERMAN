@@ -119,13 +119,6 @@ a.language-switcher__item:hover {
     display: flex;
   }
 
-  /* Panel lateral: entra/sale por la derecha con transform (nunca
-     display:none, que no anima). visibility + el delay de 350ms en su
-     propia transición sacan el panel de la navegación por teclado/lector
-     de pantalla y le quitan los clicks recien cuando termina de
-     desplazarse afuera -- mientras está "abierto" (.nav-open) ambas
-     cambian a instante. pointer-events se mantiene además por si algún
-     navegador no soporta la transición de visibility. */
   .site-header__nav {
     position: fixed;
     inset: 0;
@@ -134,27 +127,16 @@ a.language-switcher__item:hover {
     flex-direction: column;
     gap: 0;
     padding: 8px var(--margin) 40px;
-    transform: translateX(100%);
-    visibility: hidden;
+    transform: translateY(-8px);
+    opacity: 0;
     pointer-events: none;
-    transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 350ms;
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
   }
 
   .nav-open .site-header__nav {
-    transform: translateX(0);
-    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
     pointer-events: auto;
-    transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* El body recibe la misma clase .nav-open que ya togglea main.js
-     (body.classList.toggle('nav-open')) -- bloquea el scroll de la
-     página de atrás mientras el panel está abierto y lo restaura solo
-     con sacar la clase, sin dejar overflow:hidden pegado. Scopeado a este
-     breakpoint: en desktop el toggle nunca se usa (el botón hamburguesa
-     está en display:none), así que esto no puede afectarlo. */
-  body.nav-open {
-    overflow: hidden;
   }
 
   .site-header__nav a {
@@ -170,34 +152,6 @@ a.language-switcher__item:hover {
     font-family: var(--font-body);
     padding-block: 14px;
     width: 100%;
-  }
-
-  /* Bug: ".site-header__nav a" (regla de arriba) apunta a CUALQUIER <a>
-     descendiente, incluido el <a> del selector de idioma (el idioma NO
-     activo siempre es un <a>, el activo es un <span>) -- le pegaba
-     width:100% como si fuera un link de navegación entero. Como flex-item
-     sin flex-basis propio, ese width:100% se usa como flex-basis, y el
-     algoritmo de flexbox le da casi todo el ancho sobrante de
-     .language-switcher (que sí debe medir 100% -- eso no cambia). Efecto:
-     el texto del <a> (alineado a la izquierda dentro de esa caja ancha)
-     terminaba empujando "/" y el otro idioma lejos hacia la derecha --
-     invisible cuando el <a> es el ÚLTIMO elemento (ES: "ES / EN" con EN
-     como <a> al final, la caja ancha no tiene nada después que
-     desplazar) pero muy visible cuando es el PRIMERO (EN: "ES" como <a>
-     al principio empuja "/ EN" lejos a la derecha) -- de ahí que en
-     español se viera bien y en inglés no. Selector más específico
-     (.language-switcher a...) le devuelve al link su ancho natural sin
-     tocar el width:100% de .language-switcher como grupo ni el de los
-     demás links de navegación. */
-  .site-header__nav .language-switcher a.language-switcher__item {
-    width: auto;
-  }
-}
-
-@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
-  .site-header__nav,
-  .nav-open .site-header__nav {
-    transition: none;
   }
 }
 
@@ -311,7 +265,23 @@ a.language-switcher__item:hover {
   align-items: flex-end;
 }
 
-.media::after {
+/* Solo genera el pseudo-elemento cuando el bloque realmente tiene
+   data-label (el texto de fallback si la imagen no carga, ver onerror en
+   el HTML). Antes era ".media::after" sin condición: con content:attr()
+   sobre un atributo inexistente el texto queda vacío, pero el pseudo-
+   elemento se sigue generando igual, con su padding:14px intacto. En un
+   .media con display:flex y una <img> real en flujo (no absoluta) como
+   hijo -- el caso de la captura de TikTok y el isotipo en "Una cuenta
+   nueva" de Abuelas -- ese pseudo-elemento vacío pasaba a ser un segundo
+   hijo del flex que igual reservaba sus 28px (14px + 14px) de ancho,
+   empujando la imagen y dejando expuesto el fondo gris de .media al
+   costado -- el bug reportado ("el logo se ve grande con un reborde gris
+   al costado" en mobile, donde el bloque ocupa el ancho completo de la
+   columna). No afecta a los .media que sí usan data-label (case-reel__img
+   y graphic-carousel__img son position:absolute, no participan del flex,
+   así que el fallback sigue funcionando igual que antes si la imagen
+   falla). */
+.media[data-label]::after {
   content: attr(data-label);
   font-size: var(--fs-micro);
   letter-spacing: 0.08em;
