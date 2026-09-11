@@ -278,96 +278,120 @@
   </div>
 
   <!-- MÁS MATERIAL
-       Subsección chica y deliberadamente secundaria (no compite con
-       "Trabajo seleccionado" de arriba: sin .case-work, hereda la columna
-       angosta de .case-section__body, y el carrusel usa una altura menor
-       que el de Andrés Rieznik). Activada con 7 piezas de archivo reales
-       (1.jpeg a 7.jpeg -- NO confundir con 1.png a 6.png de "Trabajo
-       seleccionado" arriba, que son las miniaturas de los TikToks).
+       Rediseño: composición editorial de dos columnas dentro de
+       .case-section__body (texto a la izquierda, carrusel a la derecha),
+       tomando tal cual el mismo layout que "Piezas gráficas de
+       lanzamiento" en Andrés Rieznik (.launch-graphics-layout /
+       __text / __media, proyecto.css) -- 3fr/5fr = 37.5%/62.5% de
+       columnas, exactamente en el rango 35-40%/60-65% pedido, cero CSS
+       nuevo para el layout en sí. .case-work agregado a este <section>
+       únicamente para que .case-section__body use el ancho completo del
+       grid (grid-column: 1/span12, mismo criterio que "Trabajo
+       seleccionado" y "Derechos humanos..." de esta misma página) en vez
+       de la columna angosta de 7/12 -- ya no hay un .case-section__label
+       aparte: el eyebrow "Más material" pasó a vivir DENTRO de la columna
+       de texto, junto con título y bajada, según lo pedido (antes estaba
+       arriba de todo el .grid, separado del texto).
 
-       Reutiliza tal cual el componente .graphic-carousel / [data-carousel]
-       de Andrés Rieznik (mismo JS genérico en main.js, cero líneas nuevas
-       de JS: scroll-snap nativo resuelve swipe/mouse, el JS solo agrega
-       flechas, contador, arrastre y clase activa). Único agregado: el
-       modificador .graphic-carousel--natural (ver proyecto.css) que
-       reemplaza el aspect-ratio fijo del carrusel original (pensado para
-       5 piezas con la misma proporción) por una altura fija con
-       object-fit: contain, porque estas 7 piezas tienen proporciones muy
-       distintas entre sí (algunas horizontales, la mayoría verticales) y
-       no hay que deformarlas ni recortarlas. -->
-  <section class="case-section fade-in">
+       Se eliminó el atributo data-label="Imagen no disponible" de las 7
+       piezas: ese atributo alimentaba el ::after de .media (ver
+       components.css) y aparecía como texto "IMAGEN NO DISPONIBLE" en
+       pantalla. Ahora, si una imagen llegara a fallar, el onerror ya
+       existente la oculta (this.style.display='none') sin generar ningún
+       texto ni tarjeta de reemplazo -- el alt descriptivo se mantiene en
+       el HTML de cualquier forma, por accesibilidad.
+
+       Carrusel en sí sin cambios de fondo: mismas 7 piezas reales
+       (1.jpeg-7.jpeg), mismo modificador .graphic-carousel--natural
+       (altura fija + object-fit: contain, sin recortar/deformar), mismo
+       contador 01/07, mismas flechas, mismo swipe/scroll nativo. Al vivir
+       ahora dentro de .launch-graphics-layout__media, hereda también su
+       ancho de pieza (--carousel-slide-width: 84% de esa columna, ya
+       definido para Andrés) en vez del 55% calculado para la columna
+       angosta anterior -- sigue mostrando una pieza protagonista + peek
+       de la siguiente, ahora sobre una columna más ancha. -->
+  <section class="case-section case-work fade-in">
     <div class="grid">
-      <span class="eyebrow case-section__label">Más material</span>
       <div class="case-section__body">
-        <div class="graphic-carousel graphic-carousel--natural" data-carousel>
-          <div class="graphic-carousel__frame">
-            <div
-              class="graphic-carousel__viewport"
-              data-carousel-viewport
-              tabindex="0"
-              role="region"
-              aria-roledescription="carrusel"
-              aria-label="Más material de archivo del proyecto Abuelas de Plaza de Mayo"
-            >
-              <ul class="graphic-carousel__track" data-carousel-track>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="1 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 1 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/1.jpeg" alt="Recorte de una revista japonesa sobre los niños desaparecidos en Argentina, con fotos en blanco y negro y relatos en japonés de varios bebés y madres secuestrados durante la última dictadura." loading="eager" width="1524" height="1080" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="2 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 2 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/2.jpeg" alt="Afiche histórico &quot;Niños desaparecidos&quot; de Abuelas de Plaza de Mayo, con filas de fotos tipo carnet de chicos buscados, el texto &quot;Ya hemos encontrado a 11 niños&quot; y un listado de jóvenes madres secuestradas embarazadas." loading="lazy" width="1080" height="1572" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="3 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 3 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/3.jpeg" alt="Fotografía en blanco y negro de una pared con el texto pintado a mano &quot;Mi abuela me está buscando, ayúdela a encontrarme, 10 de Diciembre&quot; junto a un niño parado al lado, por el Día Universal de los Derechos Humanos." loading="lazy" width="1492" height="1080" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="4 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 4 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/4.jpeg" alt="Collage &quot;ide?tidad&quot;: foto de dos hermanas abrazadas en un sillón con flechas manuscritas que señalan rasgos heredados (los ojos del papá, el pelo del abuelo, la nariz y la boca de la mamá, las manos del papá)." loading="lazy" width="1080" height="1516" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="5 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 5 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/5.jpeg" alt="Fotografía de un afiche pegado en una persiana metálica que anuncia &quot;La muestra sobre el niño desaparecido y nacido en cautiverio&quot;, organizada por Abuelas de Plaza de Mayo en noviembre de 1984." loading="lazy" width="959" height="1400" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="6 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 6 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/6.jpeg" alt="Pieza gráfica en blanco y negro de una mano abierta con las puntas de los dedos envueltas en tiras de papel con huellas dactilares distintas y el texto &quot;La identidad no se impone&quot;, de Abuelas de Plaza de Mayo." loading="lazy" width="997" height="1481" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="7 de 7">
-                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 7 en tamaño completo">
-                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
-                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/7.jpeg" alt="Ilustración en blanco y negro titulada &quot;Ellas están más allá 2&quot;: un grupo de mujeres con pañuelos en la cabeza caminando juntas de noche, obra de la artista Marta González." loading="lazy" width="1080" height="1482" onerror="this.style.display='none';">
-                    </div>
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <button class="graphic-carousel__arrow graphic-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Pieza anterior">‹</button>
-            <button class="graphic-carousel__arrow graphic-carousel__arrow--next" type="button" data-carousel-next aria-label="Pieza siguiente">›</button>
+        <div class="launch-graphics-layout">
+          <div class="launch-graphics-layout__text">
+            <span class="eyebrow case-section__label">Más material</span>
+            <h4 class="project-feature__graphics-title">Archivo, gráfica y memoria</h4>
+            <p class="project-feature__graphics-text">Además de la producción audiovisual, parte del trabajo estuvo vinculada al uso y adaptación de materiales de archivo. Esta selección reúne algunas piezas gráficas e imágenes relacionadas con la historia y la comunicación de Abuelas de Plaza de Mayo, y muestra otra dimensión de los materiales con los que trabajé durante el proyecto.</p>
           </div>
 
-          <div class="graphic-carousel__counter" aria-live="polite" aria-atomic="true">
-            <span data-carousel-current>01</span> / <span data-carousel-total>07</span>
+          <div class="launch-graphics-layout__media">
+            <div class="graphic-carousel graphic-carousel--natural" data-carousel>
+              <div class="graphic-carousel__frame">
+                <div
+                  class="graphic-carousel__viewport"
+                  data-carousel-viewport
+                  tabindex="0"
+                  role="region"
+                  aria-roledescription="carrusel"
+                  aria-label="Más material de archivo del proyecto Abuelas de Plaza de Mayo"
+                >
+                  <ul class="graphic-carousel__track" data-carousel-track>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="1 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 1 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/1.jpeg" alt="Recorte de una revista japonesa sobre los niños desaparecidos en Argentina, con fotos en blanco y negro y relatos en japonés de varios bebés y madres secuestrados durante la última dictadura." loading="eager" width="1524" height="1080" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="2 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 2 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/2.jpeg" alt="Afiche histórico &quot;Niños desaparecidos&quot; de Abuelas de Plaza de Mayo, con filas de fotos tipo carnet de chicos buscados, el texto &quot;Ya hemos encontrado a 11 niños&quot; y un listado de jóvenes madres secuestradas embarazadas." loading="lazy" width="1080" height="1572" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="3 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 3 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/3.jpeg" alt="Fotografía en blanco y negro de una pared con el texto pintado a mano &quot;Mi abuela me está buscando, ayúdela a encontrarme, 10 de Diciembre&quot; junto a un niño parado al lado, por el Día Universal de los Derechos Humanos." loading="lazy" width="1492" height="1080" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="4 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 4 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/4.jpeg" alt="Collage &quot;ide?tidad&quot;: foto de dos hermanas abrazadas en un sillón con flechas manuscritas que señalan rasgos heredados (los ojos del papá, el pelo del abuelo, la nariz y la boca de la mamá, las manos del papá)." loading="lazy" width="1080" height="1516" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="5 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 5 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/5.jpeg" alt="Fotografía de un afiche pegado en una persiana metálica que anuncia &quot;La muestra sobre el niño desaparecido y nacido en cautiverio&quot;, organizada por Abuelas de Plaza de Mayo en noviembre de 1984." loading="lazy" width="959" height="1400" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="6 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 6 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/6.jpeg" alt="Pieza gráfica en blanco y negro de una mano abierta con las puntas de los dedos envueltas en tiras de papel con huellas dactilares distintas y el texto &quot;La identidad no se impone&quot;, de Abuelas de Plaza de Mayo." loading="lazy" width="997" height="1481" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                    <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="7 de 7">
+                      <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 7 en tamaño completo">
+                        <div class="media graphic-carousel__media">
+                          <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/7.jpeg" alt="Ilustración en blanco y negro titulada &quot;Ellas están más allá 2&quot;: un grupo de mujeres con pañuelos en la cabeza caminando juntas de noche, obra de la artista Marta González." loading="lazy" width="1080" height="1482" onerror="this.style.display='none';">
+                        </div>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+
+                <button class="graphic-carousel__arrow graphic-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Pieza anterior">‹</button>
+                <button class="graphic-carousel__arrow graphic-carousel__arrow--next" type="button" data-carousel-next aria-label="Pieza siguiente">›</button>
+              </div>
+
+              <div class="graphic-carousel__counter" aria-live="polite" aria-atomic="true">
+                <span data-carousel-current>01</span> / <span data-carousel-total>07</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

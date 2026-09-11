@@ -1554,6 +1554,21 @@
   align-items: start;
 }
 
+/* -- "Más material" (Abuelas): reutiliza .launch-graphics-layout tal cual
+   (Andrés Rieznik), pero acá el eyebrow de sección ("Más material" /
+   "More material") no vive arriba de todo el .grid como en el resto del
+   sitio, sino DENTRO de .launch-graphics-layout__text, junto al título y
+   la bajada -- pedido explícito de composición. .case-section__label es
+   normalmente un <span> que solo se comporta como bloque por ser hijo
+   directo de .grid (todo hijo directo de un grid container es una caja de
+   bloque); acá, anidado dentro de __text, necesita su propio
+   display:block + margen -- mismo valor (14px) que .graphic-carousel__label
+   más abajo, para no inventar un espaciado nuevo. */
+.launch-graphics-layout__text > .case-section__label {
+  display: block;
+  margin-bottom: 14px;
+}
+
 /* El carrusel deja su ancho fijo angosto (440px, pensado para cuando
    vivía centrado y solo debajo del título) y pasa a ocupar el 100% de
    su columna -- override scopeado acá adentro, sin tocar los valores
