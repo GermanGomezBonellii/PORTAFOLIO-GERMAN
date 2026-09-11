@@ -277,45 +277,92 @@
   </section>
   </div>
 
-  <!-- MÁS MATERIAL
-       Subsección chica y deliberadamente secundaria (no compite con
-       "Trabajo seleccionado" de arriba) para material futuro: imágenes,
-       capturas, piezas de archivo, fotos, gráficas. Carrusel horizontal
-       sin librerías -- scroll-snap nativo (.media-strip, reutilizable
-       para cualquier galería secundaria futura del sitio, no exclusiva
-       de Abuelas). A propósito SIN aspect-ratio fijo en
-       .media-strip__item (el material futuro puede variar mucho de
-       proporción) y a propósito SIN ningún <li> real todavía: un
-       placeholder vacío sin proporción definida se vería como una caja
-       gris arbitraria (justo lo que se pidió evitar), así que toda la
-       sección queda comentada -- cero salida visible -- hasta que haya
-       material real. Para activarla: descomentar este bloque completo y
-       reemplazar/agregar los .media-strip__item con contenido real
-       (cada uno puede llevar su propia proporción vía una clase .media
-       existente como media--9-16, media--16-9, media--square, o media
-       sin modificador para que el <img> defina su propia proporción
-       natural).
-
+  <!-- MÁS MATERIAL (EN) -- misma sección activada en la versión ES
+       (proyectos/abuelas/index.html), mismo componente .graphic-carousel
+       reutilizado tal cual, mismo modificador .graphic-carousel--natural
+       en proyecto.css (archivo compartido, ya actualizado desde la
+       versión ES). Único cambio real acá: eyebrow, aria-labels y alt en
+       inglés, y rutas de imagen con un nivel más "../" (esta página EN
+       vive un nivel más adentro). Mismas 7 imágenes reales
+       (1.jpeg-7.jpeg). -->
   <section class="case-section fade-in">
     <div class="grid">
-      <span class="eyebrow case-section__label">Más material</span>
+      <span class="eyebrow case-section__label">More material</span>
       <div class="case-section__body">
-        <div class="media-strip">
-          Ejemplo de un item real a agregar (duplicar tantas veces como
-          haga falta, con contenido real -- SIN los delimitadores de
-          comentario de HTML de acá arriba/abajo, que son solo de esta
-          nota y no van en el marcado final):
-          <div class="media-strip__item">
-            <div class="media" data-label="...">
-              <img src="../../img/proyectos/abuelas/ejemplo.webp" alt="..." loading="lazy">
+        <div class="graphic-carousel graphic-carousel--natural" data-carousel>
+          <div class="graphic-carousel__frame">
+            <div
+              class="graphic-carousel__viewport"
+              data-carousel-viewport
+              tabindex="0"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="More archival material from the Abuelas de Plaza de Mayo project"
+            >
+              <ul class="graphic-carousel__track" data-carousel-track>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="1 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 1 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/1.jpeg" alt="Clipping from a Japanese magazine about Argentina's disappeared children, with black-and-white photos and accounts in Japanese of several babies and mothers abducted during the last dictatorship." loading="eager" width="1524" height="1080" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="2 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 2 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/2.jpeg" alt="Historic &quot;Missing Children&quot; poster from Abuelas de Plaza de Mayo, with rows of ID-style photos of sought children, the text &quot;We have already found 11 children,&quot; and a list of young mothers abducted while pregnant." loading="lazy" width="1080" height="1572" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="3 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 3 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/3.jpeg" alt="Black-and-white photograph of a wall with hand-painted text reading &quot;My grandmother is looking for me, help her find me, December 10th&quot; next to a child standing by it, for the Universal Human Rights Day." loading="lazy" width="1492" height="1080" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="4 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 4 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/4.jpeg" alt="&quot;ide?tity&quot; collage: a photo of two sisters embracing on a couch with hand-drawn arrows pointing out inherited features (dad's eyes, grandpa's hair, mom's nose and mouth, dad's hands)." loading="lazy" width="1080" height="1516" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="5 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 5 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/5.jpeg" alt="Photograph of a poster taped to a metal shutter announcing &quot;The exhibit on children who disappeared and were born in captivity,&quot; organized by Abuelas de Plaza de Mayo in November 1984." loading="lazy" width="959" height="1400" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="6 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 6 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/6.jpeg" alt="Black-and-white graphic piece of an open hand with its fingertips wrapped in strips of paper bearing different fingerprints, and the text &quot;Identity cannot be imposed,&quot; by Abuelas de Plaza de Mayo." loading="lazy" width="997" height="1481" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="item" aria-label="7 of 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="View archival piece 7 at full size">
+                    <div class="media graphic-carousel__media" data-label="Image not available">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../../img/proyectos/abuelas/7.jpeg" alt="Black-and-white illustration titled &quot;Ellas están más allá 2&quot; (&quot;They are further beyond, 2&quot;): a group of women wearing headscarves walking together at night, by artist Marta González." loading="lazy" width="1080" height="1482" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+              </ul>
             </div>
+
+            <button class="graphic-carousel__arrow graphic-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous piece">‹</button>
+            <button class="graphic-carousel__arrow graphic-carousel__arrow--next" type="button" data-carousel-next aria-label="Next piece">›</button>
+          </div>
+
+          <div class="graphic-carousel__counter" aria-live="polite" aria-atomic="true">
+            <span data-carousel-current>01</span> / <span data-carousel-total>07</span>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  -->
 
   <!-- MI ROL
        Version interactiva (accordion), mismo componente .role-accordion

@@ -279,43 +279,100 @@
 
   <!-- MÁS MATERIAL
        Subsección chica y deliberadamente secundaria (no compite con
-       "Trabajo seleccionado" de arriba) para material futuro: imágenes,
-       capturas, piezas de archivo, fotos, gráficas. Carrusel horizontal
-       sin librerías -- scroll-snap nativo (.media-strip, reutilizable
-       para cualquier galería secundaria futura del sitio, no exclusiva
-       de Abuelas). A propósito SIN aspect-ratio fijo en
-       .media-strip__item (el material futuro puede variar mucho de
-       proporción) y a propósito SIN ningún <li> real todavía: un
-       placeholder vacío sin proporción definida se vería como una caja
-       gris arbitraria (justo lo que se pidió evitar), así que toda la
-       sección queda comentada -- cero salida visible -- hasta que haya
-       material real. Para activarla: descomentar este bloque completo y
-       reemplazar/agregar los .media-strip__item con contenido real
-       (cada uno puede llevar su propia proporción vía una clase .media
-       existente como media--9-16, media--16-9, media--square, o media
-       sin modificador para que el <img> defina su propia proporción
-       natural).
+       "Trabajo seleccionado" de arriba: sin .case-work, hereda la columna
+       angosta de .case-section__body, y el carrusel usa una altura menor
+       que el de Andrés Rieznik). Activada con 7 piezas de archivo reales
+       (1.jpeg a 7.jpeg -- NO confundir con 1.png a 6.png de "Trabajo
+       seleccionado" arriba, que son las miniaturas de los TikToks).
 
+       Reutiliza tal cual el componente .graphic-carousel / [data-carousel]
+       de Andrés Rieznik (mismo JS genérico en main.js, cero líneas nuevas
+       de JS: scroll-snap nativo resuelve swipe/mouse, el JS solo agrega
+       flechas, contador, arrastre y clase activa). Único agregado: el
+       modificador .graphic-carousel--natural (ver proyecto.css) que
+       reemplaza el aspect-ratio fijo del carrusel original (pensado para
+       5 piezas con la misma proporción) por una altura fija con
+       object-fit: contain, porque estas 7 piezas tienen proporciones muy
+       distintas entre sí (algunas horizontales, la mayoría verticales) y
+       no hay que deformarlas ni recortarlas. -->
   <section class="case-section fade-in">
     <div class="grid">
       <span class="eyebrow case-section__label">Más material</span>
       <div class="case-section__body">
-        <div class="media-strip">
-          Ejemplo de un item real a agregar (duplicar tantas veces como
-          haga falta, con contenido real -- SIN los delimitadores de
-          comentario de HTML de acá arriba/abajo, que son solo de esta
-          nota y no van en el marcado final):
-          <div class="media-strip__item">
-            <div class="media" data-label="...">
-              <img src="../../img/proyectos/abuelas/ejemplo.webp" alt="..." loading="lazy">
+        <div class="graphic-carousel graphic-carousel--natural" data-carousel>
+          <div class="graphic-carousel__frame">
+            <div
+              class="graphic-carousel__viewport"
+              data-carousel-viewport
+              tabindex="0"
+              role="region"
+              aria-roledescription="carrusel"
+              aria-label="Más material de archivo del proyecto Abuelas de Plaza de Mayo"
+            >
+              <ul class="graphic-carousel__track" data-carousel-track>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="1 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 1 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/1.jpeg" alt="Recorte de una revista japonesa sobre los niños desaparecidos en Argentina, con fotos en blanco y negro y relatos en japonés de varios bebés y madres secuestrados durante la última dictadura." loading="eager" width="1524" height="1080" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="2 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 2 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/2.jpeg" alt="Afiche histórico &quot;Niños desaparecidos&quot; de Abuelas de Plaza de Mayo, con filas de fotos tipo carnet de chicos buscados, el texto &quot;Ya hemos encontrado a 11 niños&quot; y un listado de jóvenes madres secuestradas embarazadas." loading="lazy" width="1080" height="1572" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="3 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 3 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/3.jpeg" alt="Fotografía en blanco y negro de una pared con el texto pintado a mano &quot;Mi abuela me está buscando, ayúdela a encontrarme, 10 de Diciembre&quot; junto a un niño parado al lado, por el Día Universal de los Derechos Humanos." loading="lazy" width="1492" height="1080" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="4 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 4 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/4.jpeg" alt="Collage &quot;ide?tidad&quot;: foto de dos hermanas abrazadas en un sillón con flechas manuscritas que señalan rasgos heredados (los ojos del papá, el pelo del abuelo, la nariz y la boca de la mamá, las manos del papá)." loading="lazy" width="1080" height="1516" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="5 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 5 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/5.jpeg" alt="Fotografía de un afiche pegado en una persiana metálica que anuncia &quot;La muestra sobre el niño desaparecido y nacido en cautiverio&quot;, organizada por Abuelas de Plaza de Mayo en noviembre de 1984." loading="lazy" width="959" height="1400" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="6 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 6 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/6.jpeg" alt="Pieza gráfica en blanco y negro de una mano abierta con las puntas de los dedos envueltas en tiras de papel con huellas dactilares distintas y el texto &quot;La identidad no se impone&quot;, de Abuelas de Plaza de Mayo." loading="lazy" width="997" height="1481" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+                <li class="graphic-carousel__slide" data-carousel-slide role="group" aria-roledescription="pieza" aria-label="7 de 7">
+                  <button class="graphic-carousel__item" type="button" data-carousel-open aria-label="Ver pieza de archivo 7 en tamaño completo">
+                    <div class="media graphic-carousel__media" data-label="Imagen no disponible">
+                      <img class="graphic-carousel__img" data-carousel-img src="../../img/proyectos/abuelas/7.jpeg" alt="Ilustración en blanco y negro titulada &quot;Ellas están más allá 2&quot;: un grupo de mujeres con pañuelos en la cabeza caminando juntas de noche, obra de la artista Marta González." loading="lazy" width="1080" height="1482" onerror="this.style.display='none';">
+                    </div>
+                  </button>
+                </li>
+              </ul>
             </div>
+
+            <button class="graphic-carousel__arrow graphic-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Pieza anterior">‹</button>
+            <button class="graphic-carousel__arrow graphic-carousel__arrow--next" type="button" data-carousel-next aria-label="Pieza siguiente">›</button>
+          </div>
+
+          <div class="graphic-carousel__counter" aria-live="polite" aria-atomic="true">
+            <span data-carousel-current>01</span> / <span data-carousel-total>07</span>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  -->
 
   <!-- MI ROL
        Version interactiva (accordion), mismo componente .role-accordion

@@ -1333,6 +1333,34 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+/* -- Bugfix: "Trabajo seleccionado" de Andrés Rieznik quedaba vacío en
+   mobile (verificado con Playwright a 390x844: la sección completa mide
+   ~5664px de alto en ese viewport -- 9 tarjetas apiladas en 1 columna,
+   .grid + .case-work__youtube-band, todo dentro del mismo <section
+   class="fade-in">). .fade-in usa IntersectionObserver con threshold:
+   0.15 (ver assets/js/main.js) -- ese umbral es un porcentaje del alto
+   TOTAL del propio elemento observado, no del viewport: acá pedía ~850px
+   de intersección simultánea, pero el viewport mide 844px, así que ni
+   scrolleando el elemento a pantalla completa se llega a alcanzar. La
+   sección se queda para siempre en opacity:0 (su estado inicial),
+   invisible aunque el HTML/CSS del contenido y el fondo estén bien --
+   por eso "el fondo también desaparecía": opacity:0 en el <section>
+   apaga a todos sus descendientes, .case-work__youtube-band::before
+   incluido.
+   Fix acotado, sin tocar el fade-in del resto del sitio: nueva clase
+   .case-work--eager-mobile SOLO en el <section> de esta sección de
+   Andrés (ES y EN, mismo archivo de CSS -- cero JS/CSS duplicado). En
+   mobile queda con opacity/transform fijos, sin depender del observer;
+   en escritorio no cambia nada (la regla vive dentro de la media query
+   de 768px). */
+@media (max-width: 768px) {
+  .case-work--eager-mobile.fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* -- Título dentro de .case-reel__caption: usado ahora tanto por los 6
    reels de "Videos para redes" (títulos reales, columna angosta de
    220px) como por los de "Producciones para YouTube" (columna más
@@ -1554,6 +1582,45 @@
 
   .launch-graphics-layout__media {
     margin-top: clamp(20px, 4vw, 28px);
+  }
+}
+
+/* -- Carrusel "Más material" (Abuelas de Plaza de Mayo): mismo componente
+   .graphic-carousel de arriba, sin CSS ni JS propios -- solo este
+   modificador .graphic-carousel--natural, porque las 7 piezas de archivo
+   de esta galería tienen proporciones muy distintas entre sí (algunas
+   horizontales, la mayoría verticales), a diferencia de las 5 piezas de
+   Andrés Rieznik que comparten una única proporción. En vez de
+   aspect-ratio fijo + img absoluto recortando con cover, se fija una
+   altura y el <img> (ya absoluto por el componente base) usa
+   object-fit: contain -- cada pieza se ve completa, sin recortar ni
+   deformar, dentro de una caja de altura estable para que el carrusel no
+   salte al pasar de una pieza horizontal a una vertical. Altura menor que
+   la del carrusel de Andrés a propósito: esta sección es secundaria,
+   viene después de "Trabajo seleccionado" y no debe competir con los seis
+   TikToks. --carousel-slide-width en 55% da un ancho de pieza de
+   aproximadamente 320-420px en los anchos de escritorio típicos del sitio
+   (columna angosta de .case-section__body, ~745-815px), reduciéndose
+   proporcionalmente en tablet junto con el resto del layout. */
+.graphic-carousel--natural .graphic-carousel__media {
+  aspect-ratio: auto;
+  height: clamp(260px, 30vw, 380px);
+}
+
+.graphic-carousel--natural .graphic-carousel__img {
+  object-fit: contain;
+}
+
+.graphic-carousel--natural {
+  --carousel-slide-width: 55%;
+}
+
+@media (max-width: 768px) {
+  /* Mobile: pieza dominante ocupando 80% del ancho visible (dentro del
+     75-85% pedido), con la siguiente asomando -- swipe táctil intacto,
+     mismo criterio que el resto del componente. */
+  .graphic-carousel--natural .graphic-carousel__slide {
+    flex: 0 0 80%;
   }
 }
 
