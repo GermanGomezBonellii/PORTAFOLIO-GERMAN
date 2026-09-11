@@ -578,6 +578,21 @@
   .case-account-media__animation {
     margin-top: clamp(20px, 4vw, 28px);
   }
+  /* Mobile: la captura ya viene topeada a 300px (.case-account-media__screenshot
+     .media, más abajo) -- acá se le da el mismo tope al logo (por defecto
+     ocupaba el ancho completo de la columna, ~350-390px según el viewport,
+     bastante más grande que la captura de arriba) y se centran los dos
+     bloques con margin-inline: auto, para que queden del mismo ancho, uno
+     debajo del otro con los bordes alineados. El logo es cuadrado (300x300
+     real) así que el tope no lo deforma, solo lo achica proporcionalmente.
+     Escapado a este breakpoint a propósito: en desktop los dos bloques van
+     lado a lado en columnas de distinto ancho (3fr/2fr) y ese layout no se
+     toca -- igualar anchos ahí agrandaría el logo en vez de achicarlo. */
+  .case-account-media__screenshot .media,
+  .case-account-media__animation .media {
+    max-width: 300px;
+    margin-inline: auto;
+  }
 }
 
 /* Video de la animación del logo, cuando exista: sin controles visibles,
@@ -1552,21 +1567,6 @@
   grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
   column-gap: var(--gutter);
   align-items: start;
-}
-
-/* -- "Más material" (Abuelas): reutiliza .launch-graphics-layout tal cual
-   (Andrés Rieznik), pero acá el eyebrow de sección ("Más material" /
-   "More material") no vive arriba de todo el .grid como en el resto del
-   sitio, sino DENTRO de .launch-graphics-layout__text, junto al título y
-   la bajada -- pedido explícito de composición. .case-section__label es
-   normalmente un <span> que solo se comporta como bloque por ser hijo
-   directo de .grid (todo hijo directo de un grid container es una caja de
-   bloque); acá, anidado dentro de __text, necesita su propio
-   display:block + margen -- mismo valor (14px) que .graphic-carousel__label
-   más abajo, para no inventar un espaciado nuevo. */
-.launch-graphics-layout__text > .case-section__label {
-  display: block;
-  margin-bottom: 14px;
 }
 
 /* El carrusel deja su ancho fijo angosto (440px, pensado para cuando
