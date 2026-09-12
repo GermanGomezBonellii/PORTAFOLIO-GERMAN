@@ -176,6 +176,29 @@ html[lang="de"] .hero__title {
   }
 }
 
+/* Hero en aleman, solo mobile: "Kommunikationsstrategie" (23 caracteres, sin
+   punto de corte natural) no entra en una sola linea al tamaño mobile
+   normal del titulo (--fs-hero queda fijo en su piso de 2.1rem por debajo
+   de ~768px de ancho) y termina cortandose de forma fea. Pedido del
+   usuario: en vez de agrandar el contenedor o forzar un salto de linea
+   manual, se achica el tamaño de fuente de todo el bloque del hero
+   (titulo, bajada y texto secundario) SOLO para aleman y SOLO en mobile,
+   para que la palabra mas larga entre comoda en una sola linea. No toca
+   ES/EN (que no tienen este problema) ni el tamaño en desktop/tablet.
+   Mismo criterio de scoping por html[lang="de"] ya usado mas arriba para
+   text-wrap:balance del hero__title. */
+@media (max-width: 768px) {
+  html[lang="de"] .hero__title {
+    font-size: 1.4rem;
+  }
+  html[lang="de"] .hero__lead {
+    font-size: 1.05rem;
+  }
+  html[lang="de"] .hero__secondary {
+    font-size: 0.92rem;
+  }
+}
+
 /* -- Trabajo seleccionado --------------------------------------------------- */
 .work {
   padding-block: var(--section-space);
