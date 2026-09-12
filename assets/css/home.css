@@ -197,6 +197,21 @@ html[lang="de"] .hero__title {
   html[lang="de"] .hero__secondary {
     font-size: 0.92rem;
   }
+
+  /* Pedido del usuario: aunque el texto quede mas chico, el hero aleman en
+     mobile debe seguir ocupando toda la primera pantalla (como ya hace en
+     desktop, ver ".hero { min-height: calc(100vh - var(--header-height)); }"
+     mas arriba), en vez de achicarse a la altura de su contenido como hace
+     el resto del sitio en mobile (".hero { min-height: auto; ... }" en el
+     media query anterior). Mayor especificidad por el selector
+     html[lang="de"] alcanza para pisar esa regla sin !important. Solo
+     aleman: en ES/EN "el resto esta bien" (texto del usuario), no se toca.
+     --hero-scroll-length-mobile (130vh, base.css) ya deja de sobra este
+     recorrido de scroll para que el hero sticky quepa entero. */
+  html[lang="de"] .hero {
+    min-height: calc(100vh - var(--header-height));
+    justify-content: center;
+  }
 }
 
 /* -- Trabajo seleccionado --------------------------------------------------- */
