@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germán Gómez Bonelli — Content-Strategie und -Produktion</title>
+<meta name="description" content="Kommunikationsstrategie und Content-Produktion für Wissenschaft und Politik.">
+
+<!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
+     y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
+     para no duplicar contenido a mano. og:image usa ruta relativa: funciona para
+     preview local, pero la mayoria de los crawlers (Facebook, LinkedIn, WhatsApp)
+     necesitan una URL absoluta para poder descargar la imagen -- una vez que el
+     sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
+     algo como https://tu-dominio.com/img/logo.png. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Germán Gómez Bonelli — Content-Strategie und -Produktion">
+<meta property="og:description" content="Kommunikationsstrategie und Content-Produktion für Wissenschaft und Politik.">
+<meta property="og:image" content="../img/logo.png">
+<meta property="og:locale" content="de_DE">
+
+<!-- Favicon / isotipo del portfolio -->
+<link rel="icon" type="image/png" href="../img/logo.png">
+<link rel="apple-touch-icon" href="../img/logo.png">
+
+<!-- Merriweather (titulos y headings principales, var(--font-display)).
+     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero).
+     display=optional -- mismo criterio que el resto del sitio, ver el
+     comentario completo en proyectos/andres-rieznik/index.html. Version DE
+     agregada al mismo criterio que las 10 paginas ES/EN existentes. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/home.css">
+<link rel="stylesheet" href="../assets/css/contact.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <span class="site-header__name">Germán Gómez Bonelli</span>
+
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Hauptnavigation">
+      <a href="#trabajo">Arbeiten</a>
+      <a href="ueber-mich/index.html">Über mich</a>
+      <a href="#contacto">Kontakt</a>
+      <div class="language-switcher" aria-label="Sprachauswahl">
+        <a class="language-switcher__item" href="../index.html">ES</a>
+        <span class="language-switcher__sep">/</span>
+        <a class="language-switcher__item" href="../en/index.html">EN</a>
+        <span class="language-switcher__sep">/</span>
+        <span class="language-switcher__item language-switcher__item--active" aria-current="true">DE</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO SCROLL (contenedor que genera el recorrido; el hero interior queda sticky) -->
+  <section class="hero-scroll">
+    <div class="hero container grid">
+      <h1 class="hero__title">
+        Kommunikationsstrategie und Content-Produktion für <span class="hero__title-highlight">Wissenschaft und Politik.</span>
+      </h1>
+      <p class="hero__lead reveal-on-scroll">Ziel ist es, wissenschaftliche und Bildungsinhalte an die Logik digitaler Verbreitung anzupassen, ohne an Klarheit oder Genauigkeit zu verlieren.</p>
+      <p class="hero__secondary reveal-on-scroll reveal-on-scroll--delay">Ich begleite jedes Projekt von der Strategie und Formatentwicklung bis hin zu Produktion, Schnitt und Veröffentlichung.</p>
+      <a href="#trabajo" class="hero__scroll-cue">Meine Arbeiten <span>↓</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- WRAPPER: agrupa toda la zona clara posterior al hero (Trabajo, Perfil,
+     Contacto y footer) para aplicarle un unico fondo continuo
+     (img/fondo.webp, ver .page-content en assets/css/home.css) sin
+     repetirlo seccion por seccion ni tocar el hero. -->
+<div class="page-content">
+
+  <!-- TRABAJO SELECCIONADO -->
+  <section class="work" id="trabajo">
+    <div class="container">
+      <div class="grid work__header">
+        <h2 class="work__title">Einige Projekte, die zeigen, <span class="work__title-highlight typewriter" data-typewriter data-speed="40">wie ich arbeite.</span></h2>
+      </div>
+
+      <div class="project-list">
+
+        <!-- 01 — Andrés Rieznik -->
+        <a class="project-preview fade-in" href="proyectos/andres-rieznik/index.html">
+          <span class="project-preview__index">01</span>
+
+          <div class="project-preview__media">
+            <div class="media media--tall media--andres"></div>
+          </div>
+
+          <div class="project-preview__content">
+            <span class="category-label project-preview__category">01 / Neurowissenschaften</span>
+            <h3 class="project-preview__name">Andrés Rieznik</h3>
+            <p class="project-preview__description">Kommunikationsberatung und Content-Produktion mit einem Physiker und Neurowissenschaftler, der auf Lernen spezialisiert ist, auf Instagram, TikTok und YouTube.</p>
+            <p class="project-preview__roles">Strategie · Produktion · Schnitt · Formatentwicklung · Kanäle</p>
+
+            <div class="project-preview__stat">
+              <span class="project-preview__stat-value">19K → <span class="count-up" data-start="19" data-end="480" data-suffix="K+">480K+</span></span>
+              <span class="project-preview__stat-caption">Entwicklung der Instagram-Community während der Zusammenarbeit.</span>
+            </div>
+
+            <span class="arrow-link">Arbeit ansehen <span class="arrow-link__arrow">→</span></span>
+          </div>
+        </a>
+
+        <!-- 02 — Camila Perochena -->
+        <a class="project-preview project-preview--reverse fade-in" href="proyectos/camila-perochena/index.html">
+          <span class="project-preview__index">02</span>
+
+          <div class="project-preview__media">
+            <div class="media media--16-9 media--camila"></div>
+          </div>
+
+          <div class="project-preview__content">
+            <span class="category-label project-preview__category">02 / Geschichte und Politik</span>
+            <h3 class="project-preview__name">Camila Perochena</h3>
+            <p class="project-preview__description">Schnitt und Anpassung historischer und politischer Inhalte für soziale Medien, basierend auf Auftritten in Streaming-Formaten und im Fernsehen.</p>
+
+            <div class="project-preview__stat">
+              <span class="project-preview__stat-value">14K → <span class="count-up" data-start="14" data-end="100" data-suffix="K">100K</span></span>
+              <span class="project-preview__stat-caption">Entwicklung der Community über etwa eineinhalb Jahre Zusammenarbeit.</span>
+            </div>
+
+            <span class="arrow-link">Arbeit ansehen <span class="arrow-link__arrow">→</span></span>
+          </div>
+        </a>
+
+        <!-- 03 — Abuelas de Plaza de Mayo -->
+        <a class="project-preview fade-in" href="proyectos/abuelas/index.html">
+          <span class="project-preview__index">03</span>
+
+          <div class="project-preview__media">
+            <div class="media media--square media--abuelas"></div>
+          </div>
+
+          <div class="project-preview__content">
+            <span class="category-label project-preview__category">03 / Menschenrechte</span>
+            <h3 class="project-preview__name">Abuelas de Plaza de Mayo</h3>
+            <p class="project-preview__description">Ich habe bei Abuelas de Plaza de Mayo (Großmütter der Plaza de Mayo) im Bereich Presse und Öffentlichkeitsarbeit mitgewirkt, wo ich den TikTok-Kanal von Grund auf aufgebaut und betreut habe, mit eigener Produktion und Arbeit mit Archivmaterial.</p>
+
+            <div class="project-preview__stat">
+              <span class="project-preview__stat-value">0 → <span class="count-up" data-start="0" data-end="31" data-suffix="K">31K</span></span>
+              <span class="project-preview__stat-caption">Erreichte Community etwa ein Jahr nach dem Start des TikTok-Kanals.</span>
+            </div>
+
+            <span class="arrow-link">Arbeit ansehen <span class="arrow-link__arrow">→</span></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OTRAS COLABORACIONES -->
+  <section class="secondary-projects fade-in">
+    <div class="container">
+      <span class="eyebrow secondary-projects__label">Weitere Zusammenarbeiten</span>
+
+      <div class="secondary-projects__list">
+        <div class="secondary-project">
+          <div class="media media--16-9 secondary-project__media media--emilse-garzon"></div>
+          <span class="category-label secondary-project__category">Cybersicherheit</span>
+          <h3 class="secondary-project__title">Emilse Garzón</h3>
+          <div class="secondary-project__description">
+            <p>Zwischen Dezember 2024 und März 2025 habe ich Emilses Auftritte in Livestreams und anderen Formaten bearbeitet und daraus Reels zu künstlicher Intelligenz, Cybersicherheit, Politik und Technologieregulierung produziert.</p>
+            <p>Diese Arbeit lag mir auch persönlich nahe, wegen meines Interesses an der Schnittstelle von Technologie und Politik. Ein gutes Beispiel ist <a href="https://www.instagram.com/reel/DFftzHNx0d7/?stkn=NjVoZG1yd3R5anQz" target="_blank" rel="noopener noreferrer">Las Malvinas Argentinas según ChatGPT</a>, ein Beitrag darüber, wie ein KI-Tool auf eine von Geschichte, Souveränität und Politik geprägte Frage antwortet.</p>
+          </div>
+        </div>
+
+        <div class="secondary-project">
+          <div class="media media--16-9 secondary-project__media media--maria-roca"></div>
+          <span class="category-label secondary-project__category">Neurowissenschaften</span>
+          <h3 class="secondary-project__title">María Roca</h3>
+          <div class="secondary-project__description">
+            <p>Ich habe Auftritte von Dr. María Roca, <em>Koordinatorin für Community-Outreach</em> bei INECO, bearbeitet und daraus kurze Videos zu Neurowissenschaften, Gehirngesundheit und kognitivem Wohlbefinden produziert.</p>
+            <p>Ihre Beiträge behandelten Themen mit starkem Alltagsbezug wie Gedächtnis, Gewohnheiten, Altern und Gehirngesundheit — eine Arbeit, die eng mit meinem Interesse an Neurowissenschaften verbunden war.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="contact__layout grid">
+        <div class="contact__inner">
+          <h2 class="contact__title">Kontakt</h2>
+          <p class="contact__lead">Hier findest du meine Kontaktmöglichkeiten.</p>
+
+          <div class="contact__rows">
+            <a class="contact__row" href="mailto:germangomezbonelli2@gmail.com">
+              <span class="contact__row-label">E-Mail</span>
+              <span class="contact__row-value">germangomezbonelli2@gmail.com <span class="contact__row-arrow">↗</span></span>
+            </a>
+
+            <a class="contact__row" href="https://www.linkedin.com/in/german-gomez-bonelli-6a76063a9/" target="_blank" rel="noopener noreferrer">
+              <span class="contact__row-label">LinkedIn</span>
+              <span class="contact__row-value">Germán Gómez Bonelli <span class="contact__row-arrow">↗</span></span>
+            </a>
+          </div>
+        </div>
+
+        <a class="contact__about" href="ueber-mich/index.html">
+          <span class="contact__about-media">
+            <img class="contact__about-img" src="../img/perfil.webp" alt="">
+          </span>
+          <span class="contact__about-label">Über mich <span class="arrow-link__arrow">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span class="site-footer__name">Germán Gómez Bonelli</span>
+      <span class="site-footer__meta">Portfolio 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

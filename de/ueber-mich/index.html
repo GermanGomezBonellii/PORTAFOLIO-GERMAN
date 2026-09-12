@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über mich — Germán Gómez Bonelli</title>
+<meta name="description" content="Profil von Germán Gómez Bonelli: Kommunikation, Design und Technologie.">
+
+<!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
+     y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
+     para no duplicar contenido a mano. og:image usa ruta relativa: funciona para
+     preview local, pero la mayoria de los crawlers (Facebook, LinkedIn, WhatsApp)
+     necesitan una URL absoluta para poder descargar la imagen -- una vez que el
+     sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
+     algo como https://tu-dominio.com/img/logo.png. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Über mich — Germán Gómez Bonelli">
+<meta property="og:description" content="Profil von Germán Gómez Bonelli: Kommunikation, Design und Technologie.">
+<meta property="og:image" content="../../img/logo.png">
+<meta property="og:locale" content="de_DE">
+
+<!-- Favicon / isotipo del portfolio -->
+<link rel="icon" type="image/png" href="../../img/logo.png">
+<link rel="apple-touch-icon" href="../../img/logo.png">
+
+<!-- Merriweather: mismo criterio que el resto de las paginas internas
+     (titulos y headings principales, var(--font-display)). display=optional,
+     ver el comentario completo en proyectos/andres-rieznik/index.html;
+     mismo cambio replicado tal cual en los demas HTML del sitio que cargan
+     esta fuente, version DE incluida. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/profile.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../index.html" class="site-header__name">Germán Gómez Bonelli</a>
+
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Hauptnavigation">
+      <a href="../index.html#trabajo">Arbeiten</a>
+      <a href="index.html">Über mich</a>
+      <a href="../index.html#contacto">Kontakt</a>
+      <div class="language-switcher" aria-label="Sprachauswahl">
+        <a class="language-switcher__item" href="../../sobre-mi/index.html">ES</a>
+        <span class="language-switcher__sep">/</span>
+        <a class="language-switcher__item" href="../../en/about/index.html">EN</a>
+        <span class="language-switcher__sep">/</span>
+        <span class="language-switcher__item language-switcher__item--active" aria-current="true">DE</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ÜBER MICH -- misma identidad visual que sobre-mi/index.html y
+       en/about/index.html (mismo fondo hero.webp, mismas clases .profile /
+       .profile__grid / .profile__photo / .profile__title / .profile__text /
+       .profile__facts, ver assets/css/profile.css). Version alemana basada
+       en el texto FINAL ya reducido (post revision editorial), no en
+       versiones anteriores mas largas. -->
+  <section class="profile" id="ueber-mich">
+    <div class="container">
+      <a href="../index.html" class="back-link about-page__back">← Zurück zur Startseite</a>
+
+      <div class="profile__grid grid">
+
+        <div class="profile__photo-col">
+          <!-- Foto de perfil: colocar el archivo en img/perfil.webp para que
+               aparezca automáticamente (ver comentario en assets/css/profile.css).
+               Mientras no exista, se muestra un placeholder gris claro, sin
+               íconos ni textos de "subir foto". -->
+          <div class="profile__photo"></div>
+        </div>
+
+        <div class="profile__content-col">
+          <span class="eyebrow profile__eyebrow">Profil</span>
+          <h1 class="profile__title">Mein Werdegang verbindet <span class="no-break"><span class="profile-highlight">Kommunikation</span>,</span> <span class="no-break"><span class="profile-highlight">Design</span></span> und <span class="no-break"><span class="profile-highlight">Technologie</span>.</span></h1>
+
+          <div class="profile__text">
+            <p>Ich habe eine technische Ausbildung in Werbedesign und Kommunikation abgeschlossen und studiere derzeit Digitale Technologie an der Universidad Torcuato Di Tella, ein Studiengang, der Programmierung, Wirtschaft und Design verbindet. Diese Ausbildung hat meinen Blick auf Kommunikation erweitert: nicht nur auf die Produktion von Inhalten, sondern auch auf die Werkzeuge, Systeme und Plattformen, über die sie zirkulieren.</p>
+            <p>Parallel dazu arbeite ich in einem Neurowissenschafts-Labor der Universität und stehe damit in direktem Kontakt mit Forschung und der Produktion wissenschaftlichen Wissens.</p>
+            <p>Mich interessiert besonders die Schnittstelle dieser Bereiche, auch im Zusammenhang mit Menschenrechten und öffentlicher Politik: Ich glaube, dass Entscheidungen sich auf wissenschaftliche Evidenz stützen können sollten, die auch außerhalb spezialisierter Kreise zugänglich ist, und dass die Vermittlung dieses Wissens erweitert, wer darauf zugreifen, es diskutieren und nutzen kann.</p>
+          </div>
+
+          <div class="profile__facts">
+            <div class="profile__fact">
+              <span class="profile__fact-label">Ausbildung</span>
+              <p class="profile__fact-value">Technische Ausbildung in Werbedesign und Kommunikation</p>
+            </div>
+            <div class="profile__fact">
+              <span class="profile__fact-label">Aktuell</span>
+              <p class="profile__fact-value">Digitale Technologie</p>
+              <p class="profile__fact-detail">Universidad Torcuato Di Tella</p>
+            </div>
+            <div class="profile__fact">
+              <span class="profile__fact-label">Forschung</span>
+              <p class="profile__fact-value">Neurowissenschafts-Labor</p>
+              <p class="profile__fact-detail">Universidad Torcuato Di Tella</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ARTIKEL -- subseccion editorial al final de Über mich, mismo
+           patron que sobre-mi/index.html y en/about/index.html: vive
+           dentro de este mismo .profile (fondo negro / texto blanco),
+           despues del contenido principal y antes del footer. -->
+      <div class="profile-articles" id="artitulos">
+        <div class="profile-articles__list">
+          <article class="profile-article">
+            <a class="profile-article__link" href="../articulos/autocensura-y-nueva-lengua/index.html">
+              <span class="eyebrow profile-article__label">Artikel 01</span>
+              <h3 class="profile-article__title">Selbstzensur und Neusprache: der Mechanismus, über den niemand spricht</h3>
+              <p class="profile-article__excerpt">Von „Entleben“ bis zum „Maler mit dem Schnurrbart“ – der Algorithmus verändert unsere Sprache. Wie lässt sich Gewalt verhindern, ohne darüber zu sprechen?</p>
+            </a>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__name">Germán Gómez Bonelli</span>
+    <span class="site-footer__meta">Portfolio 2026</span>
+    <a href="../index.html" class="back-link">← Zurück zur Startseite</a>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

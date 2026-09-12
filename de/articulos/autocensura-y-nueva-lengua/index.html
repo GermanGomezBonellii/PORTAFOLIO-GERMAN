@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Self-censorship and Newspeak: the mechanism no one talks about — Germán Gómez Bonelli</title>
-<meta name="description" content="From “unaliving” to “the painter with the mustache,” the algorithm is changing our language. How can we prevent violence without talking about it?">
+<title>Selbstzensur und Neusprache: der Mechanismus, über den niemand spricht — Germán Gómez Bonelli</title>
+<meta name="description" content="Von „Entleben“ bis zum „Maler mit dem Schnurrbart“ – der Algorithmus verändert unsere Sprache. Wie lässt sich Gewalt verhindern, ohne darüber zu sprechen?">
 
 <!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
      y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
@@ -14,21 +14,20 @@
      sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
      algo como https://tu-dominio.com/img/logo.png. -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Self-censorship and Newspeak: the mechanism no one talks about — Germán Gómez Bonelli">
-<meta property="og:description" content="From “unaliving” to “the painter with the mustache,” the algorithm is changing our language. How can we prevent violence without talking about it?">
+<meta property="og:title" content="Selbstzensur und Neusprache: der Mechanismus, über den niemand spricht — Germán Gómez Bonelli">
+<meta property="og:description" content="Von „Entleben“ bis zum „Maler mit dem Schnurrbart“ – der Algorithmus verändert unsere Sprache. Wie lässt sich Gewalt verhindern, ohne darüber zu sprechen?">
 <meta property="og:image" content="../../../img/logo.png">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="de_DE">
 
 <!-- Favicon / isotipo del portfolio -->
 <link rel="icon" type="image/png" href="../../../img/logo.png">
 <link rel="apple-touch-icon" href="../../../img/logo.png">
 
 <!-- Merriweather: mismo criterio que el resto de las paginas internas
-     (titulos y headings principales, var(--font-display)). display=optional
-     (antes: swap) -- bugfix del "glitch" de resize al cambiar de idioma,
+     (titulos y headings principales, var(--font-display)). display=optional,
      ver el comentario completo en proyectos/andres-rieznik/index.html;
-     mismo cambio replicado tal cual en los 10 HTML del sitio que cargan
-     esta fuente. -->
+     mismo cambio replicado tal cual en los demas HTML del sitio que cargan
+     esta fuente, version DE incluida. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
@@ -43,20 +42,20 @@
   <div class="container site-header__inner">
     <a href="../../index.html" class="site-header__name">Germán Gómez Bonelli</a>
 
-    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Open menu">
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
     </button>
 
-    <nav class="site-header__nav" aria-label="Main navigation">
-      <a href="../../index.html#trabajo">Work</a>
-      <a href="../../about/index.html">About</a>
-      <a href="../../index.html#contacto">Contact</a>
-      <div class="language-switcher" aria-label="Language selector">
+    <nav class="site-header__nav" aria-label="Hauptnavigation">
+      <a href="../../index.html#trabajo">Arbeiten</a>
+      <a href="../../ueber-mich/index.html">Über mich</a>
+      <a href="../../index.html#contacto">Kontakt</a>
+      <div class="language-switcher" aria-label="Sprachauswahl">
         <a class="language-switcher__item" href="../../../articulos/autocensura-y-nueva-lengua/index.html">ES</a>
         <span class="language-switcher__sep">/</span>
-        <span class="language-switcher__item language-switcher__item--active" aria-current="true">EN</span>
+        <a class="language-switcher__item" href="../../../en/articulos/autocensura-y-nueva-lengua/index.html">EN</a>
         <span class="language-switcher__sep">/</span>
-        <a class="language-switcher__item" href="../../../de/articulos/autocensura-y-nueva-lengua/index.html">DE</a>
+        <span class="language-switcher__item language-switcher__item--active" aria-current="true">DE</span>
       </div>
     </nav>
   </div>
@@ -64,23 +63,24 @@
 
 <main>
 
-  <!-- PAGINA DE ARTICULO -- editorial, pensada para lectura. No reutiliza
-       el patron de case study (.case-hero / .case-section de proyecto.css):
-       es una pagina de ensayo, con su propio sistema en articulo.css. -->
+  <!-- PAGINA DE ARTICULO -- version alemana, mismo sistema editorial
+       (articulo.css) que articulos/autocensura-y-nueva-lengua/index.html
+       y en/articulos/autocensura-y-nueva-lengua/index.html. -->
   <div class="article-page container">
-    <a href="../../about/index.html#artitulos" class="back-link article-page__back">← Back to Articles</a>
+    <a href="../../ueber-mich/index.html#artitulos" class="back-link article-page__back">← Zurück zu Artikeln</a>
 
     <div class="article-page__header">
-      <span class="eyebrow article-page__label">Articles</span>
-      <h1 class="article-page__title">Self-censorship and Newspeak: the mechanism no one talks about</h1>
-      <p class="article-page__dek">From “unaliving” to “the painter with the mustache,” the algorithm is changing our language. How can we prevent violence without talking about it?</p>
+      <span class="eyebrow article-page__label">Artikel</span>
+      <h1 class="article-page__title">Selbstzensur und Neusprache: der Mechanismus, über den niemand spricht</h1>
+      <p class="article-page__dek">Von „Entleben“ bis zum „Maler mit dem Schnurrbart“ – der Algorithmus verändert unsere Sprache. Wie lässt sich Gewalt verhindern, ohne darüber zu sprechen?</p>
     </div>
 
     <!-- Contenedor preparado para el texto completo del articulo.
          Intencionalmente vacio -- sin placeholder visible tipo
          "Contenido proximamente". Facil de completar despues: el texto
          final va directamente adentro de este <article>. Cuerpo vacio
-         igual que en la version en espanol -- no se inventa contenido. -->
+         igual que en la version en espanol e ingles -- no se inventa
+         contenido. -->
     <article class="article-body">
       <!-- Contenido del artículo -->
     </article>
@@ -91,7 +91,7 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <span class="site-footer__name">Germán Gómez Bonelli</span>
-    <a href="../../index.html#trabajo" class="back-link">← Back to projects</a>
+    <a href="../../index.html#trabajo" class="back-link">← Zurück zu den Projekten</a>
   </div>
 </footer>
 

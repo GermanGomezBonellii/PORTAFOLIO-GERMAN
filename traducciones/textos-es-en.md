@@ -54,10 +54,12 @@ Nota: en el HTML la parte final ("comunicación científica y política.") está
 
 ### home_hero_lead
 ES:
-Trabajo con investigadores, divulgadores e instituciones para desarrollar contenidos claros, rigurosos y pensados para plataformas digitales.
+El objetivo es adaptar contenidos científicos y educativos a las lógicas de circulación digital sin perder claridad ni rigor.
 
 EN:
-I work with researchers, communicators, and institutions to develop clear, rigorous content designed for digital platforms.
+The goal is to adapt scientific and educational content to the way information circulates online without sacrificing clarity or rigor.
+
+Nota (revisión editorial): esta frase es ahora el enunciado central del posicionamiento de Germán, dicho una sola vez en el sitio. El resto de las páginas se revisó para no repetir la misma idea (adaptar contenido a plataformas sin perder claridad/rigor) salvo cuando hacía falta para explicar una decisión puntual de un proyecto.
 
 ### home_hero_secondary
 ES:
@@ -88,19 +90,21 @@ Nota: en el HTML, "mi forma de trabajar." / "how I work." está en un `<span dat
 
 ### home_project_andres_category
 ES:
-01 / Comunicación científica
+01 / Neurociencia
 
 EN:
-01 / Science communication
+01 / Neuroscience
+
+Nota (revisión editorial): cambiado de "Comunicación científica" a "Neurociencia" — cambio específico de la categoría de Andrés, no un reemplazo global del término "comunicación científica" en el resto del sitio.
 
 ### home_project_andres_description
 ES:
-Asesoría en comunicación y producción de contenidos para articular divulgación científica, educación y lenguajes propios de las plataformas digitales.
+Asesoría en comunicación y producción de contenidos junto a un físico y neurocientífico especializado en aprendizaje, en Instagram, TikTok y YouTube.
 
 EN:
-Communications consulting and content production connecting science communication, education, and the language of digital platforms.
+Communications consulting and content production with a physicist and neuroscientist specializing in learning, across Instagram, TikTok, and YouTube.
 
-Nota: se actualizó para que coincida con `andres_hero_lead` (la bajada de la subpágina de Andrés) — ambas quedan con el mismo texto exacto.
+Nota (revisión editorial): ya no coincide palabra por palabra con `andres_hero_lead` — se diferenciaron a propósito para no repetir la misma frase dos veces en el recorrido Home → caso de Andrés.
 
 ### home_project_andres_roles
 ES:
@@ -125,10 +129,12 @@ EN:
 
 ### home_project_camila_description
 ES:
-Edición y adaptación de contenidos históricos y políticos para redes, a partir de participaciones en streaming y televisión, acompañando un crecimiento orgánico sostenido de 14K a 100K seguidores durante aproximadamente un año y medio de colaboración.
+Edición y adaptación de contenidos históricos y políticos para redes, a partir de participaciones en streaming y televisión.
 
 EN:
-Editing and adapting historical and political content for social media, based on appearances on streaming shows and television, alongside sustained organic growth from 14K to 100K followers over approximately a year and a half of collaboration.
+Editing and adapting historical and political content for social media, based on appearances on streaming shows and television.
+
+Nota (revisión editorial): se quitó la cláusula final sobre el crecimiento de 14K a 100K — el mismo dato ya aparece en el stat visual de la tarjeta, justo debajo.
 
 ### home_project_camila_stat_caption
 ES:
@@ -146,10 +152,12 @@ EN:
 
 ### home_project_abuelas_description
 ES:
-Trabajé junto a Abuelas de Plaza de Mayo en el área de Prensa y Difusión, donde inicié y administré su cuenta de TikTok desde cero. El proyecto combinó producción y edición de contenido original con adaptación de material de archivo, buscando trasladar la historia, la identidad institucional y el trabajo en derechos humanos a los lenguajes propios de las plataformas digitales.
+Trabajé junto a Abuelas de Plaza de Mayo en el área de Prensa y Difusión, donde inicié y administré su cuenta de TikTok desde cero, combinando producción original y trabajo con archivo.
 
 EN:
-I worked with Abuelas de Plaza de Mayo on the Press and Outreach team, where I launched and managed its TikTok account from scratch. The project combined original content production and editing with the adaptation of archival material, bringing the institution’s history, identity, and human rights work into the language of digital platforms.
+I worked with Abuelas de Plaza de Mayo on the Press and Outreach team, where I launched and managed its TikTok account from scratch, combining original production with archival work.
+
+Nota (revisión editorial): se compactaron las dos oraciones originales en una sola, quitando la cláusula final genérica sobre "trasladar... a los lenguajes propios de las plataformas digitales" (repetía la idea ahora central del Hero).
 
 ### home_project_abuelas_stat_caption
 ES:
@@ -270,17 +278,12 @@ At the same time, I work in a neuroscience lab at the university, maintaining a 
 
 ### home_profile_text_03
 ES:
-Me interesa especialmente el cruce entre estas áreas. Creo en la importancia de que las decisiones y las políticas públicas puedan apoyarse en evidencia científica, pero también en que esa evidencia sea accesible fuera de los ámbitos especializados. Comunicar y divulgar conocimiento es, en ese sentido, una forma de ampliar quiénes pueden acceder a él, discutirlo y utilizarlo.
+Me interesa especialmente el cruce entre estas áreas, incluyendo su relación con los derechos humanos y las políticas públicas: creo en la importancia de que las decisiones puedan apoyarse en evidencia científica accesible fuera de los ámbitos especializados, y en que comunicar ese conocimiento amplía quiénes pueden acceder a él, discutirlo y utilizarlo.
 
 EN:
-I am especially interested in the intersection of these areas. I believe decisions and public policy should be informed by scientific evidence, but also that this evidence should be accessible beyond specialized settings. Communicating and sharing knowledge is, in that sense, a way of expanding who can access it, discuss it, and use it.
+I'm especially interested in the intersection of these areas, including how it connects to human rights and public policy: I believe decisions should be able to rely on scientific evidence that's accessible beyond specialized settings, and that communicating that knowledge expands who can access it, discuss it, and use it.
 
-### home_profile_text_04
-ES:
-Mi trabajo busca moverse en ese espacio: encontrar estrategias, formatos y herramientas que permitan comunicar ideas complejas con rigor, sin perder de vista los lenguajes y las posibilidades propias de los medios digitales.
-
-EN:
-My work operates in that space: finding strategies, formats, and tools that make it possible to communicate complex ideas rigorously, while making full use of the language and possibilities of digital media.
+Nota (revisión editorial): `home_profile_text_03` y `home_profile_text_04` se fusionaron en un solo párrafo, incorporando de forma sintetizada la idea sobre derechos humanos/genética/identidad que antes vivía en el párrafo "Derechos humanos, ciencia e identidad" del caso de Abuelas (movida acá por ser una reflexión general de Germán, no específica de ese proyecto). `home_profile_text_04` como párrafo aparte se eliminó: repetía casi textualmente la idea que ahora es el Hero de Home ("adaptar contenidos... sin perder claridad ni rigor").
 
 ### home_profile_fact_formacion_label
 ES:
@@ -432,12 +435,12 @@ Nota: idéntico en Andrés, Camila y Abuelas (mismo texto, mismo link de vuelta 
 
 ### andres_hero_category
 ES:
-01 / Comunicación científica
+01 / Neurociencia
 
 EN:
-01 / Science communication
+01 / Neuroscience
 
-Nota: mismo texto que `home_project_andres_category` en Home — mismo proyecto, mismo número de orden.
+Nota: mismo texto que `home_project_andres_category` en Home — mismo proyecto, mismo número de orden. Cambiado de "Comunicación científica" a "Neurociencia" (revisión editorial, cambio específico de este proyecto).
 
 ### andres_hero_title
 ES:
@@ -448,10 +451,12 @@ Andrés Rieznik
 
 ### andres_hero_lead
 ES:
-Asesoría en comunicación y producción de contenidos para articular divulgación científica, educación y lenguajes propios de las plataformas digitales.
+Comunicación y producción de contenidos sobre ciencia, aprendizaje y educación, desarrollados para Instagram, TikTok y YouTube.
 
 EN:
-Communications consulting and content production connecting science communication, education, and the language of digital platforms.
+Communication and content production on science, learning, and education, developed for Instagram, TikTok, and YouTube.
+
+Nota (revisión editorial): ya no es idéntico a `home_project_andres_description` — ver nota en esa clave.
 
 ### andres_hero_roles
 ES:
@@ -547,10 +552,12 @@ I work with Andrés Rieznik, a physicist and neuroscientist specializing in lear
 
 ### andres_intro_02
 ES:
-A lo largo de este proceso participo de forma sostenida en la definición de la estrategia, los formatos y los contenidos para cada plataforma. Mi trabajo abarca el desarrollo de las piezas desde la idea hasta su versión final: pienso cómo abordar cada tema, defino la forma de grabación y trabajo sobre la edición, el ritmo, la estructura, los subtítulos, la imagen y el sonido. El objetivo es adaptar contenidos científicos y educativos a las lógicas de circulación digital sin perder claridad ni rigor.
+A lo largo de este proceso participo de forma sostenida en la definición de la estrategia, los formatos y los contenidos para cada plataforma. Mi trabajo abarca el desarrollo de las piezas desde la idea hasta su versión final: pienso cómo abordar cada tema, defino la forma de grabación y trabajo sobre la edición, el ritmo, la estructura, los subtítulos, la imagen y el sonido.
 
 EN:
-Throughout this process, I am continuously involved in defining the strategy, formats, and content for each platform. My work covers each piece from the initial idea to the final version: I think through how to approach each topic, define how it should be filmed, and work on the editing, pacing, structure, subtitles, visuals, and sound. The goal is to adapt scientific and educational content to the logic of digital distribution without losing clarity or rigor.
+Throughout this process, I am continuously involved in defining the strategy, formats, and content for each platform. My work covers each piece from the initial idea to the final version: I think through how to approach each topic, define how it should be filmed, and work on the editing, pacing, structure, subtitles, visuals, and sound.
+
+Nota (revisión editorial): se quitó la última oración ("El objetivo es adaptar contenidos científicos y educativos..."), casi idéntica a la nueva `home_hero_lead` — ver nota en esa clave.
 
 ## Trabajo seleccionado
 
@@ -895,10 +902,10 @@ Communications strategy
 
 ### andres_area_01_text
 ES:
-Participo en la definición de cómo traducir temas vinculados con ciencia, aprendizaje y educación a contenidos capaces de circular en plataformas digitales. El trabajo combina criterios de comunicación, selección de temas y desarrollo de formatos, buscando ampliar el alcance sin perder el rigor de las ideas que se están comunicando.
+Defino cómo traducir temas de ciencia, aprendizaje y educación a contenidos digitales, combinando criterios de comunicación, selección de temas y desarrollo de formatos.
 
 EN:
-I help define how topics related to science, learning, and education can be translated into content that works on digital platforms. The work combines communications criteria, topic selection, and format development, with the goal of expanding reach without losing the rigor of the ideas being communicated.
+I define how topics in science, learning, and education translate into digital content, combining communications criteria, topic selection, and format development.
 
 ### andres_area_02_title
 ES:
@@ -1056,12 +1063,8 @@ Mi trabajo con ella se concentra principalmente en la edición y adaptación de 
 EN:
 My work with her focuses primarily on editing and adapting those appearances for digital platforms. Working from material originally created for long-form formats, I select, shape, and edit excerpts that can stand on their own without losing their historical or argumentative context.
 
-### camila_intro_03
-ES:
-Durante aproximadamente un año y medio de colaboración, su comunidad pasó de alrededor de 14.000 a 100.000 seguidores, manteniendo un crecimiento orgánico sostenido.
-
-EN:
-Over approximately a year and a half of collaboration, her community grew from around 14,000 to 100,000 followers, with sustained organic growth.
+### camila_intro_03 (ELIMINADO)
+Nota (revisión editorial): este párrafo se eliminó del HTML — restablecía en prosa el mismo dato (14.000 → 100.000 seguidores) que ya muestra el stat visual del hero (`camila_hero_stat_caption`), unos párrafos más arriba en la misma página.
 
 ## Trabajo seleccionado
 
@@ -1164,10 +1167,10 @@ Excerpt selection
 
 ### camila_role_01_description
 ES:
-Identifico dentro de intervenciones extensas las ideas, explicaciones o intercambios que pueden sostenerse como piezas independientes. La selección no responde únicamente a qué puede llamar la atención, sino también a qué puede conservar sentido, contexto y valor fuera de la conversación original.
+Identifico, dentro de intervenciones extensas, las ideas o intercambios que pueden sostenerse como piezas independientes, priorizando lo que conserva sentido y contexto fuera de la conversación original.
 
 EN:
-Within longer appearances, I identify ideas, explanations, or exchanges that can stand on their own as independent pieces. Selection is not based only on what may attract attention, but also on what can preserve meaning, context, and value outside the original conversation.
+Within longer appearances, I identify ideas or exchanges that can stand on their own, prioritizing what preserves meaning and context outside the original conversation.
 
 ### camila_role_02_title
 ES:
@@ -1178,10 +1181,10 @@ Video editing
 
 ### camila_role_02_description
 ES:
-Trabajo el ritmo, los cortes, subtítulos y recursos visuales para construir una pieza clara y dinámica sin alterar el sentido de la intervención. La edición busca acompañar el contenido y facilitar su lectura, no competir con él.
+Ritmo, cortes, subtítulos y recursos visuales para construir una pieza clara y dinámica, sin alterar el sentido de la intervención original.
 
 EN:
-I work on pacing, cuts, subtitles, and visual elements to build a clear, dynamic piece without changing the meaning of the original appearance. The editing is meant to support the content and make it easier to follow, not compete with it.
+Pacing, cuts, subtitles, and visual elements to build a clear, dynamic piece without changing the meaning of the original appearance.
 
 ### camila_role_03_title
 ES:
@@ -1192,10 +1195,10 @@ Narrative structure
 
 ### camila_role_03_description
 ES:
-Un fragmento extraído de una conversación larga no siempre tiene por sí mismo una estructura completa. Reorganizo y edito el material para construir un recorrido con entrada, desarrollo y cierre, incorporando el contexto necesario para que pueda comprenderse de manera autónoma.
+Reorganizo y edito fragmentos extraídos de conversaciones largas para darles entrada, desarrollo y cierre propios, con el contexto necesario para comprenderse de forma autónoma.
 
 EN:
-An excerpt taken from a long conversation does not always have a complete structure on its own. I reorganize and edit the material to build a clear beginning, development, and ending, adding the context needed for it to be understood independently.
+I reorganize and edit excerpts from long conversations into pieces with their own beginning, development, and ending, adding the context needed to stand on their own.
 
 ### camila_role_04_title
 ES:
@@ -1206,10 +1209,10 @@ Adapting long-form content to short formats
 
 ### camila_role_04_description
 ES:
-Transformo intervenciones pensadas para streaming o televisión en piezas adecuadas para tiempos y formas de consumo más breves. El desafío es sintetizar sin reducir el argumento a una frase aislada o perder los matices que hacen relevante al contenido original.
+Transformo intervenciones pensadas para streaming o televisión en piezas breves, sintetizando sin reducir el argumento a una frase aislada ni perder matices relevantes.
 
 EN:
-I turn appearances originally created for streaming or television into pieces suited to shorter viewing times and consumption patterns. The challenge is to condense the material without reducing the argument to an isolated line or losing the nuances that make the original content meaningful.
+I turn appearances made for streaming or television into short-form pieces, condensing without reducing the argument to an isolated line or losing relevant nuance.
 
 ### camila_role_05_title
 ES:
@@ -1220,10 +1223,10 @@ Developing social media content
 
 ### camila_role_05_description
 ES:
-Trabajo cada contenido considerando el entorno en el que va a circular: inicio, duración, encuadre, ritmo, subtítulos y organización de la información. No se trata solamente de recortar un video vertical, sino de construir una pieza pensada desde el lenguaje de la plataforma.
+Pienso cada pieza desde el entorno en el que va a circular —inicio, duración, encuadre, ritmo, subtítulos—, construida desde el lenguaje de la plataforma y no como un simple recorte vertical.
 
 EN:
-I work on each piece with the environment in which it will circulate in mind: opening, duration, framing, pacing, subtitles, and information structure. It is not simply about cropping a video vertically, but about building a piece around the language of the platform.
+I think through each piece from the environment where it will circulate — opening, duration, framing, pacing, subtitles — built around the platform's language rather than a simple vertical crop.
 
 ### camila_role_06_title
 ES:
@@ -1234,10 +1237,12 @@ Handling historical and political content
 
 ### camila_role_06_description
 ES:
-Los temas históricos y políticos requieren un cuidado particular con el contexto y la forma en que se presentan los argumentos. Busco que la edición sea atractiva y accesible sin volver sensacionalista el contenido ni simplificar discusiones que necesitan conservar complejidad.
+Los temas históricos y políticos requieren cuidado especial con el contexto y los argumentos: busco una edición atractiva y accesible que no sensacionalice ni simplifique lo que necesita conservar complejidad.
 
 EN:
-Historical and political topics require particular care with context and with how arguments are presented. I aim for editing that is engaging and accessible without making the content sensationalistic or oversimplifying discussions that need to retain their complexity.
+Historical and political topics require particular care with context and argument: I aim for editing that's engaging and accessible without sensationalizing or oversimplifying what needs to keep its complexity.
+
+Nota general (revisión editorial, los 6 ítems de "Mi rol" de Camila): recortados de ~40-50 palabras a ~20-30 palabras cada uno, siguiendo el mismo criterio aplicado en Abuelas — ver nota equivalente en esa sección.
 
 ## Navegación entre casos / footer
 
@@ -1319,12 +1324,8 @@ Durante ese período inicié y administré su cuenta de TikTok desde cero. El tr
 EN:
 During that period, I launched and managed its TikTok account from scratch. The work involved thinking through how to bring the identity, history, and work of an institution with decades of experience into the language and formats of a new platform, without losing the context or responsibility its content requires.
 
-### abuelas_intro_03
-ES:
-La cuenta pasó desde su lanzamiento a reunir una comunidad de aproximadamente 31.000 seguidores durante cerca de un año de trabajo.
-
-EN:
-From its launch, the account grew to a community of approximately 31,000 followers over nearly a year of work.
+### abuelas_intro_03 (ELIMINADO)
+Nota (revisión editorial): este párrafo se eliminó del HTML — restablecía en prosa el mismo dato (0 → 31.000 seguidores) que ya muestran el stat visual del hero y el de "Una cuenta nueva" en la misma página.
 
 ## Una cuenta nueva
 
@@ -1440,10 +1441,12 @@ The search for grandchildren who had been appropriated during Argentina’s last
 
 ### abuelas_human_rights_text_03
 ES:
-Este cruce entre derechos humanos, investigación científica e identidad es también una de las razones por las que considero importante la comunicación pública del conocimiento: la evidencia científica no solo permite comprender el mundo, sino que puede convertirse en una herramienta concreta para intervenir sobre problemas sociales y garantizar derechos.
+Este cruce entre derechos humanos, ciencia e identidad es parte de lo que hace específico al trabajo de comunicación de Abuelas: la evidencia científica funciona ahí como una herramienta concreta para restituir identidades y garantizar derechos.
 
 EN:
-This intersection of human rights, scientific research, and identity is also one of the reasons I consider public communication of knowledge so important: scientific evidence not only helps us understand the world, but can also become a concrete tool for addressing social problems and protecting rights.
+This intersection of human rights, science, and identity is part of what makes Abuelas' communication work distinct: scientific evidence functions there as a concrete tool for restoring identities and protecting rights.
+
+Nota (revisión editorial): la versión anterior de este párrafo era mayormente una reflexión general de Germán ("considero importante la comunicación pública del conocimiento"), no específica del proyecto. Esa idea general se sintetizó y se movió a `home_profile_text_03` (Sobre mí); acá quedó solo lo indispensable para explicar por qué el cruce derechos humanos/ciencia/identidad es relevante para ESTE caso puntual.
 
 ## Mi rol
 
@@ -1458,10 +1461,10 @@ Press and outreach
 
 ### abuelas_role_01_description
 ES:
-Formé parte del área de Prensa y Difusión, participando en la producción de contenidos para trasladar el trabajo, la historia y las actividades de la institución a sus plataformas digitales. Esto implicó trabajar dentro de una comunicación institucional con una identidad y una responsabilidad pública muy definidas.
+Formé parte del área de Prensa y Difusión, produciendo contenidos que trasladan el trabajo, la historia y las actividades de la institución a sus plataformas digitales, dentro de una comunicación institucional con identidad y responsabilidad pública definidas.
 
 EN:
-I was part of the Press and Outreach team, contributing to the production of content that brought the institution’s work, history, and activities to its digital platforms. This meant working within an institutional communications framework with a very clearly defined identity and public responsibility.
+I was part of the Press and Outreach team, producing content that brought the institution's work, history, and activities to its digital platforms, within an institutional communications framework with a clearly defined identity and public responsibility.
 
 ### abuelas_role_02_title
 ES:
@@ -1472,10 +1475,10 @@ Content strategy and development
 
 ### abuelas_role_02_description
 ES:
-Participé en la búsqueda y desarrollo de formatos capaces de comunicar el trabajo de Abuelas dentro de las dinámicas de las redes sociales. La estrategia debía contemplar los lenguajes de cada plataforma sin separar los contenidos del contexto histórico e institucional que les da sentido.
+Desarrollo de formatos capaces de comunicar el trabajo de Abuelas en redes sociales, contemplando el lenguaje de cada plataforma sin separar los contenidos de su contexto histórico e institucional.
 
 EN:
-I took part in identifying and developing formats capable of communicating Abuelas’ work within the dynamics of social media. The strategy had to account for the language of each platform without separating the content from the historical and institutional context that gives it meaning.
+Developing formats capable of communicating Abuelas' work on social media, accounting for the language of each platform without separating content from the historical and institutional context that gives it meaning.
 
 ### abuelas_role_03_title
 ES:
@@ -1486,10 +1489,10 @@ TikTok launch and management
 
 ### abuelas_role_03_description
 ES:
-Inicié y administré el canal de TikTok de Abuelas desde cero. El trabajo incluyó experimentar con formatos, criterios de publicación y formas narrativas propias de la plataforma, construyendo progresivamente una presencia institucional en un espacio en el que Abuelas todavía no tenía un canal propio.
+Inicié y administré el canal de TikTok de Abuelas desde cero, experimentando con formatos y criterios de publicación propios de la plataforma para construir una presencia institucional donde antes no existía.
 
 EN:
-I launched and managed Abuelas’ TikTok channel from scratch. The work included experimenting with formats, publishing criteria, and platform-native narrative approaches, gradually building an institutional presence in a space where Abuelas did not yet have its own channel.
+I launched and managed Abuelas' TikTok channel from scratch, experimenting with platform-native formats and publishing criteria to build an institutional presence where none had existed before.
 
 ### abuelas_role_04_title
 ES:
@@ -1500,10 +1503,10 @@ Video production
 
 ### abuelas_role_04_description
 ES:
-Desarrollé piezas audiovisuales específicamente pensadas para los canales digitales de la institución. El trabajo combinó planificación, registro y edición, buscando que cada contenido pudiera funcionar dentro de redes sociales sin perder claridad ni coherencia con la comunicación de Abuelas.
+Desarrollo de piezas audiovisuales para los canales digitales de la institución, combinando planificación, registro y edición, cuidando la claridad y coherencia con la comunicación de Abuelas.
 
 EN:
-I developed audiovisual pieces specifically designed for the institution’s digital channels. The work combined planning, recording, and editing, with the aim of making each piece work on social media without losing clarity or consistency with Abuelas’ communications.
+Developing audiovisual pieces for the institution's digital channels, combining planning, filming, and editing, with attention to clarity and consistency with Abuelas' communications.
 
 ### abuelas_role_05_title
 ES:
@@ -1514,10 +1517,10 @@ Filming
 
 ### abuelas_role_05_description
 ES:
-Participé en la realización y registro de contenidos originales, tomando decisiones de encuadre, duración y construcción de las piezas en función de su publicación posterior. Pensar la grabación desde el destino digital permitía que el formato no dependiera únicamente de decisiones tomadas durante la edición.
+Registro de contenidos originales, tomando decisiones de encuadre y duración pensadas desde su publicación posterior, para que el formato no dependiera únicamente de la edición.
 
 EN:
-I took part in producing and recording original content, making decisions about framing, duration, and structure based on how each piece would later be published. Thinking about filming in terms of its digital destination meant the format did not depend solely on decisions made during editing.
+Recording original content, making decisions about framing and duration based on how each piece would later be published, so the format didn't depend solely on editing.
 
 ### abuelas_role_06_title
 ES:
@@ -1528,10 +1531,10 @@ Editing
 
 ### abuelas_role_06_description
 ES:
-Trabajé sobre ritmo, estructura, subtítulos, imagen y sonido para convertir el material registrado en piezas claras y accesibles. En contenidos vinculados con memoria y derechos humanos, la edición requería además especial cuidado para que los recursos propios de las redes no alteraran el sentido ni trivializaran el material.
+Edición de ritmo, estructura, subtítulos, imagen y sonido, con especial cuidado en el tratamiento de materiales vinculados a la memoria y los derechos humanos.
 
 EN:
-I worked on pacing, structure, subtitles, visuals, and sound to turn recorded material into clear, accessible pieces. For content related to memory and human rights, editing also required particular care so that the conventions of social media would not alter the meaning or trivialize the material.
+Editing pacing, structure, subtitles, visuals, and sound, with particular care in handling material related to memory and human rights.
 
 ### abuelas_role_07_title
 ES:
@@ -1542,10 +1545,10 @@ Working with archival material
 
 ### abuelas_role_07_description
 ES:
-Trabajé con imágenes y registros audiovisuales históricos para recuperarlos y adaptarlos a nuevas piezas digitales. El desafío era encontrar nuevas formas de circulación para ese material preservando su contexto, su valor documental y su relación con la historia que se estaba contando.
+Recuperación y adaptación de imágenes y registros audiovisuales históricos a nuevas piezas digitales, preservando su contexto, valor documental y relación con la historia narrada.
 
 EN:
-I worked with historical images and audiovisual records, recovering and adapting them into new digital pieces. The challenge was to find new ways for that material to circulate while preserving its context, documentary value, and connection to the story being told.
+Recovering and adapting historical images and audiovisual records into new digital pieces, preserving their context, documentary value, and connection to the story being told.
 
 ### abuelas_role_08_title
 ES:
@@ -1556,10 +1559,12 @@ Adapting content for digital platforms
 
 ### abuelas_role_08_description
 ES:
-Adapté contenidos institucionales a formatos, duraciones y lenguajes propios de las plataformas digitales. La intención no era simplemente trasladar el mismo material de un medio a otro, sino encontrar una forma adecuada de comunicarlo en cada entorno manteniendo la identidad y el sentido del contenido original.
+Adaptación de contenidos institucionales a los formatos y lenguajes de cada plataforma digital, manteniendo la identidad y el sentido del contenido original en cada entorno.
 
 EN:
-I adapted institutional content to the formats, durations, and language of digital platforms. The aim was not simply to move the same material from one medium to another, but to find an appropriate way to communicate it in each environment while preserving the identity and meaning of the original content.
+Adapting institutional content to the formats and language of each digital platform, preserving the identity and meaning of the original content across environments.
+
+Nota general (revisión editorial, los 8 ítems de "Mi rol" de Abuelas): recortados de ~40-55 palabras a ~20-35 palabras cada uno, siguiendo el criterio pedido para toda la sección "Mi rol"/accordion del sitio — una sola oración por ítem, sin aperturas tipo "Participé en...", "Teniendo en cuenta...", etc.
 
 ## Navegación entre casos / footer
 
@@ -1666,10 +1671,12 @@ Nota: es idéntico a la parte final de `home_hero_title` ("...comunicación cien
 
 ### meta_description_andres
 ES:
-Comunicación científica — estrategia, producción y desarrollo de formatos.
+Neurociencia — estrategia, producción y desarrollo de formatos.
 
 EN:
-Science communication — strategy, production, and format development.
+Neuroscience — strategy, production, and format development.
+
+Nota (revisión editorial): actualizado junto con `andres_hero_category` / `home_project_andres_category` para reflejar el cambio de "Comunicación científica" a "Neurociencia" como categoría de este proyecto.
 
 ### meta_description_camila
 ES:

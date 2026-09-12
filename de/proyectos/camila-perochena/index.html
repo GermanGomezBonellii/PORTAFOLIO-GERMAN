@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camila Perochena — Germán Gómez Bonelli</title>
+<meta name="description" content="Geschichte und politische Kommunikation — Schnitt und Anpassung von Inhalten für digitale Plattformen.">
+
+<!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
+     y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
+     para no duplicar contenido a mano. og:image usa ruta relativa: funciona para
+     preview local, pero la mayoria de los crawlers (Facebook, LinkedIn, WhatsApp)
+     necesitan una URL absoluta para poder descargar la imagen -- una vez que el
+     sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
+     algo como https://tu-dominio.com/img/logo.png. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Camila Perochena — Germán Gómez Bonelli">
+<meta property="og:description" content="Geschichte und politische Kommunikation — Schnitt und Anpassung von Inhalten für digitale Plattformen.">
+<meta property="og:image" content="../../../img/logo.png">
+<meta property="og:locale" content="de_DE">
+
+<!-- Favicon / isotipo del portfolio -->
+<link rel="icon" type="image/png" href="../../../img/logo.png">
+<link rel="apple-touch-icon" href="../../../img/logo.png">
+
+<!-- Merriweather: mismo criterio que el resto de las paginas internas
+     (titulos y headings principales, var(--font-display)). display=optional,
+     ver el comentario completo en proyectos/andres-rieznik/index.html;
+     mismo cambio replicado tal cual en los demas HTML del sitio que cargan
+     esta fuente, version DE incluida. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
+
+<link rel="stylesheet" href="../../../assets/css/base.css">
+<link rel="stylesheet" href="../../../assets/css/components.css">
+<link rel="stylesheet" href="../../../assets/css/proyecto.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../../index.html" class="site-header__name">Germán Gómez Bonelli</a>
+
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-header__nav" aria-label="Hauptnavigation">
+      <a href="../../index.html#trabajo">Arbeiten</a>
+      <a href="../../ueber-mich/index.html">Über mich</a>
+      <a href="../../index.html#contacto">Kontakt</a>
+      <div class="language-switcher" aria-label="Sprachauswahl">
+        <a class="language-switcher__item" href="../../../proyectos/camila-perochena/index.html">ES</a>
+        <span class="language-switcher__sep">/</span>
+        <a class="language-switcher__item" href="../../../en/proyectos/camila-perochena/index.html">EN</a>
+        <span class="language-switcher__sep">/</span>
+        <span class="language-switcher__item language-switcher__item--active" aria-current="true">DE</span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO DEL CASO -- version alemana, mismo componente .case-hero que
+       proyectos/camila-perochena/index.html y en/proyectos/camila-perochena/index.html. -->
+  <section class="case-hero case-hero--camila container">
+    <a href="../../index.html#trabajo" class="back-link case-hero__back">← Zurück zu meinen Arbeiten</a>
+
+    <div class="grid case-hero__grid">
+      <div class="case-hero__content">
+        <span class="eyebrow case-hero__eyebrow">02 / Geschichte und politische Kommunikation</span>
+        <h1 class="case-hero__title">Camila Perochena</h1>
+        <p class="case-hero__lead">Schnitt und Anpassung historischer und politischer Inhalte für digitale Plattformen, ausgehend von Auftritten in Streaming-Formaten und im Fernsehen.</p>
+        <p class="case-hero__roles">Videoschnitt · Auswahl der Inhalte · Formatentwicklung · Plattformübergreifende Anpassung</p>
+
+        <div class="case-hero__stat">
+          <span class="case-hero__stat-value">14K <span class="case-hero__stat-arrow">→</span> 100K</span>
+          <span class="case-hero__stat-caption">Entwicklung der Community über etwa eineinhalb Jahre Zusammenarbeit.</span>
+        </div>
+      </div>
+
+      <div class="case-hero__media-col">
+        <!-- IMAGEN PRINCIPAL DEL CASO (16:9) -- misma imagen que ES/EN
+             (img/camila.webp, background-image en proyecto.css). -->
+        <div class="media media--16-9 case-hero__media case-hero__media--camila"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAS PROJEKT -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Das Projekt</span>
+      <div class="case-section__body">
+        <p>Camila Perochena ist Historikerin und Kommunikatorin, spezialisiert auf argentinische und Weltgeschichte. Sie tritt regelmäßig in Analyse- und Vermittlungsformaten auf, etwa in Soñé que volaba bei OLGA und in Odisea Argentina mit Carlos Pagni.</p>
+        <p>Meine Arbeit mit ihr konzentriert sich vor allem auf den Schnitt und die Anpassung dieser Auftritte für digitale Plattformen. Ausgehend von Material, das ursprünglich für Langformate gedacht war, wähle ich Ausschnitte aus, gestalte und schneide sie so, dass sie als eigenständige Stücke funktionieren, ohne den historischen oder argumentativen Kontext zu verlieren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUSGEWÄHLTE ARBEITEN -- drei echte Instagram-Reels, gleiche Struktur
+       wie ES/EN (.case-reel-grid). Zahlenwerte (3,3M / 1,2M / 600K) bleiben
+       unverändert, wie schon zwischen ES und EN. -->
+  <div class="case-dark-band">
+  <section class="case-section case-work case-section--dark-hero fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Ausgewählte Arbeiten</span>
+      <div class="case-section__body">
+        <p class="case-section__placeholder" style="margin-bottom: 32px;">Auswahl von Beiträgen, geschnitten aus Auftritten in Streaming-Formaten und im Fernsehen.</p>
+
+        <div class="case-reel-grid">
+          <a class="case-reel" href="https://www.instagram.com/reel/DP7VW6REbjH/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Reel / Instagram</span>
+            <div class="media media--9-16 case-reel__media">
+              <img class="case-reel__img" src="../../../img/proyectos/camila-perochena/reel-01.webp" alt="Miniaturbild des Instagram-Reels — 3,3M Aufrufe" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__value">3,3M</span>
+              <span class="case-reel__unit">Aufrufe</span>
+              <span class="case-reel__text">Ausschnittauswahl · Schnitt · Anpassung für soziale Medien</span>
+              <span class="arrow-link">Reel ansehen <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://www.instagram.com/reel/DMOSInCRCo_/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Reel / Instagram</span>
+            <div class="media media--9-16 case-reel__media">
+              <img class="case-reel__img" src="../../../img/proyectos/camila-perochena/reel-02.webp" alt="Miniaturbild des Instagram-Reels — 1,2M Aufrufe" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__value">1,2M</span>
+              <span class="case-reel__unit">Aufrufe</span>
+              <span class="case-reel__text">Ausschnittauswahl · Schnitt · Anpassung für soziale Medien</span>
+              <span class="arrow-link">Reel ansehen <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+
+          <a class="case-reel" href="https://www.instagram.com/reel/DLIZi21xmaV/?utm_source=ig_web_copy_link&amp;igsi=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+            <span class="eyebrow case-reel__label">Reel / Instagram</span>
+            <div class="media media--9-16 case-reel__media">
+              <img class="case-reel__img" src="../../../img/proyectos/camila-perochena/reel-03.webp" alt="Miniaturbild des Instagram-Reels — 600K Aufrufe" loading="lazy">
+            </div>
+            <div class="case-reel__caption">
+              <span class="case-reel__value">600K</span>
+              <span class="case-reel__unit">Aufrufe</span>
+              <span class="case-reel__text">Ausschnittauswahl · Schnitt · Anpassung für soziale Medien</span>
+              <span class="arrow-link">Reel ansehen <span class="arrow-link__arrow">↗</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- QUELLMATERIAL -->
+  <div class="case-dark-band">
+  <section class="case-section case-section--dark-hero fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Quellmaterial</span>
+      <div class="case-section__body">
+        <div class="sources-list">
+          <article class="source-item">
+            <div class="source-item__text">
+              <h3 class="source-item__title">Soñé que volaba</h3>
+              <p class="eyebrow source-item__meta">OLGA</p>
+              <p class="source-item__description">Beiträge zu Geschichte, Politik und aktuellem Geschehen, die später für soziale Medien angepasst wurden.</p>
+            </div>
+            <div class="source-item__media">
+              <div class="source-media">
+                <img src="../../../img/proyectos/camila-perochena/origen-olga.webp" alt="Screenshot aus der Sendung Soñé que volaba, OLGA" loading="lazy" onerror="this.style.display='none';">
+              </div>
+            </div>
+          </article>
+
+          <article class="source-item">
+            <div class="source-item__text">
+              <h3 class="source-item__title">Odisea Argentina</h3>
+              <p class="eyebrow source-item__meta">Carlos Pagni</p>
+              <p class="source-item__description">Beiträge mit historischer und politischer Analyse, die als Ausgangsmaterial für neue digitale Inhalte dienten.</p>
+            </div>
+            <div class="source-item__media">
+              <div class="source-media">
+                <img src="../../../img/proyectos/camila-perochena/origen-odisea.webp" alt="Screenshot aus der Sendung Odisea Argentina, Carlos Pagni" loading="lazy" onerror="this.style.display='none';">
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- MEINE ROLLE -->
+  <section class="case-section fade-in">
+    <div class="grid">
+      <span class="eyebrow case-section__label">Meine Rolle</span>
+      <div class="case-section__body">
+        <div class="role-accordion-list">
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Auswahl der Ausschnitte</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">In längeren Auftritten identifiziere ich Ideen oder Wortwechsel, die als eigenständige Stücke funktionieren können, und bevorzuge dabei, was Sinn und Kontext auch außerhalb des ursprünglichen Gesprächs bewahrt.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Videoschnitt</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Tempo, Schnitte, Untertitel und visuelle Elemente für ein klares, dynamisches Stück, ohne den Sinn des ursprünglichen Auftritts zu verändern.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Narrative Struktur</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Ich ordne Ausschnitte aus langen Gesprächen neu und schneide sie zu Stücken mit eigenem Anfang, Entwicklung und Schluss, mit dem Kontext, den es braucht, um für sich zu stehen.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Anpassung von Langformaten an Kurzformate</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Ich verwandle Auftritte aus Streaming oder Fernsehen in Kurzformate und verdichte sie, ohne das Argument auf einen isolierten Satz zu reduzieren oder relevante Nuancen zu verlieren.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Entwicklung von Inhalten für soziale Medien</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Ich denke jedes Stück von der Umgebung aus, in der es zirkulieren wird — Einstieg, Länge, Bildausschnitt, Tempo, Untertitel —, gestaltet nach der Sprache der Plattform und nicht als einfacher vertikaler Zuschnitt.</p>
+            </div>
+          </details>
+
+          <details class="role-accordion">
+            <summary class="role-accordion__summary">
+              <span class="role-accordion__title">Umgang mit historischen und politischen Inhalten</span>
+              <span class="role-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="role-accordion__content">
+              <p class="role-accordion__description">Historische und politische Themen verlangen besondere Sorgfalt im Umgang mit Kontext und Argumentation: Ich strebe einen Schnitt an, der zugänglich und ansprechend ist, ohne zu sensationalisieren oder zu vereinfachen, was Komplexität braucht.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL DEL CASO -->
+  <nav class="case-final container" aria-label="Navigation zwischen Projekten">
+    <a href="../../index.html#trabajo" class="back-link">← Alle Arbeiten</a>
+    <a href="../abuelas/index.html" class="arrow-link">Nächstes Projekt <span class="arrow-link__arrow">→</span></a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span class="site-footer__name">Germán Gómez Bonelli</span>
+    <a href="../../index.html#trabajo" class="back-link">← Zurück zu den Projekten</a>
+  </div>
+</footer>
+
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

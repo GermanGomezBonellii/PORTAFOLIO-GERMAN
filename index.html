@@ -50,7 +50,6 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/home.css">
-<link rel="stylesheet" href="assets/css/profile.css">
 <link rel="stylesheet" href="assets/css/contact.css">
 </head>
 <body>
@@ -65,12 +64,14 @@
 
     <nav class="site-header__nav" aria-label="Navegación principal">
       <a href="#trabajo">Trabajo</a>
-      <a href="#perfil">Sobre mí</a>
+      <a href="sobre-mi/index.html">Sobre mí</a>
       <a href="#contacto">Contacto</a>
       <div class="language-switcher" aria-label="Selector de idioma">
         <span class="language-switcher__item language-switcher__item--active" aria-current="true">ES</span>
         <span class="language-switcher__sep">/</span>
         <a class="language-switcher__item" href="en/index.html">EN</a>
+        <span class="language-switcher__sep">/</span>
+        <a class="language-switcher__item" href="de/index.html">DE</a>
       </div>
     </nav>
   </div>
@@ -84,7 +85,7 @@
       <h1 class="hero__title">
         Estrategia y producción de contenidos para la <span class="hero__title-highlight">comunicación científica y política.</span>
       </h1>
-      <p class="hero__lead reveal-on-scroll">Trabajo con investigadores, divulgadores e instituciones para desarrollar contenidos claros, rigurosos y pensados para plataformas digitales.</p>
+      <p class="hero__lead reveal-on-scroll">El objetivo es adaptar contenidos científicos y educativos a las lógicas de circulación digital sin perder claridad ni rigor.</p>
       <p class="hero__secondary reveal-on-scroll reveal-on-scroll--delay">Acompaño cada proyecto desde la estrategia y el desarrollo de formatos hasta la producción, edición y publicación.</p>
       <a href="#trabajo" class="hero__scroll-cue">Mis trabajos <span>↓</span></a>
     </div>
@@ -116,9 +117,9 @@
           </div>
 
           <div class="project-preview__content">
-            <span class="category-label project-preview__category">01 / Comunicación científica</span>
+            <span class="category-label project-preview__category">01 / Neurociencia</span>
             <h3 class="project-preview__name">Andrés Rieznik</h3>
-            <p class="project-preview__description">Asesoría en comunicación y producción de contenidos para articular divulgación científica, educación y lenguajes propios de las plataformas digitales.</p>
+            <p class="project-preview__description">Asesoría en comunicación y producción de contenidos junto a un físico y neurocientífico especializado en aprendizaje, en Instagram, TikTok y YouTube.</p>
             <p class="project-preview__roles">Estrategia · Producción · Edición · Desarrollo de formatos · Canales</p>
 
             <div class="project-preview__stat">
@@ -141,7 +142,7 @@
           <div class="project-preview__content">
             <span class="category-label project-preview__category">02 / Historia y política</span>
             <h3 class="project-preview__name">Camila Perochena</h3>
-            <p class="project-preview__description">Edición y adaptación de contenidos históricos y políticos para redes, a partir de participaciones en streaming y televisión, acompañando un crecimiento orgánico sostenido de 14K a 100K seguidores durante aproximadamente un año y medio de colaboración.</p>
+            <p class="project-preview__description">Edición y adaptación de contenidos históricos y políticos para redes, a partir de participaciones en streaming y televisión.</p>
 
             <div class="project-preview__stat">
               <span class="project-preview__stat-value">14K → <span class="count-up" data-start="14" data-end="100" data-suffix="K">100K</span></span>
@@ -163,7 +164,7 @@
           <div class="project-preview__content">
             <span class="category-label project-preview__category">03 / Derechos humanos</span>
             <h3 class="project-preview__name">Abuelas de Plaza de Mayo</h3>
-            <p class="project-preview__description">Trabajé junto a Abuelas de Plaza de Mayo en el área de Prensa y Difusión, donde inicié y administré su cuenta de TikTok desde cero. El proyecto combinó producción y edición de contenido original con adaptación de material de archivo, buscando trasladar la historia, la identidad institucional y el trabajo en derechos humanos a los lenguajes propios de las plataformas digitales.</p>
+            <p class="project-preview__description">Trabajé junto a Abuelas de Plaza de Mayo en el área de Prensa y Difusión, donde inicié y administré su cuenta de TikTok desde cero, combinando producción original y trabajo con archivo.</p>
 
             <div class="project-preview__stat">
               <span class="project-preview__stat-value">0 → <span class="count-up" data-start="0" data-end="31" data-suffix="K">31K</span></span>
@@ -220,80 +221,17 @@
     </div>
   </section>
 
-  <!-- PERFIL -->
-  <section class="profile" id="perfil">
-    <div class="container">
-      <div class="profile__grid grid">
-
-        <div class="profile__photo-col">
-          <!-- Foto de perfil: colocar el archivo en img/perfil.webp para que
-               aparezca automáticamente (ver comentario en assets/css/profile.css).
-               Mientras no exista, se muestra un placeholder gris claro, sin
-               íconos ni textos de "subir foto". -->
-          <div class="profile__photo"></div>
-        </div>
-
-        <div class="profile__content-col">
-          <span class="eyebrow profile__eyebrow">Perfil</span>
-          <h2 class="profile__title">Mi recorrido combina <span class="profile-highlight">comunicación</span>, <span class="profile-highlight">diseño</span> y <span class="profile-highlight">tecnología</span>.</h2>
-
-          <div class="profile__text">
-            <p>Me formé como Técnico en Diseño y Comunicación Publicitaria y actualmente estudio Tecnología Digital en la Universidad Torcuato Di Tella, una carrera que integra programación, negocios y diseño. Esa formación amplió mi manera de pensar la comunicación: no solo desde la producción de contenidos, sino también desde las herramientas, sistemas y plataformas a través de las cuales circulan.</p>
-            <p>En paralelo, trabajo en un laboratorio de neurociencia de la universidad, manteniendo un vínculo directo con la investigación y la producción de conocimiento científico.</p>
-            <p>Me interesa especialmente el cruce entre estas áreas. Creo en la importancia de que las decisiones y las políticas públicas puedan apoyarse en evidencia científica, pero también en que esa evidencia sea accesible fuera de los ámbitos especializados. Comunicar y divulgar conocimiento es, en ese sentido, una forma de ampliar quiénes pueden acceder a él, discutirlo y utilizarlo.</p>
-            <p>Mi trabajo busca moverse en ese espacio: encontrar estrategias, formatos y herramientas que permitan comunicar ideas complejas con rigor, sin perder de vista los lenguajes y las posibilidades propias de los medios digitales.</p>
-          </div>
-
-          <div class="profile__facts">
-            <div class="profile__fact">
-              <span class="profile__fact-label">Formación</span>
-              <p class="profile__fact-value">Técnico en Diseño y Comunicación Publicitaria</p>
-            </div>
-            <div class="profile__fact">
-              <span class="profile__fact-label">Actualmente</span>
-              <p class="profile__fact-value">Tecnología Digital</p>
-              <p class="profile__fact-detail">Universidad Torcuato Di Tella</p>
-            </div>
-            <div class="profile__fact">
-              <span class="profile__fact-label">Investigación</span>
-              <p class="profile__fact-value">Laboratorio de neurociencia</p>
-              <p class="profile__fact-detail">Universidad Torcuato Di Tella</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ARTICULOS -- subseccion editorial al final de Perfil. Vive
-           dentro de #perfil (.profile, fondo negro / texto blanco): mismo
-           container, mismo fondo, sin cards ni bloques de otro color.
-           Clases genericas (.profile-articles / .profile-article...) para
-           poder sumar nuevos articulos despues agregando solo un nuevo
-           <article class="profile-article"> dentro de
-           .profile-articles__list, sin escribir CSS nuevo. id="artitulos"
-           es el destino del link "Volver a Artículos" desde la pagina
-           individual de cada articulo. El titulo grande y la bajada
-           editorial de esta subseccion se quitaron por pedido del usuario
-           -- el listado de articulos en si (Articulo 01) se mantiene. -->
-      <div class="profile-articles" id="artitulos">
-        <div class="profile-articles__list">
-          <article class="profile-article">
-            <a class="profile-article__link" href="./articulos/autocensura-y-nueva-lengua/index.html">
-              <span class="eyebrow profile-article__label">Artículo 01</span>
-              <h3 class="profile-article__title">Autocensura y nueva-lengua: el mecanismo del que nadie habla</h3>
-              <p class="profile-article__excerpt">Desde “des-vivirse” hasta “el pintor con bigote”, el algoritmo está modificando nuestra lengua. ¿Cómo podemos prevenir la violencia sin hablar sobre ella?</p>
-            </a>
-          </article>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
+  <!-- CONTACTO -- ahora la seccion oscura de cierre de la home (mismo
+       fondo hero.webp + overlay que antes usaban Perfil y Artículos, ver
+       .contact en assets/css/contact.css). Composición de dos bloques:
+       izquierda (contact__inner) datos de contacto en columna compacta;
+       derecha (contact__about) retrato grande + acceso a Sobre mí, foto y
+       texto como un único <a> accesible -- alt vacío en la imagen: el
+       texto visible del mismo link ("Sobre mí →") ya describe el
+       destino. -->
   <section class="contact" id="contacto">
     <div class="container">
-      <div class="grid">
+      <div class="contact__layout grid">
         <div class="contact__inner">
           <h2 class="contact__title">Contacto</h2>
           <p class="contact__lead">Podés encontrarme o escribirme por estos medios.</p>
@@ -310,6 +248,13 @@
             </a>
           </div>
         </div>
+
+        <a class="contact__about" href="sobre-mi/index.html">
+          <span class="contact__about-media">
+            <img class="contact__about-img" src="img/perfil.webp" alt="">
+          </span>
+          <span class="contact__about-label">Sobre mí <span class="arrow-link__arrow">→</span></span>
+        </a>
       </div>
     </div>
   </section>
