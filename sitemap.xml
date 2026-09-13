@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: reemplazar https://TU-DOMINIO.example por el dominio real una vez publicado. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://TU-DOMINIO.example/</loc></url>
+  <url><loc>https://TU-DOMINIO.example/articulos/</loc></url>
+  <url><loc>https://TU-DOMINIO.example/noticias/</loc></url>
+  <url><loc>https://TU-DOMINIO.example/videos/</loc></url>
+  <url><loc>https://TU-DOMINIO.example/kalulu-y-alfabetizacion/</loc></url>
+  <url><loc>https://TU-DOMINIO.example/sobre-mi/</loc></url>
+</urlset>
+<!-- Contacto no tiene URL propia: es la sección #contacto de la home. -->

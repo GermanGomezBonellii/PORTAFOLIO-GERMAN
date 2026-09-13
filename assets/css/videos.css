@@ -1,0 +1,201 @@
+/* ==========================================================================
+   VIDEOS — selección editorial curada a mano (sin grilla de canal, sin
+   estado "todavía no conectado"). Cuatro momentos: intro + CTA, la serie
+   Re-Renacimiento, videos destacados y el mini documental en Arrecifes.
+   Los thumbnails y botón de play reutilizan .project-feature__media/
+   __thumb/__play, definidos en components.css (compartidos con Kalulu).
+   ========================================================================== */
+
+.videos-page {
+  padding-block: 0 var(--section-space);
+}
+
+/* -- 1. Intro + CTA — introducción editorial compacta, no un hero grande -- */
+.videos-intro {
+  padding-block: clamp(40px, 6vw, 64px) clamp(28px, 4vw, 40px);
+  max-width: 640px;
+}
+
+.videos-intro__title {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  margin-top: 14px;
+}
+
+.videos-intro__lead {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: var(--fs-lead);
+  max-width: 56ch;
+}
+
+.videos-intro__cta {
+  margin-top: clamp(20px, 3vw, 26px);
+}
+
+/* -- Secciones genéricas ---------------------------------------------------- */
+.videos-section {
+  padding-block: clamp(44px, 6vw, 72px);
+  border-top: 1px solid var(--color-line);
+}
+
+.videos-section__header {
+  max-width: 640px;
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.videos-section__eyebrow {
+  color: var(--color-accent);
+}
+
+.videos-section__title {
+  font-size: var(--fs-h2);
+  margin-top: 12px;
+}
+
+.videos-section__text {
+  margin-top: 12px;
+  color: var(--color-muted);
+  max-width: 60ch;
+}
+
+/* -- Miniaturas: zoom muy leve al pasar el mouse, solo en esta página ------- */
+.video-thumb .project-feature__thumb {
+  transition: transform 0.35s var(--ease);
+}
+
+.video-thumb:hover .project-feature__thumb {
+  transform: scale(1.03);
+}
+
+/* -- 2. Re-Renacimiento: cuatro capítulos ------------------------------------
+   Sin cards con sombra ni bordes redondeados grandes: imagen, label chico,
+   link con flecha. Desktop 4 en fila, tablet 2x2, mobile 1 por fila. */
+.video-series-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+
+.video-episode {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-episode__label {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  transition: color 0.2s var(--ease);
+}
+
+.video-episode:hover .video-episode__label {
+  color: var(--color-accent);
+}
+
+/* -- 3. Videos destacados: tres piezas del mismo nivel visual --------------- */
+.video-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 32px);
+}
+
+.video-featured {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.video-featured__title {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.2s var(--ease);
+}
+
+.video-featured__meta {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+.video-featured:hover .video-featured__title {
+  color: var(--color-accent);
+}
+
+/* -- 4. Mini documental en Arrecifes — layout propio, más peso visual ------- */
+.videos-doc {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+}
+
+.videos-doc__media .project-feature__play {
+  width: 76px;
+  height: 76px;
+}
+
+.videos-doc__media .project-feature__play::before {
+  border-width: 13px 0 13px 21px;
+}
+
+.videos-doc__text {
+  margin-top: 14px;
+  color: var(--color-muted);
+  max-width: 48ch;
+}
+
+.videos-doc__cta {
+  margin-top: 20px;
+}
+
+/* -- Cierre — simple, sin banda promocional grande --------------------------- */
+.videos-closing {
+  padding-block: clamp(48px, 7vw, 72px);
+  border-top: 1px solid var(--color-line);
+  text-align: center;
+}
+
+.videos-closing__text {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  max-width: 34ch;
+  margin-inline: auto;
+}
+
+.videos-closing__cta {
+  margin-top: 22px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-thumb .project-feature__thumb {
+    transition: none;
+  }
+
+  .video-thumb:hover .project-feature__thumb {
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .video-series-grid,
+  .video-featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .videos-doc {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .video-series-grid,
+  .video-featured-grid {
+    grid-template-columns: 1fr;
+  }
+}

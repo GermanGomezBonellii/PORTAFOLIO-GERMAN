@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Neuromagia",
+    "subtitle": "Qué pueden enseñarnos los magos (y la ciencia) sobre el funcionamiento del cerebro",
+    "year": 2015,
+    "publisher": "Siglo XXI Editores",
+    "coauthors": "con Mariano Sigman y Marcelo Insúa"
+  },
+  {
+    "title": "Atletismo mental",
+    "subtitle": "Técnicas para entrenar el cerebro y mejorar la memoria",
+    "year": 2016,
+    "publisher": "Sudamericana",
+    "coauthors": ""
+  },
+  {
+    "title": "Retos asombrosos",
+    "subtitle": "",
+    "year": 2018,
+    "publisher": "Sudamericana",
+    "coauthors": "con T. Rieznik"
+  },
+  {
+    "title": "Tabú",
+    "subtitle": "",
+    "year": 2020,
+    "publisher": "El Gato y La Caja",
+    "coauthors": ""
+  },
+  {
+    "title": "Enseñar",
+    "subtitle": "El ABC de la alfabetización (o por qué la ciencia de la lectura puede revolucionar la educación)",
+    "year": 2026,
+    "publisher": "Ediciones B",
+    "coauthors": "",
+    "cover": "img/ensenar.jpg"
+  }
+]

@@ -3,46 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Germán Gómez Bonelli — Estrategia y producción de contenidos</title>
-<meta name="description" content="Estrategia y producción de contenidos para la comunicación científica y política.">
+<title>Andrés Rieznik — Física, neurociencia y divulgación científica</title>
+<meta name="description" content="Sitio personal de Andrés Rieznik: físico, neurocientífico, docente y divulgador científico. Artículos, papers, noticias, videos y el proyecto Kalulu de alfabetización.">
+<link rel="canonical" href="https://TU-DOMINIO.example/">
+<!-- TODO: reemplazar https://TU-DOMINIO.example por el dominio real (o la URL de GitHub Pages) una vez publicado, acá y en el resto de las páginas. -->
 
-<!-- Open Graph / Facebook, LinkedIn, WhatsApp, etc. -- misma imagen (img/logo.png)
-     y mismo titulo/descripcion que <title> y <meta name="description"> de arriba,
-     para no duplicar contenido a mano. og:image usa ruta relativa: funciona para
-     preview local, pero la mayoria de los crawlers (Facebook, LinkedIn, WhatsApp)
-     necesitan una URL absoluta para poder descargar la imagen -- una vez que el
-     sitio tenga dominio propio, cambiar aca (y en twitter:image si se agrega) a
-     algo como https://tu-dominio.com/img/logo.png. -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Germán Gómez Bonelli — Estrategia y producción de contenidos">
-<meta property="og:description" content="Estrategia y producción de contenidos para la comunicación científica y política.">
-<meta property="og:image" content="img/logo.png">
+<meta property="og:title" content="Andrés Rieznik — Física, neurociencia y divulgación científica">
+<meta property="og:description" content="Físico, neurocientífico, docente y divulgador científico. Artículos, papers, noticias, videos y el proyecto Kalulu de alfabetización.">
+<meta property="og:image" content="https://TU-DOMINIO.example/img/andres.webp">
 <meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
 
-<!-- Favicon / isotipo del portfolio -->
-<link rel="icon" type="image/png" href="img/logo.png">
-<link rel="apple-touch-icon" href="img/logo.png">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="apple-touch-icon" href="img/favicon.svg">
 
-<!-- Merriweather (titulos y headings principales, var(--font-display)).
-     Dos pesos: 400 Regular (headings en general) y 700 Bold (titulo del hero).
-     display=optional (antes: swap) -- bugfix del "glitch" reportado por el
-     usuario al cambiar de idioma en las subpaginas: con swap, el navegador
-     pinta primero el fallback (Georgia, bastante mas angosto que
-     Merriweather) y reemplaza la fuente en cuanto termina de bajarla, sin
-     importar cuanto tarde -- ese reemplazo mueve el texto de los headings
-     grandes (hero, eyebrows) y se ve como si la pagina "se redimensionara".
-     Cada cambio de idioma es una navegacion de pagina completa (sitio sin
-     backend, un <html> por idioma), asi que ese salto podia repetirse en
-     cada switch si la fuente no llegaba a tiempo. optional le da al
-     navegador una ventana muy corta para tener la fuente lista ANTES de
-     pintar; si no llega a tiempo usa el fallback para toda esa vista y no
-     la reemplaza despues -- se elimina el salto a costa de, en una
-     conexion muy lenta y sin cache todavia, no mostrar Merriweather en esa
-     carga puntual (con la fuente ya en cache, que es el caso normal
-     navegando el sitio, esto no pasa: se ve igual que con swap). Mismo
-     cambio replicado tal cual en los otros 9 HTML del sitio que cargan
-     esta misma fuente (home ES/EN, los 3 casos ES/EN, el articulo ES/EN),
-     para que el comportamiento sea consistente en todas las paginas. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
@@ -51,223 +26,246 @@
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/home.css">
 <link rel="stylesheet" href="assets/css/contact.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrés Rieznik",
+  "url": "https://TU-DOMINIO.example/",
+  "image": "https://TU-DOMINIO.example/img/andres.webp",
+  "jobTitle": "Físico, neurocientífico y divulgador científico",
+  "sameAs": [
+    "https://es.wikipedia.org/wiki/Andrés_Rieznik",
+    "https://www.linkedin.com/in/andrés-rieznik-02163171/",
+    "https://www.instagram.com/andresrieznik/",
+    "https://x.com/andresrieznik",
+    "https://www.youtube.com/@AndresRieznikVideos"
+  ]
+}
+</script>
 </head>
 <body>
 
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
 <header class="site-header">
   <div class="container site-header__inner">
-    <span class="site-header__name">Germán Gómez Bonelli</span>
+    <a href="index.html" class="site-header__name">Andrés <span class="site-header__name-mark">Rieznik</span></a>
 
     <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
 
     <nav class="site-header__nav" aria-label="Navegación principal">
-      <a href="#trabajo">Trabajo</a>
+      <a href="index.html" aria-current="page">Inicio</a>
+      <a href="articulos/index.html">Artículos</a>
+      <a href="noticias/index.html">Noticias</a>
+      <a href="videos/index.html">Videos</a>
+      <a href="kalulu-y-alfabetizacion/index.html">Kalulu</a>
       <a href="sobre-mi/index.html">Sobre mí</a>
       <a href="#contacto">Contacto</a>
-      <div class="language-switcher" aria-label="Selector de idioma">
+      <div class="language-switcher" aria-label="Selector de idioma" hidden>
         <span class="language-switcher__item language-switcher__item--active" aria-current="true">ES</span>
         <span class="language-switcher__sep">/</span>
         <a class="language-switcher__item" href="en/index.html">EN</a>
         <span class="language-switcher__sep">/</span>
-        <a class="language-switcher__item" href="de/index.html">DE</a>
+        <a class="language-switcher__item" href="pt/index.html">PT</a>
       </div>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 
-  <!-- HERO SCROLL (contenedor que genera el recorrido; el hero interior queda sticky) -->
-  <section class="hero-scroll">
-    <div class="hero container grid">
-      <h1 class="hero__title">
-        Estrategia y producción de contenidos para la <span class="hero__title-highlight">comunicación científica y política.</span>
-      </h1>
-      <p class="hero__lead reveal-on-scroll">El objetivo es adaptar contenidos científicos y educativos a las lógicas de circulación digital sin perder claridad ni rigor.</p>
-      <p class="hero__secondary reveal-on-scroll reveal-on-scroll--delay">Acompaño cada proyecto desde la estrategia y el desarrollo de formatos hasta la producción, edición y publicación.</p>
-      <a href="#trabajo" class="hero__scroll-cue">Mis trabajos <span>↓</span></a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container grid hero__grid">
+      <div class="hero__content">
+        <span class="eyebrow hero__eyebrow">Física · Neurociencia · Divulgación</span>
+        <h1 class="hero__title">Andrés Rieznik</h1>
+        <!-- Subtítulo provisional pedido por el usuario: fácil de reemplazar por
+             una frase definitiva más adelante, sin tocar estructura ni CSS. -->
+        <p class="hero__subtitle">Física, neurociencia, educación y divulgación científica.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="articulos/index.html">Ver artículos</a>
+          <a class="btn btn--outline" href="kalulu-y-alfabetizacion/index.html">Conocé Kalulu</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <div class="hero__photo" role="img" aria-label="Andrés Rieznik"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOVEDAD PRINCIPAL -->
+  <section class="section fade-in" aria-labelledby="novedad-title">
+    <div class="container">
+      <div class="feature">
+        <div class="feature__media">
+          <div class="media media--tall">
+            <img src="img/ensenar.jpg" alt="Portada del libro Enseñar, de Andrés Rieznik" loading="lazy">
+          </div>
+        </div>
+        <div class="feature__content">
+          <span class="eyebrow">Novedad</span>
+          <h2 id="novedad-title" class="feature__title">Enseñar. El ABC de la alfabetización</h2>
+          <p class="feature__excerpt">Un libro sobre por qué muchos chicos no aprenden a leer y a resolver operaciones básicas, y cómo la evidencia científica puede transformar la manera de enseñar. Ediciones B, 2026.</p>
+          <a class="arrow-link" href="sobre-mi/index.html#libros">Ver libros <span class="arrow-link__arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÚLTIMOS ARTÍCULOS -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Últimos artículos</h2>
+        <a class="arrow-link section__link" href="articulos/index.html">Ver todos <span class="arrow-link__arrow">→</span></a>
+      </div>
+      <div class="news-empty">Todavía no hay artículos publicados. En cuanto se carguen el primero va a aparecer acá.</div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS / AGENDA -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Noticias y agenda</h2>
+        <a class="arrow-link section__link" href="noticias/index.html">Ver todo <span class="arrow-link__arrow">→</span></a>
+      </div>
+      <div class="news-list" data-news-list data-news-limit="4"></div>
+    </div>
+  </section>
+
+  <!-- VIDEOS RECIENTES -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Videos</h2>
+        <a class="arrow-link section__link" href="videos/index.html">Ver todos <span class="arrow-link__arrow">→</span></a>
+      </div>
+      <p style="color:var(--color-muted); max-width: 56ch; margin-bottom: 24px;">
+        Los videos más recientes del canal de YouTube todavía se están preparando para mostrarse acá automáticamente.
+        Mientras tanto, podés verlos directo en el canal.
+      </p>
+      <a class="btn btn--outline" href="https://www.youtube.com/@AndresRieznikVideos" target="_blank" rel="noopener noreferrer">Ir al canal de YouTube ↗</a>
+    </div>
+  </section>
+
+  <!-- LIBROS -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Libros</h2>
+        <a class="arrow-link section__link" href="sobre-mi/index.html#libros">Ver todos <span class="arrow-link__arrow">→</span></a>
+      </div>
+      <div class="book-grid" data-books-grid data-books-src="assets/data/books.json"></div>
+    </div>
+  </section>
+
+  <!-- KALULU -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="kalulu-band">
+        <div class="kalulu-band__content">
+          <span class="eyebrow kalulu-band__eyebrow">Kalulu</span>
+          <h2 class="kalulu-band__title">Un método gratuito y científico para enseñar a leer</h2>
+          <p class="kalulu-band__text">Andrés forma parte del equipo de Kalulu, un proyecto de ciencia ciudadana que lleva a las escuelas un método de alfabetización basado en evidencia.</p>
+          <a class="btn btn--outline-light" href="kalulu-y-alfabetizacion/index.html">Conocer el proyecto</a>
+        </div>
+        <div class="kalulu-band__media" role="img" aria-label="Campaña de alfabetización en Arrecifes"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ (breve) -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="about-teaser">
+        <div class="about-teaser__media" role="img" aria-label="Andrés Rieznik"></div>
+        <div class="about-teaser__content">
+          <span class="eyebrow">Sobre mí</span>
+          <h2 class="section__title" style="margin-top:14px;">Físico, docente y divulgador científico</h2>
+          <p class="about-teaser__text">Profesor full-time e investigador del Laboratorio de Neurociencia de la Universidad Torcuato Di Tella, dedicado además a la divulgación científica en medios y a proyectos de educación y alfabetización.</p>
+          <a class="arrow-link" href="sobre-mi/index.html">Conocer más <span class="arrow-link__arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO — integrado directo en la home (no es una subpágina aparte);
+       el link "Contacto" del header/footer apunta acá vía #contacto.
+       scroll-margin-top compensa el header sticky al llegar por anchor. -->
+  <section id="contacto" class="container contact-page fade-in" style="scroll-margin-top: var(--header-height); border-top: 1px solid var(--color-line);">
+    <div class="contact-page__header">
+      <span class="eyebrow">Contacto</span>
+      <h2 class="contact-page__title" style="margin-top:14px;">Redes y contacto</h2>
+    </div>
+
+    <div class="contact-columns">
+      <div>
+        <h3 class="contact-block__title">Mis redes</h3>
+        <p class="contact-block__note">Podés seguir el trabajo de divulgación en estas plataformas.</p>
+        <div class="contact-rows">
+          <a class="contact-row" href="https://www.instagram.com/andresrieznik/" target="_blank" rel="noopener noreferrer">
+            <span class="contact-row__label">Instagram</span>
+            <span class="contact-row__value">@andresrieznik ↗</span>
+          </a>
+          <a class="contact-row" href="https://x.com/andresrieznik" target="_blank" rel="noopener noreferrer">
+            <span class="contact-row__label">X (Twitter)</span>
+            <span class="contact-row__value">@andresrieznik ↗</span>
+          </a>
+          <a class="contact-row" href="https://www.youtube.com/@AndresRieznikVideos" target="_blank" rel="noopener noreferrer">
+            <span class="contact-row__label">YouTube</span>
+            <span class="contact-row__value">Andrés Rieznik ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="contact-block__title">Si me querés contactar</h3>
+        <p class="contact-block__note">Para consultas profesionales, prensa o propuestas.</p>
+        <div class="contact-rows">
+          <!-- EMAIL: no se encontró un email de contacto público y verificado
+               de Andrés dentro del proyecto ni por fuentes públicas fiables.
+               Placeholder explícito — reemplazar por el email real. -->
+          <a class="contact-row" href="mailto:contacto@PENDIENTE-COMPLETAR.com">
+            <span class="contact-row__label">Email</span>
+            <span class="contact-row__value">contacto@PENDIENTE-COMPLETAR.com ↗</span>
+          </a>
+          <a class="contact-row" href="https://www.linkedin.com/in/andr%C3%A9s-rieznik-02163171/" target="_blank" rel="noopener noreferrer">
+            <span class="contact-row__label">LinkedIn</span>
+            <span class="contact-row__value">Andrés Rieznik ↗</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- WRAPPER: agrupa toda la zona clara posterior al hero (Trabajo, Perfil,
-     Contacto y footer) para aplicarle un unico fondo continuo
-     (img/fondo.webp, ver .page-content en assets/css/home.css) sin
-     repetirlo seccion por seccion ni tocar el hero. -->
-<div class="page-content">
-
-  <!-- TRABAJO SELECCIONADO -->
-  <section class="work" id="trabajo">
-    <div class="container">
-      <div class="grid work__header">
-        <h2 class="work__title">Algunos proyectos que representan <span class="work__title-highlight typewriter" data-typewriter data-speed="40">mi forma de trabajar.</span></h2>
-      </div>
-
-      <div class="project-list">
-
-        <!-- 01 — Andrés Rieznik -->
-        <a class="project-preview fade-in" href="proyectos/andres-rieznik/index.html">
-          <span class="project-preview__index">01</span>
-
-          <div class="project-preview__media">
-            <div class="media media--tall media--andres"></div>
-          </div>
-
-          <div class="project-preview__content">
-            <span class="category-label project-preview__category">01 / Neurociencia</span>
-            <h3 class="project-preview__name">Andrés Rieznik</h3>
-            <p class="project-preview__description">Asesoría en comunicación y producción de contenidos junto a un físico y neurocientífico especializado en aprendizaje, en Instagram, TikTok y YouTube.</p>
-            <p class="project-preview__roles">Estrategia · Producción · Edición · Desarrollo de formatos · Canales</p>
-
-            <div class="project-preview__stat">
-              <span class="project-preview__stat-value">19K → <span class="count-up" data-start="19" data-end="480" data-suffix="K+">480K+</span></span>
-              <span class="project-preview__stat-caption">Evolución de la comunidad de Instagram durante el período de colaboración.</span>
-            </div>
-
-            <span class="arrow-link">Ver trabajo <span class="arrow-link__arrow">→</span></span>
-          </div>
-        </a>
-
-        <!-- 02 — Camila Perochena -->
-        <a class="project-preview project-preview--reverse fade-in" href="proyectos/camila-perochena/index.html">
-          <span class="project-preview__index">02</span>
-
-          <div class="project-preview__media">
-            <div class="media media--16-9 media--camila"></div>
-          </div>
-
-          <div class="project-preview__content">
-            <span class="category-label project-preview__category">02 / Historia y política</span>
-            <h3 class="project-preview__name">Camila Perochena</h3>
-            <p class="project-preview__description">Edición y adaptación de contenidos históricos y políticos para redes, a partir de participaciones en streaming y televisión.</p>
-
-            <div class="project-preview__stat">
-              <span class="project-preview__stat-value">14K → <span class="count-up" data-start="14" data-end="100" data-suffix="K">100K</span></span>
-              <span class="project-preview__stat-caption">Evolución de la comunidad durante aproximadamente un año y medio de colaboración.</span>
-            </div>
-
-            <span class="arrow-link">Ver trabajo <span class="arrow-link__arrow">→</span></span>
-          </div>
-        </a>
-
-        <!-- 03 — Abuelas de Plaza de Mayo -->
-        <a class="project-preview fade-in" href="proyectos/abuelas/index.html">
-          <span class="project-preview__index">03</span>
-
-          <div class="project-preview__media">
-            <div class="media media--square media--abuelas"></div>
-          </div>
-
-          <div class="project-preview__content">
-            <span class="category-label project-preview__category">03 / Derechos humanos</span>
-            <h3 class="project-preview__name">Abuelas de Plaza de Mayo</h3>
-            <p class="project-preview__description">Trabajé junto a Abuelas de Plaza de Mayo en el área de Prensa y Difusión, donde inicié y administré su cuenta de TikTok desde cero, combinando producción original y trabajo con archivo.</p>
-
-            <div class="project-preview__stat">
-              <span class="project-preview__stat-value">0 → <span class="count-up" data-start="0" data-end="31" data-suffix="K">31K</span></span>
-              <span class="project-preview__stat-caption">Comunidad alcanzada durante aproximadamente un año desde el lanzamiento de la cuenta de TikTok.</span>
-            </div>
-
-            <span class="arrow-link">Ver trabajo <span class="arrow-link__arrow">→</span></span>
-          </div>
-        </a>
-
-      </div>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="site-footer__name">Andrés Rieznik</span>
+      <span class="site-footer__meta">Física, neurociencia, educación y divulgación científica.</span>
     </div>
-  </section>
-
-  <!-- OTRAS COLABORACIONES
-       Dos colaboraciones adicionales SIN pagina interna: a diferencia de
-       .project-preview de arriba, estas piezas son deliberadamente
-       estaticas -- no son <a>, sin "Ver trabajo", sin flecha, sin cursor
-       pointer ni hover de interaccion. Menor peso visual a proposito
-       (titulo un escalon mas chico que los de Andres/Camila/Abuelas,
-       descripcion en color secundario). Clases genericas
-       (.secondary-projects / .secondary-project...) para poder sumar mas
-       colaboraciones de este tipo despues sin crear un componente nuevo
-       cada vez.
-
-       Imagenes definitivas: Emilse Garzón (img/emilse.webp) y María
-       Roca (img/maria_roca.webp), ver .media--emilse-garzon y
-       .media--maria-roca en home.css. -->
-  <section class="secondary-projects fade-in">
-    <div class="container">
-      <span class="eyebrow secondary-projects__label">Otras colaboraciones</span>
-
-      <div class="secondary-projects__list">
-        <div class="secondary-project">
-          <div class="media media--16-9 secondary-project__media media--emilse-garzon"></div>
-          <span class="category-label secondary-project__category">Ciberseguridad</span>
-          <h3 class="secondary-project__title">Emilse Garzón</h3>
-          <div class="secondary-project__description">
-            <p>Entre diciembre de 2024 y marzo de 2025 trabajé con participaciones de Emilse en streamings y otros programas, editando contenidos sobre inteligencia artificial, ciberseguridad, política y regulación tecnológica para convertirlos en reels.</p>
-            <p>Fue también un trabajo especialmente cercano a mi interés por los cruces entre tecnología y política. Un buen ejemplo es <a href="https://www.instagram.com/reel/DFftzHNx0d7/?stkn=NjVoZG1yd3R5anQz" target="_blank" rel="noopener noreferrer">Las Malvinas Argentinas según ChatGPT</a>, una pieza construida alrededor de cómo una herramienta de inteligencia artificial responde frente a una cuestión atravesada por historia, soberanía y política.</p>
-          </div>
-        </div>
-
-        <div class="secondary-project">
-          <div class="media media--16-9 secondary-project__media media--maria-roca"></div>
-          <span class="category-label secondary-project__category">Neurociencia</span>
-          <h3 class="secondary-project__title">María Roca</h3>
-          <div class="secondary-project__description">
-            <p>Trabajé con participaciones de la Dra. María Roca, <em>Coordinadora de Actividades de Acercamiento a la Comunidad</em> en INECO, editando contenidos sobre neurociencia, salud cerebral y bienestar cognitivo para convertirlos en videos cortos.</p>
-            <p>Sus intervenciones abordaban temas muy ligados a la vida cotidiana, como la memoria, los hábitos, el envejecimiento y el cuidado del cerebro. Fue un trabajo muy conectado con mi interés por la neurociencia.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -- ahora la seccion oscura de cierre de la home (mismo
-       fondo hero.webp + overlay que antes usaban Perfil y Artículos, ver
-       .contact en assets/css/contact.css). Composición de dos bloques:
-       izquierda (contact__inner) datos de contacto en columna compacta;
-       derecha (contact__about) retrato grande + acceso a Sobre mí, foto y
-       texto como un único <a> accesible -- alt vacío en la imagen: el
-       texto visible del mismo link ("Sobre mí →") ya describe el
-       destino. -->
-  <section class="contact" id="contacto">
-    <div class="container">
-      <div class="contact__layout grid">
-        <div class="contact__inner">
-          <h2 class="contact__title">Contacto</h2>
-          <p class="contact__lead">Podés encontrarme o escribirme por estos medios.</p>
-
-          <div class="contact__rows">
-            <a class="contact__row" href="mailto:germangomezbonelli2@gmail.com">
-              <span class="contact__row-label">Mail</span>
-              <span class="contact__row-value">germangomezbonelli2@gmail.com <span class="contact__row-arrow">↗</span></span>
-            </a>
-
-            <a class="contact__row" href="https://www.linkedin.com/in/german-gomez-bonelli-6a76063a9/" target="_blank" rel="noopener noreferrer">
-              <span class="contact__row-label">LinkedIn</span>
-              <span class="contact__row-value">Germán Gómez Bonelli <span class="contact__row-arrow">↗</span></span>
-            </a>
-          </div>
-        </div>
-
-        <a class="contact__about" href="sobre-mi/index.html">
-          <span class="contact__about-media">
-            <img class="contact__about-img" src="img/perfil.webp" alt="">
-          </span>
-          <span class="contact__about-label">Sobre mí <span class="arrow-link__arrow">→</span></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <span class="site-footer__name">Germán Gómez Bonelli</span>
-      <span class="site-footer__meta">Portfolio 2026</span>
-    </div>
-  </footer>
-
-</div>
+    <nav class="site-footer__nav" aria-label="Navegación del pie">
+      <a href="articulos/index.html">Artículos</a>
+      <a href="noticias/index.html">Noticias</a>
+      <a href="videos/index.html">Videos</a>
+      <a href="kalulu-y-alfabetizacion/index.html">Kalulu</a>
+      <a href="sobre-mi/index.html">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/noticias.js"></script>
+<script src="assets/js/books.js"></script>
 </body>
 </html>

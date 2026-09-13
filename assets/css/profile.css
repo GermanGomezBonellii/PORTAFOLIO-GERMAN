@@ -1,165 +1,75 @@
 /* ==========================================================================
-   PERFIL / SOBRE MÍ — página propia sobre-mi/index.html (ES) y
-   en/about/index.html (EN)
-   ==========================================================================
-   Hasta acá esta hoja daba estilo a la sección "Perfil" embebida en la
-   home (index.html #perfil). Esa sección se mudó a su propia página
-   (sobre-mi/ y en/about/) reutilizando exactamente estas mismas clases
-   -- ver ese HTML: mismo .profile / .profile__grid / .profile__photo /
-   .profile__title / .profile__text / .profile__facts de siempre, sin
-   cambios acá. La home ya no incluye este archivo CSS. El bloque de
-   Artículos que antes vivía dentro de esta misma sección se separó a su
-   propia franja oscura en la home (.articles-band, ver home.css) -- no
-   queda nada de él acá. */
+   SOBRE MÍ — perfil, formación, trayectoria, libros
+   ========================================================================== */
 
-/* Única sección de alto contraste del sitio fuera del hero/footer: usa la
-   misma textura hero.webp del hero de la home (antes era negro solido plano),
-   relacionada visualmente con el hero (misma imagen, mismo tratamiento)
-   sin ser identica -- el hero pinta la imagen directo sobre si mismo con
-   un overlay muy sutil (rgba(0,0,0,.15), ver .hero en home.css) porque
-   ocupa casi toda la pantalla con un titulo enorme; acá la seccion es
-   mas baja (menos imagen visible con "cover") y el texto es de cuerpo,
-   así que hace falta mas contraste -- 0.55, mezclado en un solo
-   background-image (linear-gradient encima de la imagen) sobre un
-   ::before, en vez de pintarlo directo sobre .profile: misma tecnica ya
-   probada y confirmada en las dos franjas oscuras de Camila Perochena
-   (.case-dark-band en proyecto.css) -- wrapper con su propio contexto de
-   apilamiento (position: relative + isolation: isolate) y el contenido
-   real (.container) por encima con z-index. overflow: hidden evita que
-   el ::before (inset: 0) sobresalga si algun contenido interno llegara a
-   desbordar. background-color solido queda como respaldo mientras
-   hero.webp carga o si la ruta llegara a fallar. Como .profile vive
-   dentro de .page-content (que trae la textura fondo.webp del resto de
-   secciones, ver home.css), esta nueva capa simplemente tapa esa textura
-   en el alto exacto de esta sección -- sin afectar a Trabajo ni Contacto
-   arriba/abajo, sin tocar .page-content. El color blanco de acá se
-   hereda hacia abajo (título, párrafos, .profile__fact-value): no hizo
-   falta declararlo de nuevo en cada uno. Los elementos con su color
-   propio pensado para fondo claro (labels, detail, líneas divisorias de
-   .profile__fact) sí se sobreescriben más abajo -- ninguno de estos se
-   tocó en este cambio, solo el fondo. */
 .profile {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding-block: var(--section-space);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: var(--color-text);
-  color: #ffffff;
-}
-
-.profile::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../../img/hero.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* .container es una clase global compartida (header, contact, footer,
-   etc.) -- se escala acá SOLO como descendiente directo de .profile
-   (.profile > .container), nunca en el selector base, para no afectar
-   ninguna otra sección de ninguna otra página. Sube el contenido real
-   (link "Volver" + Perfil, ver sobre-mi/index.html y en/about/index.html)
-   por encima del ::before. */
-.profile > .container {
-  position: relative;
-  z-index: 1;
+  padding-block: clamp(40px, 6vw, 72px) var(--section-space);
 }
 
 .profile__grid {
-  align-items: start; /* cada columna conserva su alto intrínseco */
-  /* Offset compartido entre columnas: lo usa .profile__content-col como
-     padding-top y .profile__photo-col lo retoma para su margin-top (ver
-     abajo). Una sola fuente de valor -- si cambia acá, las dos columnas
-     se mueven juntas y no pueden desalinearse entre sí. */
-  --profile-content-offset: clamp(24px, 5vw, 64px);
+  align-items: start;
+  --profile-content-offset: clamp(16px, 3vw, 32px);
 }
 
 .profile__photo-col {
-  grid-column: 1 / span 5; /* ~41.7% del ancho de la composición */
-  /* Alinea el borde superior de la foto con el título, no con el label
-     "Perfil": mismo --profile-content-offset que ya empuja hacia abajo a
-     .profile__content-col, más la altura real de la línea del label
-     (line-height 1.5 * --fs-micro = 1.08rem, ver base.css) más su
-     margin-bottom (20px, ver .profile__eyebrow más abajo). El label
-     queda por encima de la foto a propósito -- no se alinea con ella. */
-  margin-top: calc(var(--profile-content-offset) + 1.08rem + 20px);
+  grid-column: 1 / span 5;
 }
 
-.profile__content-col {
-  grid-column: 7 / span 6; /* columna 6 se salta a propósito: aire extra entre foto y texto */
-  padding-top: var(--profile-content-offset); /* asimetría controlada: el label "Perfil" arranca un poco más abajo que el borde superior de la foto */
-}
-
-/* -- Fotografía --------------------------------------------------------
-   Placeholder neutro (bloque gris muy claro) mientras no exista
-   img/perfil.webp. Se usa background-image (no <img>) a propósito: si el
-   archivo todavía no existe, el fondo simplemente cae al color sólido de
-   --color-surface -- sin ícono de imagen rota ni texto "SUBIR FOTO".
-
-   PARA AGREGAR LA FOTO DEFINITIVA: colocar el archivo exactamente en
-     img/perfil.webp
-   (misma carpeta que ya usa hero.webp). En cuanto exista, se muestra sola,
-   recortada con cover y centrada -- no hace falta tocar este CSS ni el HTML.
-   ------------------------------------------------------------------------ */
 .profile__photo {
   width: 100%;
   aspect-ratio: 4 / 5;
+  border-radius: 20px;
   background-color: var(--color-surface);
-  background-image: url('../../img/perfil.webp'); /* <- ruta configurada acá */
+  background-image: url('../../img/andres.webp');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
+}
+
+.profile__content-col {
+  grid-column: 7 / span 6;
+  padding-top: var(--profile-content-offset);
 }
 
 .profile__eyebrow {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   color: var(--color-accent);
 }
 
-/* Subrayado editorial celeste para 1-3 conceptos puntuales dentro de un
-   título -- deliberadamente NO es un <u> ni fondo tipo marcador. La
-   línea queda separada de la letra (padding-bottom) y es más gruesa que
-   un underline por defecto (3px). display: inline-block para que el
-   padding-bottom se aplique de forma prolija bajo cada palabra. */
 .profile-highlight {
   display: inline-block;
   border-bottom: 3px solid var(--color-accent);
-  padding-bottom: 4px;
+  padding-bottom: 2px;
 }
 
 .profile__title {
   font-size: var(--fs-h1);
-  margin-bottom: clamp(32px, 5vw, 56px);
+  margin-bottom: clamp(24px, 4vw, 36px);
 }
 
 .profile__text {
-  max-width: 58ch; /* legibilidad: evita una columna de texto demasiado ancha */
+  max-width: 60ch;
 }
 
 .profile__text p {
-  line-height: 1.6;
+  line-height: 1.65;
+  color: var(--color-text);
 }
 
 .profile__text p + p {
-  margin-top: 1.15em;
+  margin-top: 1.1em;
 }
 
 .profile__facts {
-  margin-top: clamp(40px, 6vw, 64px);
-  max-width: 58ch;
+  margin-top: clamp(32px, 5vw, 48px);
+  max-width: 60ch;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
 }
 
 .profile__fact {
-  padding-block: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* separación por línea fina, sin cards -- antes var(--color-line), pensado para fondo claro */
-}
-
-.profile__fact:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 14px;
+  border-top: 1px solid var(--color-line);
 }
 
 .profile__fact-label {
@@ -168,27 +78,26 @@
   font-size: var(--fs-micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent); /* celeste sobre negro -- antes var(--color-muted), pensado para fondo claro */
-  margin-bottom: 8px;
+  color: var(--color-accent);
+  margin-bottom: 6px;
 }
 
 .profile__fact-value {
-  font-family: var(--font-body); /* dato secundario (no es un titulo): se mantiene en sans, igual que su label */
-  font-size: 1.05rem;
-  font-weight: 500;
-  /* color: blanco, heredado de .profile -- sin declarar de nuevo acá */
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
 }
 
 .profile__fact-detail {
   font-family: var(--font-body);
   font-size: var(--fs-small);
-  color: rgba(255, 255, 255, 0.65); /* gris claro sobre negro -- antes var(--color-muted), pensado para fondo claro */
+  color: var(--color-muted);
   margin-top: 2px;
 }
 
 @media (max-width: 1024px) {
-  .profile__grid {
-    --profile-content-offset: clamp(16px, 3vw, 32px);
+  .profile__facts {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -198,147 +107,46 @@
     grid-column: 1 / -1;
   }
   .profile__photo-col {
-    margin-top: 0; /* mobile: la foto vuelve a arrancar normal, sin el offset de desktop */
+    max-width: 320px;
   }
   .profile__content-col {
     padding-top: 0;
-    margin-top: clamp(32px, 8vw, 48px);
+    margin-top: clamp(28px, 7vw, 40px);
   }
 }
 
-/* -- "← Volver al inicio" -------------------------------------------------
-   Arriba del todo en sobre-mi/index.html y en/about/index.html, antes de
-   .profile__grid, dentro del mismo .profile > .container (por eso queda
-   por encima del ::before, igual que el resto del contenido). Mismo
-   componente .back-link que ya usan las páginas de proyecto (ver
-   .case-hero__back en proyecto.css y .back-link en components.css), pero
-   sobre este fondo oscuro necesita su propia variante de color -- mismo
-   criterio ya usado en .site-footer .back-link (components.css): blanco
-   translúcido en reposo, celeste al hover/foco. */
-.about-page__back {
-  margin-bottom: clamp(40px, 6vw, 72px);
-  color: rgba(255, 255, 255, 0.72);
+/* -- Trayectoria (docencia / investigación / divulgación / medios) ---------- */
+.timeline {
+  margin-top: var(--section-space);
+  border-top: 1px solid var(--color-line);
+  padding-top: clamp(32px, 5vw, 48px);
 }
 
-.about-page__back:hover,
-.about-page__back:focus-visible {
-  color: var(--color-accent);
+.timeline__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(28px, 4vw, 40px);
 }
 
-/* -- Artículos -------------------------------------------------------------
-   Subsección editorial al final de la página Sobre mí / About: vive
-   dentro del mismo .profile > .container que el resto (después de
-   .profile__grid, antes de cerrar la sección) -- mismo fondo negro,
-   mismo container, sin cards ni bloques de otro color, y antes del
-   footer. Antes vivía en la home (primero dentro de #perfil, después en
-   su propia franja .articles-band); se mudó acá para que la home termine
-   en Contacto. Clases genéricas (.profile-articles / .profile-article...)
-   para poder sumar nuevos artículos después agregando solo un nuevo
-   <article class="profile-article"> dentro de .profile-articles__list,
-   sin escribir CSS nuevo. scroll-margin-top compensa el header sticky
-   (--header-height) para que el link "Volver a Artículos" (id interno
-   #artitulos, sin tilde -- no se renombra para no romper el anchor ya
-   existente) no quede tapado al llegar. */
-.profile-articles {
-  margin-top: clamp(64px, 9vw, 112px);
-  scroll-margin-top: var(--header-height);
-}
-
-.profile-articles__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
-.profile-articles__intro {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 62ch;
-  /* Mas espacio antes del separador que antes del listado: ayuda a
-     distinguir la cabecera de la subseccion (titulo + intro) del
-     listado de articulos que viene despues. */
-  margin-bottom: clamp(40px, 6vw, 64px);
-}
-
-.profile-articles__list {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Cada artículo es una fila completa clickeable (el <a> ocupa todo el
-   alto y ancho de .profile-article). Separador fino reutilizando
-   exactamente el mismo color de divisor que ya usa .profile__fact sobre
-   este mismo fondo negro (rgba(255,255,255,0.2)). */
-.profile-article {
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.profile-article:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.profile-article__link {
-  display: block;
-  padding-block: clamp(28px, 4.5vw, 40px);
-  cursor: pointer;
-}
-
-/* Foco visible sobre fondo negro: el foco global (a:focus-visible en
-   base.css) usa var(--color-text), prácticamente negro -- invisible acá.
-   Se sobreescribe puntualmente solo para este link. */
-.profile-article__link:focus-visible {
-  outline: 2px solid #ffffff;
-  outline-offset: 6px;
-}
-
-/* Etiqueta "Artículo 01": deja explícito que lo que sigue es una entrada
-   dentro de la subsección, no un título suelto. Reutiliza .eyebrow
-   (sans-serif, uppercase, tracking editorial) con un color más tenue,
-   pensado para este fondo negro. */
-.profile-article__label {
-  display: block;
+.timeline__item h3 {
+  font-size: 1.05rem;
   margin-bottom: 8px;
-  color: rgba(255, 255, 255, 0.6);
 }
 
-.profile-article__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 2.1vw, 1.8rem); /* claramente mas chico que .profile-articles__title, con algo mas de presencia que antes */
-  color: var(--color-accent);
-  margin-bottom: 8px;
-  transition: opacity 0.2s var(--ease);
-}
-
-.profile-article__excerpt {
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  color: #ffffff;
-  max-width: 62ch;
-}
-
-/* Interacción muy sutil: solo el título varía levemente de opacidad al
-   hover/focus. Sin fondo, sin flecha, sin zoom, sin card. */
-.profile-article__link:hover .profile-article__title,
-.profile-article__link:focus-visible .profile-article__title {
-  opacity: 0.75;
+.timeline__item p {
+  color: var(--color-muted);
+  font-size: var(--fs-small);
 }
 
 @media (max-width: 768px) {
-  .profile-articles {
-    margin-top: clamp(48px, 10vw, 64px);
+  .timeline__grid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .profile-articles__title {
-    margin-bottom: 16px;
-  }
-
-  .profile-article__link {
-    padding-block: clamp(22px, 5vw, 32px);
-  }
+/* -- Libros ------------------------------------------------------------------- */
+.books {
+  margin-top: var(--section-space);
+  border-top: 1px solid var(--color-line);
+  padding-top: clamp(32px, 5vw, 48px);
 }

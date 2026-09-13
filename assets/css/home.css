@@ -1,520 +1,418 @@
 /* ==========================================================================
-   HOME — hero y trabajo seleccionado
+   HOME — hero propio de Andrés Rieznik + composición editorial de contenido
+   destacado. No reutiliza el hero de scrollytelling del sitio base (pensado
+   para la narrativa de un portfolio de producción) — identidad propia: hero
+   editorial con retrato, sin efectos de scroll forzado.
    ========================================================================== */
 
-/* -- Fondo general de la zona clara (Trabajo + Otras colaboraciones)
-   --------------------------------------------------------------------------
-   .page-content envuelve todo lo que va DESPUES del hero (ver index.html:
-   el hero queda afuera, dentro de <main>, así que no lo toca). Una sola
-   imagen (img/fondo.webp) se repite verticalmente tantas veces como haga
-   falta para cubrir el contenido -- repeat-y, sin repetición horizontal,
-   sin estirarse ni deformarse (el ancho siempre es 100% del wrapper, el
-   alto se calcula solo con "auto" para mantener la proporción real de la
-   imagen, así cada repetición mide exactamente lo mismo que la anterior y
-   la unión entre una y otra queda limpia). background-color blanco debajo
-   como respaldo si la imagen tiene transparencia o todavía no cargó.
-
-   Es background-image directo sobre el wrapper -- no un pseudo-elemento,
-   no tiene z-index ni position propios -- así que por definición del
-   modelo de cajas de CSS queda por detrás de absolutamente todo su
-   contenido (secciones, textos, previews, imágenes, links) sin generar
-   overlays ni interferir con clicks. .work y .secondary-projects no
-   definen su propio background-color, así que la imagen se ve continua
-   entre ellas -- .contact y .site-footer, en cambio, pintan su propia
-   textura oscura por encima (hero.webp + overlay, mismo criterio que
-   usaba .profile) y tapan esta imagen en su alto exacto, sin afectar a
-   las secciones vecinas.
-
-   background-size: 100% auto ya es responsive por sí solo -- el ancho
-   siempre se ajusta al del wrapper y el alto lo sigue proporcionalmente
-   en cualquier tamaño de pantalla, sin necesidad de un override aparte
-   para mobile. ------------------------------------------------------------ */
-.page-content {
-  background-color: #fff;
-  background-image: url('../../img/fondo.webp');
-  background-repeat: repeat-y;
-  background-position: top center;
-  background-size: 100% auto;
-}
-
-/* -- Hero sticky / scrollytelling --------------------------------------
-   .hero-scroll es el contenedor que genera el recorrido extra de scroll
-   (su alto se controla desde --hero-scroll-length en assets/css/base.css).
-   .hero queda "pegado" (position: sticky) debajo del header mientras dura
-   ese recorrido, y recien se libera cuando .hero-scroll termina -- sin
-   bloquear el scroll ni tocar la rueda del mouse, solo CSS + un contenedor
-   mas alto que su contenido. El progreso de ese recorrido tambien decide
-   cuando aparecen .hero__lead y .hero__secondary (ver assets/js/main.js).
-   ------------------------------------------------------------------------ */
-.hero-scroll {
-  position: relative;
-  min-height: var(--hero-scroll-length);
-}
-
-/* Imagen de fondo (assets/img/hero.webp esta en /img, ruta calculada desde
-   este archivo CSS: assets/css/home.css -> ../../img/hero.webp) + overlay
-   sutil (::before) + texto en blanco. La imagen actua como fondo, no como
-   <img> dentro del layout. */
 .hero {
-  position: sticky;
-  top: var(--header-height); /* se pega justo debajo del header, nunca detras */
-  isolation: isolate; /* contiene el z-index negativo del overlay dentro del hero */
-  min-height: calc(100vh - var(--header-height));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: clamp(40px, 8vw, 90px);
-  background-image: url('../../img/hero.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f6f9fd 0%, #ffffff 65%);
+  padding-block: clamp(48px, 8vw, 96px);
+  border-bottom: 1px solid var(--color-line);
 }
 
-/* Overlay muy sutil para asegurar legibilidad del texto blanco.
-   z-index: -1 lo deja por encima del fondo pero por debajo del contenido
-   (que queda arriba por ser contenido en flujo normal, sin necesidad de
-   tocar cada elemento hijo). Ajustar la opacidad solo si hace falta. */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: -1;
-  pointer-events: none;
+.hero__grid {
+  align-items: center;
+}
+
+.hero__content {
+  grid-column: 1 / span 7;
+}
+
+.hero__eyebrow {
+  color: var(--color-accent);
+  margin-bottom: 18px;
 }
 
 .hero__title {
-  grid-column: 1 / span 10; /* ancho sin cambios: la version chica ya volvio a un tamaño mas grande, no hizo falta angostar la columna */
-  font-family: var(--font-display);
   font-size: var(--fs-hero);
-  font-weight: 700; /* Merriweather Bold: protagonismo editorial en el hero */
-  line-height: 1.08; /* corregido -- 1 quedaba demasiado apretado y superponia lineas; 1.08 da aire sin perder compacidad */
-  letter-spacing: normal; /* el -0.01em global (pensado para una grotesca bold) no le sienta bien a un serif */
-  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.04;
 }
 
-/* Destacado puntual dentro del titulo del hero. Color definido en
-   --color-accent (assets/css/base.css). */
-.hero__title-highlight {
-  color: var(--color-accent);
+.hero__subtitle {
+  margin-top: clamp(20px, 3vw, 28px);
+  font-family: var(--font-body);
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 46ch;
 }
 
-/* Balance de líneas para el titulo en ingles y en aleman: en ambos casos
-   el texto traducido ("Communication strategy and content production for
-   science and politics." / "Kommunikationsstrategie und Content-Produktion
-   für Wissenschaft und Politik.") no cae tan parejo entre renglones como
-   el español con el wrap por defecto -- el aleman en particular es mas
-   largo que el ingles y usa compuestos largos (Kommunikationsstrategie,
-   Content-Produktion) que pueden dejar un renglon final muy corto sin
-   balance. text-wrap: balance le pide al navegador redistribuir las
-   palabras para que todos los renglones queden con un ancho similar, en
-   vez de llenar cada renglón al maximo antes de saltar al siguiente.
-   Scopeado con html[lang="en"]/html[lang="de"] (no una clase nueva en el
-   span, no toca home.css para el resto del sitio) para no afectar el
-   titulo en español, que ya wrappea parejo tal cual esta. Progressive
-   enhancement: en un navegador que no soporte la propiedad, el titulo
-   sigue wrappeando normal, sin romperse. */
-html[lang="en"] .hero__title,
-html[lang="de"] .hero__title {
-  text-wrap: balance;
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(28px, 4vw, 40px);
 }
 
-.hero__lead {
-  grid-column: 1 / span 8;
-  font-size: clamp(1.5rem, 2vw, 2rem); /* nivel 2: bajada editorial, mas grande que antes */
-  line-height: 1.25;
-  font-family: var(--font-body); /* subtitulo del hero: se mantiene en sans a proposito, el contraste serif/sans es parte del sistema */
-  font-weight: 400;
-  color: #ffffff;
-  margin-top: clamp(32px, 4.5vw, 52px);
+.hero__media {
+  grid-column: 8 / span 5;
 }
 
-.hero__secondary {
-  grid-column: 1 / span 6;
-  font-size: clamp(1.05rem, 1.35vw, 1.3rem); /* nivel 3: crece ligeramente, sigue por debajo del nivel 2 */
-  line-height: 1.4;
-  font-family: var(--font-body); /* subtitulo del hero: se mantiene en sans a proposito, mismo criterio que hero__lead */
-  font-weight: 400;
-  color: #ffffff;
-  margin-top: clamp(22px, 3vw, 32px);
+.hero__photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  background-image: url('../../img/andres.webp');
+  background-size: cover;
+  background-position: center top;
+  box-shadow: 0 24px 60px -20px rgba(11, 31, 58, 0.35);
 }
 
-.hero__scroll-cue {
-  grid-column: 1 / span 4;
-  margin-top: clamp(40px, 6vw, 72px);
-  font-size: 0.95rem; /* aumento leve respecto a --fs-small (0.85rem); sigue siendo la indicacion mas chica del hero */
-  color: #ffffff;
-  display: inline-flex;
+@media (max-width: 900px) {
+  .hero__content,
+  .hero__media {
+    grid-column: 1 / -1;
+  }
+
+  .hero__media {
+    margin-top: clamp(32px, 8vw, 48px);
+    max-width: 380px;
+  }
+}
+
+/* -- Secciones destacadas: cabecera común ----------------------------------- */
+.section {
+  padding-block: var(--section-space);
+  border-top: 1px solid var(--color-line);
+}
+
+.section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.section__title {
+  font-size: var(--fs-h1);
+  max-width: 20ch;
+}
+
+.section__link {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .section__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* -- Novedad principal (destacado editorial, no una card más) --------------- */
+.feature {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
   align-items: center;
-  gap: 8px;
-  width: fit-content;
+  background: var(--color-surface);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 48px);
 }
 
-.hero__scroll-cue span {
-  display: inline-block;
-  animation: bob 2.2s var(--ease) infinite;
+.feature__media {
+  grid-column: 1 / span 5;
 }
 
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
+.feature__content {
+  grid-column: 6 / span 7;
 }
 
-@media (max-width: 768px) {
-  .hero-scroll {
-    min-height: var(--hero-scroll-length-mobile); /* recorrido reducido: evita un scroll exageradamente largo en mobile */
+.feature__title {
+  font-size: var(--fs-h2);
+  margin: 14px 0 12px;
+}
+
+.feature__excerpt {
+  color: var(--color-muted);
+  max-width: 60ch;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 860px) {
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-  .hero {
-    min-height: auto;
-    padding-block: clamp(48px, 14vw, 72px) clamp(56px, 16vw, 80px);
-  }
-  .hero__title,
-  .hero__lead,
-  .hero__secondary,
-  .hero__scroll-cue {
+
+  .feature__media,
+  .feature__content {
     grid-column: 1 / -1;
   }
 }
 
-/* Hero en aleman, solo mobile: "Kommunikationsstrategie" (23 caracteres, sin
-   punto de corte natural) no entra en una sola linea al tamaño mobile
-   normal del titulo (--fs-hero queda fijo en su piso de 2.1rem por debajo
-   de ~768px de ancho) y termina cortandose de forma fea. Pedido del
-   usuario: en vez de agrandar el contenedor o forzar un salto de linea
-   manual, se achica el tamaño de fuente de todo el bloque del hero
-   (titulo, bajada y texto secundario) SOLO para aleman y SOLO en mobile,
-   para que la palabra mas larga entre comoda en una sola linea. No toca
-   ES/EN (que no tienen este problema) ni el tamaño en desktop/tablet.
-   Mismo criterio de scoping por html[lang="de"] ya usado mas arriba para
-   text-wrap:balance del hero__title. */
-@media (max-width: 768px) {
-  html[lang="de"] .hero__title {
-    font-size: 1.4rem;
-  }
-  html[lang="de"] .hero__lead {
-    font-size: 1.05rem;
-  }
-  html[lang="de"] .hero__secondary {
-    font-size: 0.92rem;
-  }
-
-  /* Pedido del usuario: aunque el texto quede mas chico, el hero aleman en
-     mobile debe seguir ocupando toda la primera pantalla (como ya hace en
-     desktop, ver ".hero { min-height: calc(100vh - var(--header-height)); }"
-     mas arriba), en vez de achicarse a la altura de su contenido como hace
-     el resto del sitio en mobile (".hero { min-height: auto; ... }" en el
-     media query anterior). Mayor especificidad por el selector
-     html[lang="de"] alcanza para pisar esa regla sin !important. Solo
-     aleman: en ES/EN "el resto esta bien" (texto del usuario), no se toca.
-     --hero-scroll-length-mobile (130vh, base.css) ya deja de sobra este
-     recorrido de scroll para que el hero sticky quepa entero. */
-  html[lang="de"] .hero {
-    min-height: calc(100vh - var(--header-height));
-    justify-content: center;
-  }
+/* -- Últimos artículos: 3 columnas ------------------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 32px);
 }
 
-/* -- Trabajo seleccionado --------------------------------------------------- */
-.work {
-  padding-block: var(--section-space);
-  border-top: 1px solid var(--color-line);
+.card-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.work__header {
-  margin-bottom: clamp(40px, 6vw, 80px);
+.content-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.work__eyebrow {
-  grid-column: 1 / span 12;
+.content-card__media {
+  aspect-ratio: 4 / 3;
 }
 
-.work__title {
-  grid-column: 1 / span 7;
-  font-size: var(--fs-h1);
-  margin-top: 14px;
-  text-wrap: balance;
-}
-
-/* Destacado puntual dentro del titulo de "Trabajo seleccionado", mismo
-   criterio que .hero__title-highlight: color definido en --color-accent
-   (assets/css/base.css). */
-.work__title-highlight {
+.content-card__category {
   color: var(--color-accent);
 }
 
-/* Lista de proyectos: bloques completos, no cards idénticas */
-.project-list {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(64px, 10vw, 140px);
+.content-card__title {
+  font-size: 1.15rem;
+  font-family: var(--font-display);
 }
 
-.project-preview {
+.content-card__excerpt {
+  color: var(--color-muted);
+  font-size: var(--fs-small);
+}
+
+.content-card__meta {
+  font-size: var(--fs-micro);
+  color: var(--color-muted-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .card-grid,
+  .card-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -- Noticias / agenda: filas tipo tablón ------------------------------------ */
+.feed-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding-block: 18px;
+  border-top: 1px solid var(--color-line);
+}
+
+.feed-list > :last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.feed-row__date {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+.feed-row__title {
+  font-size: 1.02rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .feed-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* -- Videos: grid horizontal -------------------------------------------------- */
+.video-card__media {
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.video-card__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card__play::before {
+  content: '';
+  border-style: solid;
+  border-width: 9px 0 9px 15px;
+  border-color: transparent transparent transparent var(--color-ink);
+  margin-left: 3px;
+}
+
+/* -- Libros ------------------------------------------------------------------- */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(20px, 3vw, 28px);
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.book-card__cover {
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  background: var(--color-ink);
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  box-shadow: 0 16px 32px -18px rgba(11, 31, 58, 0.5);
+  overflow: hidden;
+}
+
+.book-card__cover--photo {
+  padding: 0;
+}
+
+.book-card__cover--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-card__year {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+@media (max-width: 900px) {
+  .book-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* -- Kalulu (bloque resumen en home) ------------------------------------------ */
+.kalulu-band {
+  background: var(--color-ink);
+  color: #fff;
+  border-radius: 24px;
+  padding: clamp(32px, 5vw, 56px);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gutter);
-  align-items: start;
+  align-items: center;
 }
 
-.project-preview__index {
-  grid-column: 1 / span 1;
-  font-family: var(--font-body); /* indice numerico pequeño: metadata, no titulo */
-  font-size: var(--fs-small);
-  color: var(--color-muted-2);
-  padding-top: 4px;
+.kalulu-band__content {
+  grid-column: 1 / span 7;
 }
 
-.project-preview__media {
-  grid-column: 2 / span 6;
+.kalulu-band__eyebrow {
+  color: #9cc4f7;
+  margin-bottom: 14px;
 }
 
-/* Imagen definitiva del proyecto Andrés Rieznik (img/andres.webp, formato
-   4:5). Mismo criterio que .hero y .profile__photo: background-image en
-   vez de <img>, aplicado sobre .media--tall (aspect-ratio 4/5 ya definido
-   en components.css). El resto de las previews de proyecto sigue usando
-   el placeholder neutro de .media hasta tener su imagen final. */
-.media--andres {
+.kalulu-band__title {
+  font-size: var(--fs-h2);
+  margin-bottom: 14px;
+}
+
+.kalulu-band__text {
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 56ch;
+  margin-bottom: 22px;
+}
+
+.kalulu-band__media {
+  grid-column: 9 / -1;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background-image: url('../../img/proyectos/andres-rieznik/3.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 860px) {
+  .kalulu-band__content,
+  .kalulu-band__media {
+    grid-column: 1 / -1;
+  }
+  .kalulu-band__media {
+    margin-top: 24px;
+    aspect-ratio: 16/9;
+  }
+}
+
+/* -- Sobre mí (bloque breve en home) ------------------------------------------ */
+.about-teaser {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  align-items: center;
+}
+
+.about-teaser__media {
+  grid-column: 1 / span 4;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
   background-image: url('../../img/andres.webp');
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: center top;
 }
 
-/* Imagen definitiva del proyecto Abuelas de Plaza de Mayo (img/abuelas.webp,
-   formato 1:1). Mismo criterio que .media--andres: background-image sobre
-   .media--square (aspect-ratio 1/1 ya definido en components.css). */
-.media--abuelas {
-  background-image: url('../../img/abuelas.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.about-teaser__content {
+  grid-column: 6 / span 7;
 }
 
-/* Imagen definitiva del proyecto Camila Perochena (img/camila.webp,
-   formato 16:9). Mismo criterio que .media--andres / .media--abuelas:
-   background-image sobre .media--16-9 (aspect-ratio ya definido en
-   components.css). */
-.media--camila {
-  background-image: url('../../img/camila.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.project-preview__content {
-  grid-column: 8 / span 5;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-top: 4px;
-}
-
-/* Ritmo alternado: los proyectos impares invierten media/contenido */
-.project-preview--reverse .project-preview__media {
-  grid-column: 6 / span 6;
-  grid-row: 1;
-}
-
-.project-preview--reverse .project-preview__content {
-  grid-column: 1 / span 4;
-  grid-row: 1;
-}
-
-.project-preview__category {
-  margin-bottom: 10px;
-}
-
-.project-preview__name {
-  font-size: var(--fs-h2);
-  margin-bottom: 20px;
-}
-
-.project-preview__description {
-  color: var(--color-text);
-  max-width: 42ch;
-  margin-bottom: 16px;
-}
-
-.project-preview__roles {
-  font-size: var(--fs-small);
+.about-teaser__text {
   color: var(--color-muted);
-  margin-bottom: 24px;
+  max-width: 56ch;
+  margin: 16px 0 20px;
 }
 
-.project-preview__stat {
-  margin-bottom: 28px;
-}
-
-.project-preview__stat-value {
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-  margin-bottom: 6px;
-}
-
-.project-preview__stat-caption {
-  display: block;
-  font-size: var(--fs-small);
-  color: var(--color-muted);
-  max-width: 34ch;
-}
-
-/* Contador animado del valor final (ver .count-up en main.js). El valor
-   inicial y la flecha ("19K → ") quedan fuera de este span y nunca se
-   tocan -- animar es exclusivo del numero final. tabular-nums evita que
-   el ancho de los digitos "salte" mientras cuenta (en la mayoria de
-   fuentes cada digito ya tiene el mismo ancho, pero esto lo garantiza);
-   min-width cubre el caso mas largo, "480K+", para que el conteo no
-   empuje el resto de la linea de derecha a izquierda mientras crece. */
-.count-up {
-  display: inline-block;
-  font-variant-numeric: tabular-nums;
-  min-width: 5ch;
-  transition: color 300ms ease;
-}
-
-/* Se agrega por JS (main.js) recien cuando el conteo llega al valor
-   definitivo -- nunca antes, y nunca sobre el resto de la linea. */
-.count-up.is-counted {
-  color: var(--color-accent);
-}
-
-.project-preview__placeholder-note {
-  font-size: var(--fs-small);
-  color: var(--color-muted-2);
-  font-style: italic;
-  margin-bottom: 24px;
-}
-
-.project-preview:hover .project-preview__media {
-  opacity: 0.92;
-}
-
-.project-preview__media {
-  transition: opacity 0.25s var(--ease);
-}
-
-@media (max-width: 1024px) {
-  .work__title {
-    grid-column: 1 / span 12;
+@media (max-width: 860px) {
+  .about-teaser__media,
+  .about-teaser__content {
+    grid-column: 1 / -1;
   }
-
-  .project-preview__media,
-  .project-preview--reverse .project-preview__media {
-    grid-column: 1 / span 12;
-    grid-row: 1;
-  }
-
-  .project-preview__content,
-  .project-preview--reverse .project-preview__content {
-    grid-column: 1 / span 12;
-    grid-row: 2;
-    margin-top: clamp(24px, 4vw, 36px);
+  .about-teaser__media {
+    max-width: 260px;
+    margin-bottom: 24px;
   }
 }
 
-@media (max-width: 768px) {
-  .project-preview__index {
-    display: none;
-  }
-}
-
-/* -- Otras colaboraciones -------------------------------------------------
-   Dos colaboraciones adicionales sin pagina interna, deliberadamente
-   estaticas: sin <a>, sin "Ver caso", sin cursor pointer ni hover de
-   interaccion (a diferencia de .project-preview de arriba). Comparte
-   .container/max-width con el resto del home, pero el titulo usa
-   --fs-h3 (un escalon por debajo del --fs-h2 de los tres proyectos
-   principales) y la descripcion usa color secundario -- menor peso
-   visual a proposito. Clases genericas para poder sumar mas
-   colaboraciones de este tipo despues sin crear un componente nuevo
-   cada vez. --------------------------------------------------------------- */
-.secondary-projects {
-  padding-block: var(--section-space);
-  border-top: 1px solid var(--color-line);
-}
-
-.secondary-projects__label {
-  display: block;
-  margin-bottom: clamp(32px, 5vw, 56px);
-}
-
-.secondary-projects__list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(48px, 6vw, 96px); /* gap amplio y editorial, mas generoso que --gutter a proposito */
-}
-
-.secondary-project__media {
-  margin-bottom: 20px;
-}
-
-/* Imagen definitiva de Emilse Garzón (img/emilse.webp, formato 16:9).
-   Mismo criterio que .media--andres / .media--camila / .media--abuelas:
-   background-image sobre .media--16-9. */
-.media--emilse-garzon {
-  background-image: url('../../img/emilse.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Imagen definitiva de María Roca (img/maria_roca.webp, formato 16:9).
-   Mismo criterio que .media--andres / .media--camila / .media--abuelas /
-   .media--emilse-garzon: background-image sobre .media--16-9. */
-.media--maria-roca {
-  background-image: url('../../img/maria_roca.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.secondary-project__category {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.secondary-project__title {
-  font-size: var(--fs-h3);
-  margin-bottom: 10px;
-}
-
-.secondary-project__description {
-  color: var(--color-muted);
-  max-width: 42ch;
-}
-
-.secondary-project__description p + p {
-  margin-top: 1em;
-}
-
-/* Link inline dentro de la descripción de Emilse Garzón (reel "Las
-   Malvinas Argentinas según ChatGPT"): mismo criterio que .article-body a
-   -- integrado al texto, sin botón, sin flecha, sin ícono. */
-.secondary-project__description a {
-  color: var(--color-accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-  transition: opacity 0.2s var(--ease);
-}
-
-.secondary-project__description a:hover,
-.secondary-project__description a:focus-visible {
-  opacity: 0.75;
-}
-
-@media (max-width: 768px) {
-  .secondary-projects__list {
-    grid-template-columns: 1fr;
-    gap: clamp(40px, 9vw, 64px);
-  }
-}
-
-/* Artículos (.profile-articles / .profile-article...) ya no vive acá: se
-   mudó a assets/css/profile.css -- ahora es parte de la página Sobre mí /
-   About (sobre-mi/index.html, en/about/index.html), después del
-   contenido principal de Perfil y antes del footer, ya no de la home. La
-   home tampoco tiene ya ninguna franja ".articles-band": Contacto pasó a
-   ser la sección oscura de cierre de la home (ver .contact en
-   assets/css/contact.css). */
+/* Contacto ya no es una franja de cierre aparte: la sección #contacto de la
+   home reutiliza directamente las clases .contact-page / .contact-columns /
+   .contact-row de assets/css/contact.css (mismas que usaba la ex-subpágina
+   contacto/), así que no hace falta un componente ".contact-band" propio
+   acá. */

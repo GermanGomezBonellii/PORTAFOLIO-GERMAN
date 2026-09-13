@@ -1,5 +1,6 @@
 /* ==========================================================================
-   COMPONENTES REUTILIZABLES — header, footer, media placeholders, botones
+   COMPONENTES REUTILIZABLES — header, footer, media placeholders, botones,
+   tags, animaciones de aparición, lightbox.
    ========================================================================== */
 
 /* -- Header --------------------------------------------------------------- */
@@ -7,7 +8,8 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--color-bg);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(8px);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -15,20 +17,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 22px;
-  min-height: var(--header-height); /* alto deterministico: lo usa el hero para calcular su min-height */
+  padding-block: 18px;
+  min-height: var(--header-height);
 }
 
 .site-header__name {
   font-family: var(--font-display);
   font-size: 1.05rem;
-  font-weight: 500;
+  font-weight: 700; /* marca textual del sitio -- enfasis, no el 400 editorial por defecto */
   letter-spacing: -0.01em;
+}
+
+.site-header__name-mark {
+  color: var(--color-accent);
 }
 
 .site-header__nav {
   display: flex;
-  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 32px);
 }
 
 .site-header__nav a {
@@ -36,29 +43,29 @@
   letter-spacing: 0.02em;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s var(--ease);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+  white-space: nowrap;
 }
 
-.site-header__nav a:hover {
-  border-bottom-color: var(--color-text);
+.site-header__nav a:hover,
+.site-header__nav a[aria-current="page"] {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
-/* -- Selector de idioma ES / EN -----------------------------------------
-   Vive DENTRO de .site-header__nav (ultimo item del mismo flex row que
-   Trabajo/Sobre mi/Contacto) a proposito: asi hereda gratis el mismo
-   comportamiento responsive que el resto de la navegacion (se oculta en
-   el menu hamburguesa en mobile y reaparece en el overlay a pantalla
-   completa junto con los demas links, ver @media max-width:768px mas
-   abajo) sin tocar el markup del header, el JS del menu mobile ni el
-   layout de .site-header__inner (justify-content: space-between entre
-   el nombre y este mismo nav sigue intacto). El idioma activo es un
-   <span> (no un link a si mismo); el otro idioma es un <a> real que
-   navega a la pagina EN/ES equivalente -- nunca un dropdown, bandera,
-   icono ni modal. */
+/* -- Selector de idioma -----------------------------------------------------
+   Preparado para ES/EN/PT pero OCULTO hasta que existan traducciones reales
+   (ver README / i18n). No borrar: cuando se agregue assets/i18n/en.json,
+   basta con quitar [hidden] de .language-switcher en el header de cada
+   página para activarlo. */
 .language-switcher {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.language-switcher[hidden] {
+  display: none;
 }
 
 .language-switcher__sep {
@@ -98,23 +105,24 @@ a.language-switcher__item:hover {
 
 .site-header__toggle span {
   display: block;
-  height: 1px;
+  height: 2px;
+  border-radius: 1px;
   background: var(--color-text);
   width: 100%;
   transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
 }
 
 .nav-open .site-header__toggle span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 .nav-open .site-header__toggle span:nth-child(2) {
   opacity: 0;
 }
 .nav-open .site-header__toggle span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .site-header__toggle {
     display: flex;
   }
@@ -125,6 +133,7 @@ a.language-switcher__item:hover {
     top: 65px;
     background: var(--color-bg);
     flex-direction: column;
+    align-items: flex-start;
     gap: 0;
     padding: 8px var(--margin) 40px;
     transform: translateY(-8px);
@@ -140,122 +149,74 @@ a.language-switcher__item:hover {
   }
 
   .site-header__nav a {
-    font-size: 1.4rem;
-    font-family: var(--font-body); /* navegacion: se mantiene neutra aunque sea grande */
+    font-size: 1.3rem;
+    font-family: var(--font-body);
     padding-block: 14px;
     border-bottom: 1px solid var(--color-line);
     width: 100%;
   }
-
-  .site-header__nav .language-switcher {
-    font-size: 1.4rem;
-    font-family: var(--font-body);
-    padding-block: 14px;
-    width: 100%;
-  }
 }
 
-/* -- Footer ------------------------------------------------------------
-   ------------------------------------------------------------------------
-   Full-bleed real, mismo criterio ya probado en .case-dark-band y en
-   .case-work__youtube-band (proyecto.css): el fondo oscuro + hero.webp
-   vive en el propio .site-footer -- el <footer> no tiene max-width
-   propio, ocupa todo el ancho de la página igual que <section> en el
-   resto del sitio -- mientras que .site-footer__inner sigue siendo
-   .container (max-width: var(--container-max) + margin-inline: auto +
-   padding-inline: var(--margin), ver base.css) y sigue centrando el
-   contenido. Nunca al revés: eso repetiría el bug ya corregido en
-   "Recortes en Youtube", donde el fondo quedaba limitado al ancho de la
-   columna central.
-
-   Misma imagen y misma mecánica que .hero (assets/css/home.css): mismo
-   archivo (../../img/hero.webp, misma profundidad de carpeta que
-   assets/css/home.css), mismo background-size/position/repeat
-   (cover/center/no-repeat). El overlay NO copia el rgba(0,0,0,.15) del
-   hero -- ese valor es apenas un tinte pensado para legibilidad de texto
-   grande sobre una imagen protagonista y luminosa, un criterio de
-   apertura. Para un cierre oscuro y discreto se reutiliza en cambio el
-   rgba(0,0,0,.55) que ya usa .case-dark-band en el resto del sitio para
-   "franjas oscuras" con esta misma textura -- mismo sistema visual ya
-   validado, no una aproximación nueva. background-color: #0d0d0d en el
-   propio elemento actúa de respaldo mientras carga la imagen o si la
-   ruta llegara a fallar. */
+/* -- Footer --------------------------------------------------------------- */
 .site-footer {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-block: clamp(32px, 6vw, 56px);
-  background-color: #0d0d0d;
-  color: #f5f5f3;
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../../img/hero.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  border-top: 1px solid var(--color-line);
+  padding-block: clamp(40px, 6vw, 64px);
+  background: var(--color-ink);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .site-footer__inner {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px 40px;
+  gap: 24px 40px;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .site-footer__name {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-weight: 700; /* mismo enfasis que la marca del header */
+  font-size: 1.1rem;
+  color: #ffffff;
 }
 
 .site-footer__meta {
   font-size: var(--fs-small);
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 40ch;
 }
 
-/* .back-link se reutiliza también fuera del footer (ej. el nav "Final del
-   caso", sobre fondo blanco) -- se sobreescribe acá SOLO dentro de
-   .site-footer para no tocar esos otros usos. */
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+.site-footer__nav a {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.2s var(--ease);
+}
+
+.site-footer__nav a:hover {
+  color: #ffffff;
+}
+
 .site-footer .back-link {
   color: rgba(255, 255, 255, 0.72);
 }
 
 .site-footer .back-link:hover {
-  color: var(--color-accent);
+  color: #ffffff;
 }
 
-/* -- Placeholder de sección (perfil / contacto en esta etapa) --------- */
-.stub-section {
-  padding-block: var(--section-space);
-  border-top: 1px solid var(--color-line);
-}
-
-.stub-section__eyebrow {
-  margin-bottom: 18px;
-}
-
-.stub-section__title {
-  font-size: var(--fs-h2);
-  margin-bottom: 14px;
-}
-
-.stub-section__note {
-  color: var(--color-muted);
-  max-width: 46ch;
-}
-
-/* -- Media placeholders -------------------------------------------------
-   Componentes preparados para video 16:9, video vertical 9:16, imagen y
-   thumbnail. Por ahora renderizan un bloque neutro con etiqueta.
-   ------------------------------------------------------------------------ */
+/* -- Media placeholders --------------------------------------------------- */
 .media {
   position: relative;
   width: 100%;
@@ -263,24 +224,9 @@ a.language-switcher__item:hover {
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  border-radius: var(--radius);
 }
 
-/* Solo genera el pseudo-elemento cuando el bloque realmente tiene
-   data-label (el texto de fallback si la imagen no carga, ver onerror en
-   el HTML). Antes era ".media::after" sin condición: con content:attr()
-   sobre un atributo inexistente el texto queda vacío, pero el pseudo-
-   elemento se sigue generando igual, con su padding:14px intacto. En un
-   .media con display:flex y una <img> real en flujo (no absoluta) como
-   hijo -- el caso de la captura de TikTok y el isotipo en "Una cuenta
-   nueva" de Abuelas -- ese pseudo-elemento vacío pasaba a ser un segundo
-   hijo del flex que igual reservaba sus 28px (14px + 14px) de ancho,
-   empujando la imagen y dejando expuesto el fondo gris de .media al
-   costado -- el bug reportado ("el logo se ve grande con un reborde gris
-   al costado" en mobile, donde el bloque ocupa el ancho completo de la
-   columna). No afecta a los .media que sí usan data-label (case-reel__img
-   y graphic-carousel__img son position:absolute, no participan del flex,
-   así que el fallback sigue funcionando igual que antes si la imagen
-   falla). */
 .media[data-label]::after {
   content: attr(data-label);
   font-size: var(--fs-micro);
@@ -290,32 +236,82 @@ a.language-switcher__item:hover {
   padding: 14px;
 }
 
-.media--16-9 {
-  aspect-ratio: 16 / 9;
+.media--16-9 { aspect-ratio: 16 / 9; }
+.media--9-16 { aspect-ratio: 9 / 16; }
+.media--square { aspect-ratio: 1 / 1; }
+.media--tall { aspect-ratio: 4 / 5; }
+.media--thumbnail { aspect-ratio: 4 / 3; }
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.media--9-16 {
-  aspect-ratio: 9 / 16;
+/* -- Miniatura de video con boton de play superpuesto -----------------------
+   Compartido entre Kalulu (mini documental) y Videos (todas las piezas):
+   thumbnail real + boton de play dibujado en CSS, sin reproductor
+   embebido -- el link abre el video original en YouTube en una pestaña
+   nueva. Movido acá desde kalulu.css para no duplicarlo al construir la
+   página de Videos. */
+.project-feature__media {
+  position: relative;
+  display: block;
 }
 
-.media--square {
-  aspect-ratio: 1 / 1;
+.project-feature__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.media--tall {
-  aspect-ratio: 4 / 5;
+.project-feature__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
 }
 
-.media--thumbnail {
-  aspect-ratio: 4 / 3;
+.project-feature__play::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent var(--color-ink);
 }
 
-/* -- Link con flecha (Ver caso →) --------------------------------------- */
+/* -- Tag / pill (categorías de Noticias, Videos, etc.) --------------------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.tag--pinned {
+  color: #a15b00;
+  background: #fff1de;
+}
+
+/* -- Link con flecha ------------------------------------------------------- */
 .arrow-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: var(--fs-small);
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 
@@ -328,7 +324,7 @@ a:hover .arrow-link__arrow {
   transform: translateX(4px);
 }
 
-/* -- Breadcrumb / volver -------------------------------------------------- */
+/* -- Breadcrumb / volver ---------------------------------------------------- */
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -339,10 +335,10 @@ a:hover .arrow-link__arrow {
 }
 
 .back-link:hover {
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
-/* -- Aparición suave (fade-in al cargar) --------------------------------- */
+/* -- Aparición suave -------------------------------------------------------- */
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
@@ -354,21 +350,10 @@ a:hover .arrow-link__arrow {
   transform: translateY(0);
 }
 
-/* -- Aparición al hacer scroll (hero: bajada y texto secundario) --------
-   Clase reutilizable .reveal-on-scroll + .is-visible. Se activa según el
-   progreso de scroll dentro de .hero-scroll (ver assets/js/main.js) --
-   el hero es sticky, así que estos elementos permanecen siempre en
-   viewport mientras dura ese recorrido, y un IntersectionObserver por sí
-   solo ya no alcanza para escalonarlos. .reveal-on-scroll--delay agrega
-   un pequeño stagger adicional en la propia transición del segundo
-   elemento.
-   ------------------------------------------------------------------------ */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(24px);
-  transition:
-    opacity 700ms ease,
-    transform 700ms ease;
+  transition: opacity 700ms ease, transform 700ms ease;
 }
 
 .reveal-on-scroll.is-visible {
@@ -377,11 +362,11 @@ a:hover .arrow-link__arrow {
 }
 
 .reveal-on-scroll--delay {
-  transition-delay: 180ms; /* stagger: aparece un poco despues que .hero__lead */
+  transition-delay: 180ms;
 }
 
-/* Accesibilidad: sin animación para quien prefiere movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
+  .fade-in,
   .reveal-on-scroll,
   .reveal-on-scroll--delay {
     opacity: 1;
@@ -390,42 +375,12 @@ a:hover .arrow-link__arrow {
   }
 }
 
-/* -- Typewriter: cursor del efecto de escritura progresiva (logica en
-   main.js, atributos data-typewriter / data-speed en el HTML). El cursor
-   es un pseudo-elemento -- no agrega texto real ni interfiere con el
-   contenido accesible. Sin color propio: hereda currentColor, asi que
-   toma automaticamente el color del texto donde se use (celeste en el
-   caso actual, pero reutilizable en cualquier otro contexto). Cuando
-   prefers-reduced-motion esta activo, main.js directamente no inicia el
-   efecto, asi que esta clase nunca llega a aplicarse para esos usuarios. */
-.typewriter--typing::after {
-  content: "|";
-  margin-left: 1px;
-  animation: typewriter-blink 800ms step-end infinite;
-}
-
-@keyframes typewriter-blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-
-/* -- Lightbox genérico: fondo oscuro, imagen centrada, cerrar con X o
-   Escape -- primer lightbox del sitio, pensado para reutilizarse en
-   cualquier galería futura (por ahora lo abre el carrusel de piezas
-   gráficas de Arrecifes en Andrés Rieznik, ver proyecto.css/main.js).
-   Vive oculto (atributo hidden) hasta que JS lo activa; sin animación
-   de aparición para mantenerlo simple -- es una utilidad, no una pieza
-   editorial en sí misma. */
+/* -- Lightbox genérico (reutilizado en Kalulu: piezas gráficas) ------------- */
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(14, 14, 13, 0.92);
+  background: rgba(11, 31, 58, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -442,6 +397,7 @@ a:hover .arrow-link__arrow {
   width: auto;
   height: auto;
   object-fit: contain;
+  border-radius: 8px;
 }
 
 .lightbox__close,
@@ -461,9 +417,6 @@ a:hover .arrow-link__arrow {
   transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 
-/* Outline de foco propio: el default global (a:focus-visible /
-   button:focus-visible en base.css) usa var(--color-text), casi negro
-   -- invisible sobre el fondo oscuro del lightbox. */
 .lightbox button:focus-visible {
   outline-color: #fff;
 }
@@ -490,8 +443,6 @@ a:hover .arrow-link__arrow {
   transform: translateY(-50%);
 }
 
-/* Evita que el fondo scrollee detrás del lightbox mientras está abierto
-   (JS agrega/quita esta clase en <body> al abrir/cerrar). */
 body.lightbox-open {
   overflow: hidden;
 }
@@ -502,4 +453,21 @@ body.lightbox-open {
     width: 38px;
     height: 38px;
   }
+}
+
+/* -- Skip link (accesibilidad, navegación por teclado) ---------------------- */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 200;
+  transition: top 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  top: 12px;
 }

@@ -1,0 +1,486 @@
+/* ==========================================================================
+   ARTICULO — página editorial de lectura para /articulos/<slug>/
+   Reutilizado casi sin cambios del sistema base: ancho de lectura acotado,
+   tipografía serif para headings, buena legibilidad de párrafo largo.
+   ========================================================================== */
+
+.article-page {
+  padding-block: clamp(32px, 6vw, 56px) clamp(64px, 10vw, 120px);
+}
+
+.article-page__back {
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.article-page__header {
+  max-width: 860px;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.article-page__label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.article-page__title {
+  font-size: var(--fs-h1);
+  margin-bottom: clamp(16px, 3vw, 24px);
+}
+
+.article-page__dek {
+  font-family: var(--font-body);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--color-muted);
+  max-width: 62ch;
+}
+
+.article-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  margin-top: 20px;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+.article-page__cover {
+  max-width: 860px;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.article-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.article-body {
+  max-width: 740px;
+}
+
+.article-body p {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.1vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.article-body p + p {
+  margin-top: 1.3em;
+}
+
+.article-body h2 {
+  font-size: var(--fs-h3);
+  margin-top: clamp(40px, 6vw, 56px);
+  margin-bottom: 0.6em;
+}
+
+.article-body h3 {
+  font-family: var(--font-display);
+  font-weight: 400; /* editorial regular, en linea con el resto de la jerarquia de headings */
+  font-size: 1.25rem;
+  margin-top: clamp(32px, 5vw, 44px);
+  margin-bottom: 0.5em;
+}
+
+.article-body h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-top: clamp(28px, 4vw, 36px);
+  margin-bottom: 0.5em;
+}
+
+.article-body h5 {
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-top: clamp(24px, 3vw, 32px);
+  margin-bottom: 0.6em;
+}
+
+.article-body ul,
+.article-body ol {
+  margin-top: 1.2em;
+  padding-left: 1.4em;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.1vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.article-body ul { list-style: disc; }
+.article-body ol { list-style: decimal; }
+.article-body li + li { margin-top: 0.5em; }
+
+.article-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-body blockquote {
+  margin: clamp(28px, 4vw, 40px) 0;
+  padding-left: 24px;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.article-body figure {
+  margin: clamp(28px, 4vw, 40px) 0;
+}
+
+.article-body figcaption {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  margin-top: 8px;
+}
+
+.article-body .figure-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.article-body .figure-row img {
+  flex: 1 1 200px;
+  width: auto;
+  max-width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: var(--color-surface);
+  border-radius: 8px;
+}
+
+.article-body figure img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+/* -- Autoría (varios autores) ------------------------------------------------ */
+.article-page__authors {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  margin-top: 8px;
+}
+
+/* -- Descarga de PDF ---------------------------------------------------------- */
+.article-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+/* -- Separadores de parte ("01", "02"...) dentro del cuerpo largo ------------- */
+.article-body .article-part {
+  display: block;
+  margin-top: clamp(48px, 7vw, 72px);
+  margin-bottom: 4px;
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+
+.article-body .article-part + h2 {
+  margin-top: 0;
+}
+
+/* -- Tablas ------------------------------------------------------------------- */
+.article-table-wrapper {
+  margin: clamp(28px, 4vw, 40px) 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-body table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.article-body caption {
+  caption-side: top;
+  text-align: left;
+  padding: 14px 16px 0;
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.article-body th,
+.article-body td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.article-body thead th {
+  background: var(--color-surface);
+  font-family: var(--font-display);
+  font-weight: 700; /* distingue el encabezado de la fila de datos (sans regular) */
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.article-body tbody tr:last-child th,
+.article-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-body td p,
+.article-body th p {
+  font-size: inherit;
+  margin: 0;
+}
+
+.article-body td p + p,
+.article-body th p + p {
+  margin-top: 0.6em;
+}
+
+/* -- Notas al pie -------------------------------------------------------------- */
+.article-body sup.footnote-ref {
+  font-size: 0.7em;
+  margin-left: 1px;
+}
+
+.article-body sup.footnote-ref a {
+  text-decoration: none;
+}
+
+.article-footnotes {
+  max-width: 740px;
+  margin-top: clamp(56px, 8vw, 80px);
+  padding-top: 24px;
+  border-top: 1px solid var(--color-line);
+}
+
+.article-footnotes__title {
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-2);
+  margin-bottom: 14px;
+}
+
+.article-footnotes ol {
+  padding-left: 1.2em;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.article-footnotes li + li {
+  margin-top: 0.6em;
+}
+
+.article-footnotes a {
+  color: var(--color-accent);
+}
+
+/* -- Listado de Artículos y ensayos + tabs Ensayos/Papers ------------------- */
+.articles-hero {
+  padding-block: clamp(40px, 6vw, 72px) 0;
+}
+
+.articles-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: clamp(32px, 5vw, 48px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.articles-tab {
+  padding: 12px 4px;
+  margin-bottom: -1px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-muted);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.articles-tab + .articles-tab {
+  margin-left: 12px;
+}
+
+.articles-tab:hover {
+  color: var(--color-text);
+}
+
+.articles-tab[aria-selected="true"] {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.articles-panel {
+  padding-block: clamp(40px, 6vw, 64px);
+}
+
+.articles-panel[hidden] {
+  display: none;
+}
+
+.article-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(32px, 4vw, 48px);
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.article-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.article-card__media {
+  aspect-ratio: 16/9;
+}
+
+.article-card__body {
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.article-card__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: var(--fs-micro);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.article-card__title {
+  font-size: var(--fs-h3);
+}
+
+.article-card__excerpt {
+  color: var(--color-muted);
+  font-size: var(--fs-small);
+  flex: 1;
+}
+
+/* -- Papers ------------------------------------------------------------------ */
+.paper-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.paper-card {
+  padding-block: clamp(24px, 3.5vw, 32px);
+  border-top: 1px solid var(--color-line);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 24px;
+  align-items: start;
+}
+
+.paper-card:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.paper-card__title {
+  font-size: 1.15rem;
+  font-family: var(--font-display);
+  margin-bottom: 6px;
+}
+
+.paper-card__meta {
+  font-size: var(--fs-small);
+  color: var(--color-muted);
+}
+
+.paper-card__meta + .paper-card__meta {
+  margin-top: 2px;
+}
+
+.paper-card__doi {
+  justify-self: end;
+  align-self: center;
+}
+
+/* -- Impresión / PDF de descarga --------------------------------------------- */
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .article-page__back,
+  .article-page__actions {
+    display: none !important;
+  }
+
+  .article-page {
+    padding: 0;
+  }
+
+  .article-body,
+  .article-page__header {
+    max-width: 100%;
+  }
+
+  .article-body a {
+    color: var(--color-ink);
+    text-decoration: underline;
+  }
+
+  .article-body img {
+    max-width: 100% !important;
+  }
+
+  .article-table-wrapper {
+    overflow: visible;
+    border: 1px solid #ccc;
+  }
+
+  .article-body table {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-page {
+    padding-block: clamp(24px, 6vw, 40px) clamp(48px, 10vw, 72px);
+  }
+
+  .article-list {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-card {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-card__doi {
+    justify-self: start;
+  }
+}

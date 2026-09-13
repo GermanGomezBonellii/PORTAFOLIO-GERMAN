@@ -1,0 +1,109 @@
+<!--
+  PLANTILLA DE ARTÍCULO — no está enlazada desde ningún lado del sitio.
+  Sirve como referencia para crear una subpágina nueva cuando haya un
+  artículo o ensayo real de Andrés para publicar:
+
+    1. Duplicar esta carpeta como articulos/<slug-del-articulo>/
+    2. Completar título, bajada, fecha, categoría y el cuerpo del artículo
+    3. Si hay PDF, agregarlo (ej. articulos/<slug>/articulo.pdf) y activar
+       el botón "Descargar" de más abajo
+    4. Agregar la tarjeta correspondiente en articulos/index.html (panel
+       "Artículos y ensayos")
+
+  Borrar este comentario y los datos de ejemplo al usarla.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Título del artículo] — Andrés Rieznik</title>
+<meta name="description" content="[Bajada / resumen del artículo]">
+<link rel="canonical" href="https://TU-DOMINIO.example/articulos/ejemplo-de-articulo/index.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Título del artículo] — Andrés Rieznik">
+<meta property="og:description" content="[Bajada / resumen del artículo]">
+<meta property="og:image" content="https://TU-DOMINIO.example/img/andres.webp">
+<meta property="og:locale" content="es_AR">
+
+<link rel="icon" type="image/svg+xml" href="../../img/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=optional" rel="stylesheet">
+
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/article.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "[Título del artículo]",
+  "author": { "@type": "Person", "name": "Andrés Rieznik" },
+  "datePublished": "YYYY-MM-DD",
+  "image": "https://TU-DOMINIO.example/img/andres.webp"
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="../../index.html" class="site-header__name">Andrés <span class="site-header__name-mark">Rieznik</span></a>
+    <button class="site-header__toggle" data-nav-toggle aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-header__nav" aria-label="Navegación principal">
+      <a href="../../index.html">Inicio</a>
+      <a href="../index.html">Artículos</a>
+      <a href="../../noticias/index.html">Noticias</a>
+      <a href="../../videos/index.html">Videos</a>
+      <a href="../../kalulu-y-alfabetizacion/index.html">Kalulu</a>
+      <a href="../../sobre-mi/index.html">Sobre mí</a>
+      <a href="../../index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="article-page container">
+    <a href="../index.html" class="back-link article-page__back">← Volver a Artículos</a>
+
+    <div class="article-page__header">
+      <span class="eyebrow article-page__label">[Categoría opcional]</span>
+      <h1 class="article-page__title">[Título del artículo]</h1>
+      <p class="article-page__dek">[Bajada / resumen del artículo]</p>
+      <div class="article-page__meta">
+        <span>[Fecha]</span>
+      </div>
+    </div>
+
+    <div class="article-page__actions">
+      <!-- Descomentar y apuntar al PDF real cuando exista -->
+      <!-- <a class="btn btn--outline" href="articulo.pdf" download>Descargar PDF</a> -->
+      <button type="button" class="btn btn--outline" onclick="navigator.clipboard&&navigator.clipboard.writeText(location.href)">Copiar enlace</button>
+    </div>
+
+    <article class="article-body">
+      <p>[Cuerpo completo del artículo. Admite párrafos, subtítulos (h2/h3), listas, citas (blockquote) y links, con el mismo sistema tipográfico del resto del sitio.]</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="site-footer__name">Andrés Rieznik</span>
+    </div>
+    <a href="../index.html" class="back-link">← Volver a Artículos</a>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
